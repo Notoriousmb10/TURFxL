@@ -120,6 +120,9 @@ const Footer = () => {
                   Email:
                 </h6>
                 <p className='mb-0'>aryan@gmail.com</p>
+                <p className='mb-0'>yash@gmail.com</p>
+                <p className='mb-0'>abhishek@gmail.com</p>
+                <p className='mb-0'>shashikant@gmail.com</p>
               </ListGroupItem>
 
               <ListGroupItem className='ps-0 border-0 d-flex align-items-start gap-3'>
@@ -136,7 +139,7 @@ const Footer = () => {
 
           <Col lg='12' className='text-center pt-5'>
             <p className='copyright'>
-              Copyright {year}, design and developed by Aryan Jadhav. All rights
+              Copyright {year}, design and developed by Team TURFxL. All rights
               reserved.
             </p>
           </Col>
