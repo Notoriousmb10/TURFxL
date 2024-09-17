@@ -75,13 +75,13 @@ ul {
 
 .section__subtitle {
   background: var(--secondary-color);
-  font-family: var(--subtitle-font-name);
+  font-family: Poppins;
   width: max-content;
-  padding: 0px 0.5rem;
+  padding: 4px 1rem;
   padding-right: 1rem;
 
   border-radius: 50px;
   font-weight: 500;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   color: var(--heading-color);
 }

@@ -10,12 +10,12 @@ const nav__links = [
     display: 'Home'
   },
   {
-    path: '/about',
-    display: 'About'
+    path: '/search',
+    display: 'Search'
   },
   {
-    path: '/tours',
-    display: 'Tours'
+    path: '/turfs',
+    display: 'Turfs'
   }
 ];
 
