@@ -1,21 +1,23 @@
 import React from 'react';
 import { Card, CardBody } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './tour-card.css';
 import calculateAvgRating from '../utils/avgRating';
 
 const TourCard = ({ tour }) => {
   const { _id, title, city, photo, price, featured, reviews = [] } = tour;
+  const { totalRating, avgRating } = calculateAvgRating(reviews);
+  const navigate = useNavigate();
 
-  const{totalRating,avgRating} = calculateAvgRating(reviews)// Calculate total rating by summing all ratings in the reviews array
-  
+  const handleBookNow = () => {
+    navigate('/turfs/bookturf', { state: { tour } });
+  };
 
   return (
     <div className='tour__card'>
       <Card>
         <div className='tour__img'>
           <img src={photo} alt={title} />
-          {/* Display 'Featured' only if the tour is featured */}
           {featured && <span>Featured</span>}
         </div>
         <CardBody>
@@ -24,12 +26,12 @@ const TourCard = ({ tour }) => {
               <i className="ri-map-pin-line"></i>{city}
             </span>
             <span className='tour__rating d-flex align-items-center gap-1'>
-              {/* Display average rating if it exists */}
-              <i className="ri-star-fill"></i>{avgRating === 0 ? null: avgRating}
-              {totalRating ===0 ?(
+              <i className="ri-star-fill"></i>{avgRating === 0 ? null : avgRating}
+              {totalRating === 0 ? (
                 "Not rated"
-              ):(
-              <span> ({reviews.length})</span>)}
+              ) : (
+                <span> ({reviews.length})</span>
+              )}
             </span>
           </div>
 
@@ -39,10 +41,10 @@ const TourCard = ({ tour }) => {
 
           <div className='card__bottom d-flex align-items-center justify-content-between mt-3'>
             <h5>
-            ₹{price} <span>/per person</span>
+              ₹{price} <span>/per person</span>
             </h5>
-            <button className='btn booking__btn'>
-              <Link to={`/turfs/${_id}`}>Book Now</Link>
+            <button className='btn booking__btn' onClick={handleBookNow}>
+              Book Now
             </button>
           </div>
         </CardBody>

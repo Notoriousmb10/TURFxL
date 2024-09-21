@@ -1,10 +1,11 @@
-import tourImg01 from "../images/tour-img01.jpg";
-import tourImg02 from "../images/tour-img02.jpg";
-import tourImg03 from "../images/tour-img03.jpg";
-import tourImg04 from "../images/tour-img04.jpg";
-import tourImg05 from "../images/tour-img05.jpg";
-import tourImg06 from "../images/tour-img06.jpg";
-import tourImg07 from "../images/tour-img07.jpg";
+import tourImg01 from "../images/tour-img01.jpeg";
+import tourImg02 from "../images/tour-img02.jpeg";
+import tourImg03 from "../images/tour-img03.jpeg";
+import tourImg04 from "../images/tour-img04.jpeg";
+import tourImg05 from "../images/tour-img05.jpeg";
+import tourImg06 from "../images/tour-img06.jpeg";
+import tourImg07 from "../images/tour-img07.jpeg";
+import tourImg08 from "../images/tour-img08.jpeg";
 
 const turfs = [
   {
@@ -130,7 +131,7 @@ const turfs = [
     desc: "A scenic turf overlooking the beach, perfect for playing football with a view.",
     reviews: [],
     avgRating: 4.7,
-    photo: tourImg07,
+    photo: tourImg08,
     featured: false,
   },
 ];

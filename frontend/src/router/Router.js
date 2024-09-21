@@ -18,7 +18,7 @@ const Routers = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/thank-you" element={<ThankYou />} />
-      <Route path="/turfs/:id" element={<TurfDisplay />} />
+      <Route path="/turfs/bookturf" element={<TurfDisplay />} />
       <Route path="/turfs/search" element={<SearchResultList />} />
     </Routes>
   );
