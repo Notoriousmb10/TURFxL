@@ -37,7 +37,14 @@ const Register = () => {
           photo: user.photoURL,
         })
       );
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          username: user.displayName,
+          email: user.email,
+          photo: user.photoURL,
+        })
+      );
       localStorage.setItem("isLoggedIn", true);
       dispatch(loginStatus(true));
       navigate("/");

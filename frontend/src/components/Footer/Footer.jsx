@@ -15,7 +15,7 @@ const quick__links = [
   },
   {
     path: "/turfs",
-    display: "turfs",
+    display: "Turfs",
   },
 ];
 

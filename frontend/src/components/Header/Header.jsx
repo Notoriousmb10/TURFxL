@@ -9,7 +9,10 @@ import { MdMenu } from "react-icons/md";
 import { FaCaretDown } from "react-icons/fa"; // Import the arrow icon
 import "./header.css";
 import { useDispatch } from "react-redux";
-import { loginStatus as setLoginStatus, setUserInfo } from "../../redux/actions/userActions";
+import {
+  loginStatus as setLoginStatus,
+  setUserInfo,
+} from "../../redux/actions/userActions";
 const nav__links = [
   {
     path: "/home",
@@ -33,19 +36,25 @@ const Header = () => {
   const dropdownRef = useRef(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dispatch = useDispatch();
+  const [profilePhoto, setprofilePhoto] = useState(null)
+  const [loginStatusState, setloginStatusState] = useState(false)
+
+  const Logout = () => {
+    localStorage.clear();
+    setloginStatusState(false)
+  };
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
+    const storedUser = localStorage.getItem('user');
+    const storedUserPhoto = storedUser ? JSON.parse(storedUser).photo : null;
+    setprofilePhoto(storedUserPhoto)
     const storedLoginStatus = localStorage.getItem("isLoggedIn");
+    setloginStatusState(storedLoginStatus)
 
-    if (storedUser && storedLoginStatus) {
-      dispatch(setUserInfo(JSON.parse(storedUser)));
-      dispatch(setLoginStatus(JSON.parse(storedLoginStatus)));
-    }
-  }, [dispatch]);
+  }, []);
 
-  const stickyHeaderFunc = () => {
-    window.addEventListener("scroll", () => {
+  useEffect(() => {
+    const handleScroll = () => {
       if (
         document.body.scrollTop > 80 ||
         document.documentElement.scrollTop > 80
@@ -54,32 +63,21 @@ const Header = () => {
       } else {
         headerRef.current.classList.remove("sticky__header");
       }
-    });
-  };
+    };
 
-  const navigateToProfile = () => {
-    navigate("/profile");
-  };
-
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setDropdownOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  useEffect(() => {
-    stickyHeaderFunc();
-    return () => {
-      window.removeEventListener("scroll", stickyHeaderFunc);
-    };
-  }, []);
+  const handleDropdownToggle = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const navigateToHome = () => {
+    navigate("/")
+  }
 
   return (
     <header className="header" ref={headerRef}>
@@ -88,7 +86,7 @@ const Header = () => {
           <div className="nav__wrapper d-flex align-items-center justify-content-between">
             {/* Logo */}
             <div className="logo">
-              <img src={logo} alt="Logo" />
+              <img src={logo} alt="Logo" onClick={navigateToHome}/>
             </div>
 
             {/* Navigation */}
@@ -118,28 +116,39 @@ const Header = () => {
                 <div className="p-2 rounded-full cursor-pointer md-plus:text-white md-plus:font-bold active:bg-slate-400 transition-colors duration-2000">
                   <BsCart3 />
                 </div>
-                {loginStatus ? (
+                {loginStatusState ? (
                   <div
                     className="relative flex items-center gap-2"
                     ref={dropdownRef}
                   >
-                    <button
-                      className="bg-coral-red flex hover:bg-red-400 items-center gap-2 p-2 rounded-md"
-                      onClick={navigateToProfile}
-                    >
-                      <img
-                        src={user.photo}
-                        alt="User"
-                        className="w-8 h-8 rounded-full"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = "path/to/fallback-image.jpg";
-                        }}
-                      />
-                      <span className="font-bold text-slate-100 text-sm">
-                        {user.username}
-                      </span>
-                    </button>
+                    <img
+                      src={profilePhoto}
+                      alt="User"
+                      className="profilepic"
+                      onClick={Logout}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "path/to/fallback-image.jpg";
+                      }}
+                    />
+                    {dropdownOpen && (
+                      <div className="dropdown">
+                        <button onClick={() => navigate("/profile")}>
+                          View Profile
+                        </button>
+                        <button
+                          onClick={() => {
+                            localStorage.removeItem("user");
+                            localStorage.removeItem("isLoggedIn");
+                            dispatch(setUserInfo(null));
+                            dispatch(setLoginStatus(false));
+                            navigate("/login");
+                          }}
+                        >
+                          Logout
+                        </button>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <>
