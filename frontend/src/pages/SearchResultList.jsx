@@ -3,6 +3,7 @@ import CommonSection from './../shared/CommonSection';
 import { Container, Row, Col } from 'reactstrap';
 import { useLocation } from 'react-router-dom';
 import TourCard from '../shared/TourCard';
+import '../shared/TurfDisplay.css'
 
 const SearchResultList = () => {
   const location = useLocation();
