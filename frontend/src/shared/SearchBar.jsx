@@ -42,7 +42,7 @@ const SearchBar = ({ onSearch }) => {
     <Col lg="12">
       <div className="search__bar">
         <Form
-          className="d-flex align-items-center gap-4"
+          className="d-flex align-items-center justify-content-center gap-4"
           onSubmit={(e) => e.preventDefault()}
         >
           <FormGroup className="d-flex flex-column align-items-start gap-2 form__group form__group-fast">

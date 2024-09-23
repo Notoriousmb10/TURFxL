@@ -1,0 +1,42 @@
+.turfdisplayholder{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.turfcontainer{
+    padding: 50px;
+    margin-bottom: 10px;
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    color: black;
+}
+
+.pholder{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pholder p{
+    width: 400px;
+    font-weight: 800;
+}
+
+.turfbookbtn{
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}

@@ -8,9 +8,9 @@ import {
   getDocs,
   GeoPoint,
 } from "firebase/firestore";
-import firebase from "firebase/compat/app";
+import "./SearchResults.css";
 import { useLocation } from "react-router-dom";
-const SearchResults = ({ searchQuery }) => {
+const SearchResults = () => {
   const [turfs, setTurfs] = useState([]);
   const searchLocation = useLocation();
 
@@ -35,7 +35,7 @@ const SearchResults = ({ searchQuery }) => {
   }, [searchLocation]);
 
   return (
-    <div>
+    <div className="turfdisplayholder">
       {turfs.length > 0 ? (
         <ul>
           {turfs.map((turf, index) => (
@@ -43,10 +43,14 @@ const SearchResults = ({ searchQuery }) => {
               <div className="turfcontainer">
                 <div>
                   <img src={turf.photo} alt="turfimg" />
+                  <button className=" turfbookbtn">Book Now</button>
                 </div>
-                <div>
-                  {turf.name}
-                  <p>{turf.details}</p>
+                <div className="pholder">
+                  <h3>{turf.name}</h3>
+                  <p className="desc">Description: {turf.description}</p>
+                  <p className="ratings">Ratings: {turf.ratings}</p>
+                  <p className="pricing">Pricing: {turf.pricing}</p>
+                  <p className="location">Location: {turf.location}</p>
                 </div>
               </div>
             </li>

@@ -80,6 +80,7 @@ const Header = () => {
   }
 
   return (
+    
     <header className="header" ref={headerRef}>
       <Container>
         <Row>
@@ -110,12 +111,7 @@ const Header = () => {
             {/* Right side buttons and mobile menu */}
             <div className="nav__right d-flex align-items-center gap-4">
               <div className="nav__btns d-flex align-items-center gap-4">
-                <div className="p-2 rounded-full cursor-pointer md-plus:text-white md-plus:font-bold active:bg-slate-400 transition-colors duration-2000">
-                  <CiSearch />
-                </div>
-                <div className="p-2 rounded-full cursor-pointer md-plus:text-white md-plus:font-bold active:bg-slate-400 transition-colors duration-2000">
-                  <BsCart3 />
-                </div>
+                
                 {loginStatusState ? (
                   <div
                     className="relative flex items-center gap-2"

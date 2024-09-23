@@ -9,6 +9,7 @@ import Register from "../pages/Register";
 import ThankYou from "../pages/ThankYou";
 import TurfDisplay from "../pages/TurfDisplay";
 import SearchResult from "../pages/SearchResult";
+import SearchFunc from "../pages/SearchFunc";
 
 const Routers = () => {
   return (
@@ -18,7 +19,8 @@ const Routers = () => {
       <Route path="/turfs" element={<Tours />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path={`/searchresults`} element={<SearchResult />} />
+      <Route path="/search" element={<SearchFunc />} />
+      <Route path='/searchresults' element={<SearchResult />} />
       <Route path="/thank-you" element={<ThankYou />} />
       <Route path="/turfs/bookturf" element={<TurfDisplay />} />
       <Route path="/turfs/search" element={<SearchResultList />} />

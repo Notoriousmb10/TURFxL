@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  height: 80px;
+  height: 100px;
   line-height: 80px;
 }
 .logo img {
@@ -29,7 +29,7 @@
 }
 .sticky__header {
   width: 100%;
-  height: 80px;
+  height: 100px;
   line-height: 80px;
   background: #fff;
   position: sticky;
@@ -46,3 +46,4 @@
   border-radius: 50%;
   margin-right: 10px;
 }
+

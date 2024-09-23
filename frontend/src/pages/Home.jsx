@@ -13,14 +13,23 @@ import experienceImg from "../assets/images/experience.jpeg";
 import MasonryImagesGallery from "../components/Image-gallery/MasonryImagesGallery";
 import Testimonials from "../components/Testimonial/Testimonials";
 import Newsletter from "../shared/Newsletter";
+
+import { motion } from 'framer-motion';
 const Home = () => {
   return (
     <>
+    <div  className="homebg">
+
+    
       <section>
         <Container>
           <Row>
             <Col lg="6">
-              <div className="hero__content">
+              <motion.div className="hero__content"
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+              whileInView={{opacity: 1, x: 0}}>
                 <div className="hero__subtitle d-flex align-items-center">
                   <Subtitle subtitle={"Know Your Place Before You Play"} />
                   <img src={worldImg} alt="World" />
@@ -35,8 +44,10 @@ const Home = () => {
                   any other turf, our platform helps you quickly locate and book
                   the perfect spot.
                 </p>
-              </div>
+              </motion.div>
             </Col>
+           
+            
             <Col lg="2">
               <div className="hero__img-box">
                 <img src={heroImg} alt="" />
@@ -57,7 +68,10 @@ const Home = () => {
       </section>
       {/* hero section */}
 
-      <section>
+      <motion.section initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+              whileInView={{opacity: 1, x: 0}}>
         <Container>
           <Row>
             <Col lg="3">
@@ -70,10 +84,12 @@ const Home = () => {
             <ServiceList />
           </Row>
         </Container>
-      </section>
+      </motion.section>
       {/* 
    featured tour section */}
-      <section>
+      <motion.section initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}>
         <Container>
           <Row>
             <Col lg="12" className="mb-5">
@@ -83,7 +99,7 @@ const Home = () => {
             <FeaturedTourList />
           </Row>
         </Container>
-      </section>
+      </motion.section>
 
       {/* experience section */}
 
@@ -162,6 +178,7 @@ const Home = () => {
       </section>
 
       <Newsletter />
+      </div>
     </>
   );
 };
