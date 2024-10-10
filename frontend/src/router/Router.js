@@ -4,7 +4,6 @@ import Home from "../pages/Home";
 import SearchResultList from "../pages/SearchResultList";
 import Tours from "../pages/Tours";
 import Login from "../pages/Login";
-import TourDetails from "../pages/TourDetails";
 import Register from "../pages/Register";
 import ThankYou from "../pages/ThankYou";
 import TurfDisplay from "../pages/TurfDisplay";

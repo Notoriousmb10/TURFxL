@@ -111,10 +111,3 @@
     margin-top: 1rem;
 }
 
-.homebg{
-    background: linear-gradient(10deg, rgba(255, 255, 255, 0.9) 70%, rgba(218, 239, 214, 0.9) 60%);
-    background-blend-mode: overlay;
-    background-size: cover;
-    background-position: center;
-    background-size: cover;
-}
