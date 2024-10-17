@@ -1,6 +1,7 @@
-import { createRazorpayInstance } from "../config/razorpay.config";
-const crypto = require('crypto');
-const dotenv = require('dotenv');
+import { createRazorpayInstance } from "../config/razorpay.config.js";
+import crypto from 'crypto';
+import dotenv from 'dotenv';
+
 dotenv.config();
 const razorpayInstance = createRazorpayInstance();
 

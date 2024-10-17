@@ -1,9 +1,9 @@
-const dotenv = require("dotenv");
+import dotenv from 'dotenv';
+import Razorpay from 'razorpay';
+
 dotenv.config();
 
-const Razorpay = require("razorpay");
-
-exports.createRazorpayInstance = () => {
+export const createRazorpayInstance = () => {
   return new Razorpay({
     key_id: process.env.REACT_APP_RAZORPAY_KEY_ID,
     key_secret: process.env.REACT_APP_RAZORPAY_KEY_SECRET,

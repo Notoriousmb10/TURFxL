@@ -76,7 +76,8 @@ const Footer = () => {
             </div>
           </Col>
 
-          <Col lg="3">
+          <Col lg="3"  className="footer__links">
+
             <h5 className="footer__link-title">Discover</h5>
 
             <ListGroup className="footer__quick-links">
