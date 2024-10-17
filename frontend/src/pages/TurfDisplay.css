@@ -1,0 +1,27 @@
+.imageturf{
+    border-radius: 10px;
+    height: 800px;
+    width: 800px;
+}
+
+.turf-container{
+    display: flex;
+    height: 600px;
+    align-items: center;
+    gap: 200px;
+    color: white;
+}
+
+.book-btn{
+    background-color: #b8f7bb;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    
+}

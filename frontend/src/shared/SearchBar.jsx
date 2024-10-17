@@ -1,76 +1,80 @@
-import React, { useRef, useState } from 'react';
-import '../shared/search-bar.css';
+import React, { useRef, useState } from "react";
+import "../shared/search-bar.css";
 import { Col, Form, FormGroup } from "reactstrap";
-import { BASE_URL } from './../utils/config';
-import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from "./../utils/config";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { searchTurf } from "../redux/actions/userActions";
+import { ClipLoader } from "react-spinners";
 
-const SearchBar = () => {
-    const locationRef = useRef('');
-    const distanceRef = useRef('0');
-    const maxGroupSizeRef = useRef('0');
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState(false);
+import firebase from "firebase/compat/app";
+const SearchBar = ({ onSearch }) => {
+  const locationRef = useRef();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
-    const searchHandler = async () => {
-        const location = locationRef.current.value;
-        const distance = distanceRef.current.value;
-        const maxGroupSize = maxGroupSizeRef.current.value;
-    
-        if (location === '' || distance === '' || maxGroupSize === '') {
-            alert('Please fill all fields');
-            return;
-        }
-    
-        try {
-            const res = await fetch(`${BASE_URL}/tours/search/getTourBySearch?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`);
-            if (!res.ok) {
-                console.error("Something went wrong");
-                return;
-            }
-    
-            const result = await res.json();
-            // Pass the result to the state or context where you handle tour cards
-            // Example:
-            navigate(`/tours/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`, { state: { tours: result.data } });
-        } catch (error) {
-            console.error("Error fetching tour data:", error);
-        }
-    };
-    
+  const searchHandler = async () => {
+    const location = locationRef.current.value;
+    if (location === "") {
+      alert("Please fill field");
+      return;
+    }
+    setLoading(true);
+    setTimeout(async () => {
+      try {
+        dispatch(
+          searchTurf({
+            location,
+          })
+        );
+        setLoading(false);
 
-    return (
-        <Col lg='12'>
-            <div className='search__bar'>
-                <Form className="d-flex align-items-center gap-4" onSubmit={(e) => e.preventDefault()}>
-                    <FormGroup className="d-flex flex-column align-items-start gap-2 form__group form__group-fast">
-                        <span><i className="ri-map-pin-line"></i></span>
-                        <h6>Location</h6>
-                        <input type="text" placeholder="Where are you going?" ref={locationRef} />
-                    </FormGroup>
+        navigate(`/searchresults?location=${location.toLowerCase()}`);
+      } catch (error) {
+        console.error("Error searching turfs:", error);
+        setLoading(false);
+      }
+    }, 4000);
+  };
 
-                    <FormGroup className="d-flex flex-column align-items-start gap-2 form__group form__group-fast">
-                        <span><i className="ri-map-pin-time-line"></i></span>
-                        <h6>Distance</h6>
-                        <input type="number" placeholder="Distance k/m" ref={distanceRef} />
-                    </FormGroup>
-
-                    <FormGroup className="d-flex flex-column align-items-start gap-2 form__group form__group-fast">
-                        <span><i className="ri-group-line"></i></span>
-                        <h6>Max People</h6>
-                        <input type="number" placeholder="0" ref={maxGroupSizeRef} />
-                    </FormGroup>
-
-                    <button className='search__icon' type="button" onClick={searchHandler} disabled={loading}>
-                        {loading ? (
-                            <span>Loading...</span>
-                        ) : (
-                            <i className="ri-search-line"></i>
-                        )}
-                    </button>
-                </Form>
-            </div>
-        </Col>
-    );
+  return (
+    <Col lg="12">
+      <div className="search__bar">
+        <Form
+          className="d-flex align-items-center justify-content-center gap-4"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <FormGroup className="d-flex flex-column align-items-start gap-2 form__group form__group-fast">
+            <span>
+              <i className="ri-map-pin-line"></i>
+            </span>
+            <h6>Location</h6>
+            <input
+              type="text"
+              placeholder="Turf Locality ?"
+              ref={locationRef}
+            />
+          </FormGroup>
+          <button
+            className="search__icon"
+            type="button"
+            onClick={searchHandler}
+            disabled={loading}
+          >
+            {loading ? (
+             <div className="spinner-container">
+             <ClipLoader color="#000" loading={loading} size={50} />
+           </div>
+            ) : (
+              <i className="ri-search-line"></i>
+            )}
+          </button>
+          
+        </Form>
+      </div>
+    </Col>
+  );
 };
 
 export default SearchBar;

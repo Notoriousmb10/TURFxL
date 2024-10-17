@@ -7,11 +7,12 @@ import tourRoute from './routes/tours.js';
 import userRoute from './routes/users.js';
 import authRoute from './routes/auth.js';
 import reviewRoute from './routes/reviews.js'
-import bookingRoute from './routes/bookings.js' // Ensure this path is correct
-
+import bookingRoute from './routes/bookings.js' 
+import handleBooking from './controllers/handleBooking.js'
+import handleVerification from './controllers/handleVerification.js'
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 8000;
+const port = 3001;
 const corsOptions = {
     origin: true,
     credentials: true,
@@ -42,6 +43,8 @@ app.use('/api/v1/tours', tourRoute);
 app.use('/api/v1/users', userRoute);
 app.use('/api/v1/review', reviewRoute);
 app.use('/api/v1/booking',bookingRoute)
+app.use('/pay/bookTurf', handleBooking)
+app.use('/pay/verifyPayment', handleVerification)
 
 
 // Start server

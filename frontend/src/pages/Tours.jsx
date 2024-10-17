@@ -20,7 +20,7 @@ const Tours = () => {
 
     return (
         <>
-            <CommonSection title="ALL TOURS" />
+            <CommonSection title="ALL TURFS" />
             <section>
               <Container>
               <Row>

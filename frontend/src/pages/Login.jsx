@@ -18,7 +18,6 @@ const Login = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    // Add your login logic here
   };
 
   return (

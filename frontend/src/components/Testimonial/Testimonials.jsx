@@ -27,7 +27,7 @@ const Testimonials = () => {
       {
         breakpoint: 576,
         settings: {
-          slidesToShow: 1,  // Adjusted to show 1 slide at a time on smaller screens
+          slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
           dots: true,
@@ -40,78 +40,78 @@ const Testimonials = () => {
     <Slider {...settings}>
       <div className='testimonial py-4 px-3'>
         <p>
-          Lorem ipsum dolor sit amet, consectetur Ut enim ad minim veniam, it in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          "The turf quality is excellent! We held a football tournament here, and the experience was fantastic. The maintenance and facilities are top-notch."
         </p>
         <div className='d-flex align-items-center gap-4 mt-3'>
-          <img src={ava01} className='w-25 h-25 rounded-2' alt='' />
+          <img src={ava01} className='w-25 h-25 rounded-2' alt='Customer 1' />
           <div>
-            <h5 className='mb-0 mt-3'>Daniel Radcliffe </h5>
-            <p className='mb-0'>Customer</p>
+            <h5 className='mb-0 mt-3'>John Doe</h5>
+            <p className='mb-0'>Football Enthusiast</p>
           </div>
         </div>
       </div>
 
       <div className='testimonial py-4 px-3'>
         <p>
-          Lorem ipsum dolor sit amet, consectetur Ut enim ad minim veniam, it in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          "I've been a regular here for cricket practice. The turf is always well-maintained, and booking is so convenient. A great place for team sports."
         </p>
         <div className='d-flex align-items-center gap-4 mt-3'>
-          <img src={ava02} className='w-25 h-25 rounded-2' alt='' />
+          <img src={ava02} className='w-25 h-25 rounded-2' alt='Customer 2' />
           <div>
-            <h5 className='mb-0 mt-3'>Emma Watson</h5>
-            <p className='mb-0'>Customer</p>
+            <h5 className='mb-0 mt-3'>Jane Smith</h5>
+            <p className='mb-0'>Cricket Player</p>
           </div>
         </div>
       </div>
 
       <div className='testimonial py-4 px-3'>
         <p>
-          Lorem ipsum dolor sit amet, consectetur Ut enim ad minim veniam, it in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          "We booked the turf for a corporate football event, and it was an absolute hit! The staff was very supportive, and the turf condition was perfect for the game."
         </p>
         <div className='d-flex align-items-center gap-4 mt-3'>
-          <img src={ava03} className='w-25 h-25 rounded-2' alt='' />
+          <img src={ava03} className='w-25 h-25 rounded-2' alt='Customer 3' />
           <div>
-            <h5 className='mb-0 mt-3'>Rupert Grint</h5>
-            <p className='mb-0'>Customer</p>
+            <h5 className='mb-0 mt-3'>Emily Johnson</h5>
+            <p className='mb-0'>Event Organizer</p>
           </div>
         </div>
       </div>
 
       <div className='testimonial py-4 px-3'>
         <p>
-          Lorem ipsum dolor sit amet, consectetur Ut enim ad minim veniam, it in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          "The turf provides an amazing environment for fitness training. It's spacious, well-maintained, and always available when needed."
         </p>
         <div className='d-flex align-items-center gap-4 mt-3'>
-          <img src={ava01} className='w-25 h-25 rounded-2' alt='' />
+          <img src={ava01} className='w-25 h-25 rounded-2' alt='Customer 4' />
           <div>
-            <h5 className='mb-0 mt-3'>Daniel Radcliffe </h5>
-            <p className='mb-0'>Customer</p>
+            <h5 className='mb-0 mt-3'>Michael Brown</h5>
+            <p className='mb-0'>Fitness Coach</p>
           </div>
         </div>
       </div>
 
       <div className='testimonial py-4 px-3'>
         <p>
-          Lorem ipsum dolor sit amet, consectetur Ut enim ad minim veniam, it in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          "I come here with friends for weekly football matches, and we love the atmosphere! The turf is always in great condition, and the booking process is seamless."
         </p>
         <div className='d-flex align-items-center gap-4 mt-3'>
-          <img src={ava02} className='w-25 h-25 rounded-2' alt='' />
+          <img src={ava02} className='w-25 h-25 rounded-2' alt='Customer 5' />
           <div>
-            <h5 className='mb-0 mt-3'>Emma Watson</h5>
-            <p className='mb-0'>Customer</p>
+            <h5 className='mb-0 mt-3'>Chris Green</h5>
+            <p className='mb-0'>Regular Customer</p>
           </div>
         </div>
       </div>
 
       <div className='testimonial py-4 px-3'>
         <p>
-          Lorem ipsum dolor sit amet, consectetur Ut enim ad minim veniam, it in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          "The facilities here are world-class! We organized a charity event, and the turf quality and staff support exceeded our expectations."
         </p>
         <div className='d-flex align-items-center gap-4 mt-3'>
-          <img src={ava03} className='w-25 h-25 rounded-2' alt='' />
+          <img src={ava03} className='w-25 h-25 rounded-2' alt='Customer 6' />
           <div>
-            <h5 className='mb-0 mt-3'>Rupert Grint</h5>
-            <p className='mb-0'>Customer</p>
+            <h5 className='mb-0 mt-3'>Sara Williams</h5>
+            <p className='mb-0'>Event Coordinator</p>
           </div>
         </div>
       </div>

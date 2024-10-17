@@ -8,18 +8,18 @@ import customizationImg from '../assets/images/customization.png';
 const servicesData = [
   {
     imgUrl: weatherImg,
-    title: "Calculate Weather",
-    desc: "Calculate the weather for any location"
+    title: " Find the Best Turf",
+    desc: "Easily find turfs in your preferred location"
   },
   {
     imgUrl: guideImg,
-    title: "Book a Tour Guide",
-    desc: "Find a guide who speaks your language"
+    title: "Reserve a Turf",
+    desc: "Quickly book your turf with real-time availability"
   },
   {
     imgUrl: customizationImg,
-    title: "Customize Your Tour",
-    desc: "Tailor your tour to your preferences"
+    title: "Customize Your Booking",
+    desc: "Personalize your turf booking based on your needs and preferences"
   }
 ];
 
