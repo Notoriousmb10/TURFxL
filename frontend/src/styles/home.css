@@ -10,6 +10,14 @@
     margin-bottom: 2rem; /* Fixed spacing */
     color: var(--heading-color);
   }
+  /* Override the default styles applied by the chatbot scripts */
+.botpress-webchat-container {
+    box-shadow: none !important;
+  }
+  
+  .botpress-webchat-container.open {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important; /* Add box shadow when open */
+  }
   
   .hero__content h1 .highlight {
     color: var(--secondary-color);

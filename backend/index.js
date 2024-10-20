@@ -47,6 +47,7 @@ app.post('/pay/verifyPayment', verifyPayment);
 
 // Email sending endpoint
 app.post('/sendConfirmationEmail', async (req, res) => {
+
     const { email, bookingDetails } = req.body;
 
     const transporter = nodemailer.createTransport({
@@ -70,6 +71,7 @@ app.post('/sendConfirmationEmail', async (req, res) => {
     } catch (error) {
         console.error('Error sending confirmation email', error);
         res.status(500).json({ success: false, message: 'Error sending confirmation email' });
+        console.log(process.env.EMAIL_USER)
     }
 });
 
