@@ -1,82 +1,103 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import * as React from "react";
+import { useState, useEffect } from "react";
+import Box from "@mui/material/Box";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import Divider from "@mui/material/Divider";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import axios from "axios";
 
-export default function Sidebar() {
-  const [state, setState] = React.useState({
-    right: true ,
-  });
+export default function Sidebar({ open, onClose, name, city, image, price, desc, address, maxGroupSize }) {
+  const [numPlayers, setNumPlayers] = useState(maxGroupSize);
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event &&
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
-      return;
-    }
+  // Ensure price and maxGroupSize are valid numbers
+  const validPrice = parseFloat(price) || 0;
+  const validMaxGroupSize = parseInt(maxGroupSize, 10) || 1;
 
-    setState({ ...state, [anchor]: open });
+  const [totalPrice, setTotalPrice] = useState(validPrice);
+
+  useEffect(() => {
+    setNumPlayers(validMaxGroupSize); // Set default value to maxGroupSize when Sidebar opens
+    setTotalPrice(validPrice); // Set total price to the initial price
+  }, [validMaxGroupSize, validPrice, open]);
+
+  const handleNumPlayersChange = (event) => {
+    const newNumPlayers = parseInt(event.target.value, 10) || 1;
+    setNumPlayers(newNumPlayers);
   };
 
-  const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+  const handlePayment = async () => {
+    try {
+      const response = await axios.post("http://localhost:3001/pay/bookTurf", {
+        amount: totalPrice,
+      });
+
+      const { orderId, key_id } = response.data;
+
+      const options = {
+        key: key_id,
+        amount: totalPrice * 100, // Convert to paise
+        currency: "INR",
+        name: name,
+        description: desc,
+        order_id: orderId,
+        handler: function (response) {
+          // Handle payment success
+          console.log(response);
+          // You can redirect to a success page or show a success message here
+        },
+        prefill: {
+          name: "User Name",
+          email: "user@example.com",
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+
+      const rzp1 = new window.Razorpay(options);
+      rzp1.open();
+    } catch (error) {
+      console.error("Error creating Razorpay order", error);
+    }
+  };
+
+  const pricePerPlayer = totalPrice / numPlayers; // Calculate price per player
 
   return (
-    <div>
-      {['left', 'right', 'top', 'bottom'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <SwipeableDrawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
-          >
-            {list(anchor)}
-          </SwipeableDrawer>
-        </React.Fragment>
-      ))}
-    </div>
+    <SwipeableDrawer
+      anchor="right"
+      open={open}
+      onClose={onClose}
+      onOpen={() => {}}
+    >
+      <Box>
+        <Box p={2}>
+          <Typography variant="h6">Turf Booking</Typography>
+          <Divider sx={{ my: 2 }} />
+          <Typography variant="body1" sx={{ my: 2 }}>
+            Max Group Size: {maxGroupSize}
+          </Typography>
+          <TextField
+            label="Number of Players"
+            type="number"
+            value={numPlayers}
+            onChange={handleNumPlayersChange}
+            inputProps={{ min: 1 }}
+            fullWidth
+          />
+          <Typography variant="body1" sx={{ my: 2 }}>
+            Price per Player: ₹{pricePerPlayer.toFixed(2)}
+          </Typography>
+          <Typography variant="body1" sx={{ my: 2 }}>
+            Total Price: ₹{totalPrice.toFixed(2)}
+          </Typography>
+          <Button variant="contained" color="primary" fullWidth onClick={handlePayment}>
+            Continue to Payment
+          </Button>
+        </Box>
+      </Box>
+    </SwipeableDrawer>
   );
 }
