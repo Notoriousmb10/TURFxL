@@ -13,6 +13,8 @@ import {
   loginStatus as setLoginStatus,
   setUserInfo,
 } from "../../redux/actions/userActions";
+import { UserButton, useUser } from "@clerk/clerk-react"; // Import Clerk components
+
 const nav__links = [
   {
     path: "/home",
@@ -36,22 +38,11 @@ const Header = () => {
   const dropdownRef = useRef(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dispatch = useDispatch();
-  const [profilePhoto, setprofilePhoto] = useState(null)
-  const [loginStatusState, setloginStatusState] = useState(false)
+  const { isSignedIn } = useUser(); // Use Clerk's useUser hook
 
   const Logout = () => {
     localStorage.clear();
-    setloginStatusState(false)
   };
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    const storedUserPhoto = storedUser ? JSON.parse(storedUser).photo : null;
-    setprofilePhoto(storedUserPhoto)
-    const storedLoginStatus = localStorage.getItem("isLoggedIn");
-    setloginStatusState(storedLoginStatus)
-
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,18 +67,17 @@ const Header = () => {
   };
 
   const navigateToHome = () => {
-    navigate("/")
-  }
+    navigate("/");
+  };
 
   return (
-    
     <header className="header" ref={headerRef}>
       <Container>
         <Row>
           <div className="nav__wrapper d-flex align-items-center justify-content-between">
             {/* Logo */}
             <div className="logo">
-              <img src={logo} alt="Logo" onClick={navigateToHome}/>
+              <img src={logo} alt="Logo" onClick={navigateToHome} />
             </div>
 
             {/* Navigation */}
@@ -111,48 +101,12 @@ const Header = () => {
             {/* Right side buttons and mobile menu */}
             <div className="nav__right d-flex align-items-center gap-4">
               <div className="nav__btns d-flex align-items-center gap-4">
-                
-                {loginStatusState ? (
-                  <div
-                    className="relative flex items-center gap-2"
-                    ref={dropdownRef}
-                  >
-                    <img
-                      src={profilePhoto}
-                      alt="User"
-                      className="profilepic"
-                      onClick={Logout}
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = "path/to/fallback-image.jpg";
-                      }}
-                    />
-                    {dropdownOpen && (
-                      <div className="dropdown">
-                        <button onClick={() => navigate("/profile")}>
-                          View Profile
-                        </button>
-                        <button
-                          onClick={() => {
-                            localStorage.removeItem("user");
-                            localStorage.removeItem("isLoggedIn");
-                            dispatch(setUserInfo(null));
-                            dispatch(setLoginStatus(false));
-                            navigate("/login");
-                          }}
-                        >
-                          Logout
-                        </button>
-                      </div>
-                    )}
-                  </div>
+                {isSignedIn ? (
+                  <UserButton />
                 ) : (
                   <>
-                    <Button className="btn secondary__btn">
-                      <Link to="/login">Login</Link>
-                    </Button>
                     <Button className="btn primary__btn">
-                      <Link to="/register">Register</Link>
+                    <Link to="/login">Login</Link>
                     </Button>
                   </>
                 )}

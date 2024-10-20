@@ -1,5 +1,5 @@
-const crypto = require('crypto');
-const dotenv = require('dotenv');
+import crypto from 'crypto';
+import dotenv from 'dotenv';
 dotenv.config();
 
 // Verify payment function

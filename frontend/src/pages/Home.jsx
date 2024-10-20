@@ -15,6 +15,7 @@ import Testimonials from "../components/Testimonial/Testimonials";
 import Newsletter from "../shared/Newsletter";
 
 import { motion } from "framer-motion";
+import Footer from "../components/Footer/Footer";
 const Home = () => {
   return (
     <>
@@ -184,6 +185,7 @@ const Home = () => {
             </section>
 
             <Newsletter />
+            <Footer/>
           </div>
         </div>
     </>

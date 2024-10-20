@@ -8,7 +8,7 @@ import { searchTurf } from "../redux/actions/userActions";
 import { ClipLoader } from "react-spinners";
 
 import firebase from "firebase/compat/app";
-const SearchBar = ({ onSearch }) => {
+const   SearchBar = ({ onSearch }) => {
   const locationRef = useRef();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
