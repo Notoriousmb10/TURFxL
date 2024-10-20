@@ -11,7 +11,6 @@ import reviewRoute from './routes/reviews.js';
 import bookingRoute from './routes/bookings.js';
 import handleBooking from './controllers/handleBooking.js';
 import verifyPayment from './controllers/handleVerification.js';
-
 dotenv.config();
 const app = express();
 const port = 3001;
