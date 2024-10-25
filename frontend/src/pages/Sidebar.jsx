@@ -93,8 +93,12 @@ export default function Sidebar({ open, onClose, name, city, image, price, desc,
                 },
               });
               console.log("Confirmation email sent successfully");
+              alert("Booked successfully", name);
+
             } catch (error) {
               console.error("Error sending confirmation email", error);
+              alert("Booked successfully", name);
+
             }
 
             // You can redirect to a success page or show a success message here
