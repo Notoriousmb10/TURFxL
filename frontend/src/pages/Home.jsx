@@ -25,7 +25,7 @@ const Home = () => {
     script1.onload = () => console.log("Botpress script loaded");
 
     const script2 = document.createElement("script");
-    script2.src = "https://files.bpcontent.cloud/2024/10/19/15/20241019152253-GBYQU1NM.js";
+    script2.src = "https://files.bpcontent.cloud/2025/02/17/14/20250217145613-EN135RGG.js";
     script2.async = true;
     script2.onload = () => console.log("Custom script loaded");
 
