@@ -10,7 +10,34 @@
     margin-bottom: 2rem; /* Fixed spacing */
     color: var(--heading-color);
   }
-  
+  /* App.css */
+
+/* Reset any custom styles for the chatbot */
+#bp-web-widget-container,
+.botpress-webchat-container {
+  /* Reset any custom properties */
+  all: initial;
+  /* Ensure the container is visible */
+  display: block !important;
+}
+
+/* Ensure the chatbot button and container are visible and interactive */
+#bp-web-widget-container *,
+.botpress-webchat-container * {
+  all: unset;
+  display: revert;
+  cursor: revert;
+  pointer-events: auto;
+}
+
+/* You may need to adjust the z-index to ensure the chatbot appears above other elements */
+#bp-web-widget-container {
+  z-index: 9999;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+ 
   .hero__content h1 .highlight {
     color: var(--secondary-color);
   }
