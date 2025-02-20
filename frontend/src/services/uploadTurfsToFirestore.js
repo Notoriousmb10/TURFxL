@@ -3,7 +3,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { mumbaiTurfs } from "../utils/turfDataset.js";  // Ensure correct path
 
 const uploadTurfsToFirestore = async () => {
-  const turfsCollection = collection(db, "turfs"); // Reference Firestore collection
+  const turfsCollection = collection(db, "turfs"); 
 
   try {
     for (const turf of mumbaiTurfs) {
