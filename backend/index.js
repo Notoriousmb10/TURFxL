@@ -47,7 +47,8 @@ app.post('/pay/verifyPayment', verifyPayment);
 
 // Email sending endpoint
 app.post('/sendConfirmationEmail', async (req, res) => {
-    const { email, bookingDetails } = req.body;
+
+    const { email } = req.body;
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -61,7 +62,7 @@ app.post('/sendConfirmationEmail', async (req, res) => {
         from: process.env.EMAIL_USER,
         to: email,
         subject: 'Booking Confirmation',
-        text: `Your booking is confirmed. Here are the details:\n\n${JSON.stringify(bookingDetails, null, 2)}`,
+        text: `Your booking is confirmed. Here are the details`,
     };
 
     try {
@@ -70,6 +71,7 @@ app.post('/sendConfirmationEmail', async (req, res) => {
     } catch (error) {
         console.error('Error sending confirmation email', error);
         res.status(500).json({ success: false, message: 'Error sending confirmation email' });
+        console.log(process.env.EMAIL_USER)
     }
 });
 

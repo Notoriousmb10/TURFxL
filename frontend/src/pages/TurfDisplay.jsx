@@ -42,7 +42,7 @@ return (
             <div className="md:w-1/2 ">
                 <img src={image} alt={name} className="w-full h-auto imageturf" />
             </div>
-            <div className="md:w-1/2 md:pl-8 mt-4 md:mt-0">
+            <div className="md:w-1/2 md:pl-8 mt-4 md:mt-0 flex flex-col gap-3 ">
                 <h2 className="text -2xl">{name}</h2>
                 <p className="text-lg">{city}</p>
                 <p className="text-lg">{desc}</p>
@@ -50,7 +50,7 @@ return (
                 <p className="text-lg">Max Group Size : {maxGroupSize}</p>
                 <p className="text-lg">Price: ₹{price} </p>
                 <button
-                    className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
+                    className="bg-orange-500 mt-10 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
                     onClick={handleBookNow}
                 >
                     Book Now

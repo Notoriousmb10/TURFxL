@@ -90,3 +90,23 @@ ul {
   font-size: 1.5rem;
   color: var(--heading-color);
 }
+
+/* Hide the chatbot container when it's not open */
+#bp-web-widget-container {
+  display: none !important;
+}
+
+/* Show the chatbot container only when it has the 'opened' class */
+#bp-web-widget-container.opened {
+  display: block !important;
+}
+
+/* Remove shadow from the button when chatbot is closed */
+.bp-widget-web button.bp-widget-button {
+  box-shadow: none !important;
+}
+
+/* Restore shadow when chatbot is opened */
+.bp-widget-web.bp-widget-opened button.bp-widget-button {
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.4) !important;
+}
