@@ -12,7 +12,7 @@ import {
   SignedIn,
   SignedOut,
 } from "@clerk/clerk-react";
-import store from "./redux/store/store"; // Ensure you have the correct path to your Redux store
+import store from "./redux/store/store.js";
 import App from "./App";
 import "./App.css";
 
