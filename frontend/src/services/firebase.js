@@ -1,7 +1,7 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-import { getAnalytics } from 'firebase/analytics';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
 
 // Firebase configuration using environment variables
 const firebaseConfig = {
@@ -11,7 +11,7 @@ const firebaseConfig = {
   storageBucket: "turf-booking-system-b52c8.appspot.com",
   messagingSenderId: "292225614534",
   appId: "1:292225614534:web:25f0c58e10f26941b5cdc7",
-  measurementId: "G-0CPQ6CVR7E"
+  measurementId: "G-0CPQ6CVR7E",
 };
 
 // Initialize Firebase
@@ -27,6 +27,5 @@ if (typeof window !== "undefined") {
     analytics = getAnalytics(app);
   });
 }
-
 
 export { db, auth, googleProvider };

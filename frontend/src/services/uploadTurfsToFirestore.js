@@ -1,9 +1,9 @@
-import { db } from "./firebase.js";  // Ensure correct import
+import { db } from "./firebase.js"; // Ensure correct import
 import { collection, addDoc } from "firebase/firestore";
-import { mumbaiTurfs } from "../utils/turfDataset.js";  // Ensure correct path
+import { mumbaiTurfs } from "../utils/turfDataset.js"; // Ensure correct path
 
 const uploadTurfsToFirestore = async () => {
-  const turfsCollection = collection(db, "turfs"); 
+  const turfsCollection = collection(db, "turfs");
 
   try {
     for (const turf of mumbaiTurfs) {

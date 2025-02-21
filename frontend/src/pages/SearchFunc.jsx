@@ -8,8 +8,7 @@ const SearchFunc = () => {
   const [results, setResults] = useState([]);
 
   const handleSearch = () => {
-    // Perform search logic here and update results
-    // For now, we'll use dummy data
+   
     const dummyResults = [
       {
         id: 1,
