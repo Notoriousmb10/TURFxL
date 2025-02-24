@@ -7,7 +7,7 @@ export const mumbaiTurfs = [
     rating: 3.89,
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/urban_sports_zone_thakur_kandivali.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-11.Hgbe0C"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -21,7 +21,7 @@ export const mumbaiTurfs = [
     rating: 5.0,
     available_slots: ["7 AM - 9 AM", "6 PM - 8 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/kandivali_sports_arena.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf2.HggF4X"], // Placeholder image URL
     type: "Synthetic Grass",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -49,7 +49,7 @@ export const mumbaiTurfs = [
     rating: 4.5, // Assumed rating
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/tsg_sports_arena_svis_kandivali_west.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-3.HggSzM"], // Placeholder image URL
     type: "Synthetic Grass",
     city: "Mumbai",
     sports: ["Pickleball"],
@@ -63,7 +63,7 @@ export const mumbaiTurfs = [
     rating: 4.33,
     available_slots: ["7 AM - 9 AM", "6 PM - 8 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/saraswati_sports_complex.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf4.HggqFY"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Cricket Nets", "Football"],
@@ -77,7 +77,7 @@ export const mumbaiTurfs = [
     rating: 2.6,
     available_slots: ["8 AM - 10 AM", "7 PM - 9 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/sir_jp_sports_arena_malad.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf5-1.HggsjD "], // Placeholder image URL
     type: "Synthetic Grass",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -91,7 +91,7 @@ export const mumbaiTurfs = [
     rating: 2.83,
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/eagle_vision_sports_and_fitness_academy.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-6.HggaR4"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Badminton", "Basketball", "Football", "Table Tennis"],
@@ -114,7 +114,7 @@ export const mumbaiTurfs = [
     rating: 2.69,
     available_slots: ["7 AM - 9 AM", "6 PM - 8 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/urban_sports_zone_borivali.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf7.HggDTC"], // Placeholder image URL
     type: "Synthetic Grass",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -128,7 +128,7 @@ export const mumbaiTurfs = [
     rating: 2.8,
     available_slots: ["8 AM - 10 AM", "7 PM - 9 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/kaveerni_sports_arena.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-8-kavverni.HggIUq"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -142,7 +142,7 @@ export const mumbaiTurfs = [
     rating: 4.2,
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/the_playtime_turf.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-8-playturf.HggL3p"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -156,7 +156,7 @@ export const mumbaiTurfs = [
     rating: 3.11,
     available_slots: ["7 AM - 9 AM", "6 PM - 8 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/urban_sports_thane_goenka.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-7-2.Hggis1"], // Placeholder image URL
     type: "Synthetic Grass",
     city: "Thane",
     sports: ["Football"],
@@ -190,7 +190,7 @@ export const mumbaiTurfs = [
     rating: 5.0,
     available_slots: ["8 AM - 10 AM", "6 PM - 8 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/urban_sports_mahalaxmi.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-10-urban-mahalakshmi.Hgg0tf"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -204,7 +204,7 @@ export const mumbaiTurfs = [
     rating: 2.5,
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/turfpro_arena_mahalaxmi.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-11.HggjOr"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -218,7 +218,7 @@ export const mumbaiTurfs = [
     rating: 5.0,
     available_slots: ["7 AM - 9 AM", "6 PM - 8 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/xenos_play_space_mahalaxmi.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-11.Hgbe0Chttps://im.ge/i/turf-12-xenos-play.HgcJxG"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -232,7 +232,7 @@ export const mumbaiTurfs = [
     rating: 4.1,
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/lp_shingte_turf.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-13-lp.HggmjW"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -246,7 +246,7 @@ export const mumbaiTurfs = [
     rating: 4.5,
     available_slots: ["8 AM - 10 AM", "7 PM - 9 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/sportvot_star_turf.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-14-sportvot.HggwW0"], // Placeholder image URL
     type: "Synthetic Grass",
     city: "Mumbai",
     sports: ["Box Cricket", "Cricket Nets", "Football"],
@@ -260,7 +260,7 @@ export const mumbaiTurfs = [
     rating: 5.0,
     available_slots: ["7 AM - 9 AM", "6 PM - 8 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/dsf_pickleball_court.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-15-dsp.HggPUc"], // Placeholder image URL
     type: "Synthetic Grass",
     city: "Mumbai",
     sports: ["Pickleball"],
@@ -274,7 +274,7 @@ export const mumbaiTurfs = [
     rating: null, // No rating provided
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/district_sports_club.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-16-district-sport-club.HggtYL"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: [
@@ -302,7 +302,7 @@ export const mumbaiTurfs = [
     rating: 4.43,
     available_slots: ["7 AM - 9 AM", "6 PM - 8 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/k_star_turf.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-17-ksttar.Hggy4G"], // Placeholder image URL
     type: "Synthetic Grass",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -316,7 +316,7 @@ export const mumbaiTurfs = [
     rating: 2.09,
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/trickshot_sharma_turf.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-18-trikchot.HggCsx"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -330,7 +330,7 @@ export const mumbaiTurfs = [
     rating: 2.0,
     available_slots: ["8 AM - 10 AM", "7 PM - 9 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/tsg_sports_arena_stellar.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-13-lp-2.HggbmS"], // Placeholder image URL
     type: "Synthetic Grass",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -350,7 +350,7 @@ export const mumbaiTurfs = [
     rating: 2.89,
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/urban_sports_goregaon.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-20-urban-goregan.HggxzJ"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -370,7 +370,7 @@ export const mumbaiTurfs = [
     rating: 3.1,
     available_slots: ["8 AM - 10 AM", "7 PM - 9 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/urban_sports_janki_devi.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-21-urban-andheri-2.HggRhF"], // Placeholder image URL
     type: "Synthetic Grass",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -384,7 +384,7 @@ export const mumbaiTurfs = [
     rating: 5.0,
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/ges_sports_arena.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/urf-22-ges-arena.HggWYK"], // Placeholder image URL
     type: "Hard Court",
     city: "Mumbai",
     sports: ["Tennis"],
@@ -397,7 +397,7 @@ export const mumbaiTurfs = [
     rating: 4.8, // Assumed rating
     available_slots: ["7 AM - 9 AM", "6 PM - 8 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/10x_shooting_range.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/turf-23-tenx-shhoting-range.HggZB9"], // Placeholder image URL
     type: "Shooting Range",
     city: "Thane",
     sports: ["Pistol Shooting", "Rifle Shooting"],
@@ -410,7 +410,7 @@ export const mumbaiTurfs = [
     rating: 4.42,
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/picklepro_club_celebration.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/23-picklepro-andheri.HggVaX"], // Placeholder image URL
     type: "Synthetic Grass",
     city: "Mumbai",
     sports: ["Pickleball"],
@@ -424,7 +424,7 @@ export const mumbaiTurfs = [
     rating: null, // No rating provided
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/spirit_field_samhita.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/24-the-spirit-field.Hggfy8"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -438,7 +438,7 @@ export const mumbaiTurfs = [
     rating: null, // No rating provided
     available_slots: ["7 AM - 9 AM", "6 PM - 8 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/falah_turf.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/25-falah-turf.HggH1M"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -452,7 +452,7 @@ export const mumbaiTurfs = [
     rating: null, // No rating provided
     available_slots: ["8 AM - 10 AM", "7 PM - 9 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/spirit_field_hmtd.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/26-spirit-field-hmtd.HggpmY"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket"],
@@ -466,7 +466,7 @@ export const mumbaiTurfs = [
     rating: null, // No rating provided
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/five_nine_turf.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/27-five-nine.HggvZD"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -480,7 +480,7 @@ export const mumbaiTurfs = [
     rating: null, // No rating provided
     available_slots: ["7 AM - 9 AM", "6 PM - 8 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/players_turf_sagar_tech.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/28-players-turf-sakinaka.Hggno4"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -494,7 +494,7 @@ export const mumbaiTurfs = [
     rating: null, // No rating provided
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/urban_stadium.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/29-the-urban-stadium.Hgg4hC"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -508,7 +508,7 @@ export const mumbaiTurfs = [
     rating: null, // No rating provided
     available_slots: ["7 AM - 9 AM", "6 PM - 8 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/score_marwah_sakinaka.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/30-score-marwah.HggBbq"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -522,7 +522,7 @@ export const mumbaiTurfs = [
     rating: null, // No rating provided
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/players_turf_sakinaka.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/31-infinity-sakinaka.HggGBpg"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
@@ -535,7 +535,7 @@ export const mumbaiTurfs = [
     rating: null, // No rating provided
     available_slots: ["8 AM - 10 AM", "7 PM - 9 PM"], // Sample slots
     bookings: [],
-    images: ["https://example.com/infinity_sports_turf_sakinaka.jpg"], // Placeholder image URL
+    images: ["https://im.ge/i/32-player-turf-sakinaka-sagar.Hg8MaP"], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
