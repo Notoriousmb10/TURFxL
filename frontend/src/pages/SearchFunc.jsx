@@ -41,7 +41,7 @@ const SearchFunc = () => {
           />
         </Grid>
         <Grid item xs={12} md={2}>
-          <Button variant="contained" color="primary" fullWidth onClick={handleSearch}>
+          <Button variant="contained" color="primary"  fullWidth onClick={handleSearch} style={{ padding: '16px' }}>
             Search
           </Button>
         </Grid>

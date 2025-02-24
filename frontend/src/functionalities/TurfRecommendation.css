@@ -1,0 +1,38 @@
+.turf-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Ensure 4 turfs per row */
+  gap: 24px; /* Increase gap between turfs */
+  padding: 24px;
+  margin-left: 40px;
+}
+
+.turf-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  height: 300px; /* Increase height */
+  width: 400px; /* Set a fixed width */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: white;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease; /* Add transition for smooth effect */
+}
+
+.turf-card:hover {
+  transform: scale(1.05); /* Zoom-in effect on hover */
+}
+
+.turf-info {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+.filter-options {
+  margin-bottom: 16px;
+}

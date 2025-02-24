@@ -1,7 +1,7 @@
 import "./App.css";
 import Layout from "./components/Layout/Layout";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux"; // Import useSelector
+import { useDispatch, useSelector } from "react-redux"; 
 import { fetchLocation } from "./redux/actions/locationAction";
 
 function App() {

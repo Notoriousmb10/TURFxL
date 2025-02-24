@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # Import CORS
 import firebase_admin
 from firebase_admin import credentials, firestore
 from geopy.distance import geodesic
@@ -7,6 +8,8 @@ import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
+
 cred = credentials.Certificate("./serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
@@ -110,11 +113,19 @@ def get_liked_turfs(user_id):
     else:
         return get_top_rated_turfs()  # Fallback to best-rated turfs
 
+def filter_by_pricing(turfs, min_price, max_price):
+    """
+    Filters turfs by price within the specified range.
+    """
+    return [turf for turf in turfs if min_price <= turf["price_per_hour"] <= max_price]
+
 @app.route("/get_turfs", methods=["GET"])
 def get_turfs():
     user_lat = request.args.get("latitude", type=float)
     user_lon = request.args.get("longitude", type=float)
     filter_type = request.args.get("filter", default="location")
+    min_price = request.args.get("min_price", default=0, type=float)
+    max_price = request.args.get("max_price", default=5000, type=float)
 
     if user_lat is None or user_lon is None:
         return jsonify({"error": "Missing latitude or longitude"}), 400
@@ -123,6 +134,8 @@ def get_turfs():
 
     if filter_type == "location":
         turfs = filter_turfs_by_location((user_lat, user_lon), turfs, radius_km=10)  # ✅ Corrected filtering
+    elif filter_type == "price":
+        turfs = filter_by_pricing(turfs, min_price, max_price)  # Filter by price range
 
     return jsonify({"turfs": turfs})
 
