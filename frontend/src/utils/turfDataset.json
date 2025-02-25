@@ -1,0 +1,1037 @@
+[
+  {
+    "name": "Urban Sports Zone Thakur Kandivali",
+    "location": {
+      "lat": 19.2034,
+      "lng": 72.8443
+    },
+    "price_per_hour": 1200,
+    "amenities": [
+      "Floodlights",
+      "Washroom"
+    ],
+    "rating": 3.89,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "5 PM - 7 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-11.Hgbe0C"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "10% Off"
+  },
+  {
+    "name": "Kandivali Sports Arena",
+    "location": {
+      "lat": 19.2105,
+      "lng": 72.8446
+    },
+    "price_per_hour": 1500,
+    "amenities": [
+      "Changing Room",
+      "Parking"
+    ],
+    "rating": 5,
+    "available_slots": [
+      "7 AM - 9 AM",
+      "6 PM - 8 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf2.HggF4X"
+    ],
+    "type": "Synthetic Grass",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "30% Off"
+  },
+  {
+    "name": "Urban Sports - Kandivali",
+    "location": {
+      "lat": 19.2087,
+      "lng": 72.8442
+    },
+    "price_per_hour": 1100,
+    "amenities": [
+      "Drinking Water",
+      "Floodlights",
+      "Seating Lounge"
+    ],
+    "rating": 3,
+    "available_slots": [
+      "8 AM - 10 AM",
+      "7 PM - 9 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://example.com/urban_sports_kandivali.jpg"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "10% Off"
+  },
+  {
+    "name": "TSG Sports Arena SVIS Kandivali West",
+    "location": {
+      "lat": 19.2087,
+      "lng": 72.8442
+    },
+    "price_per_hour": 1000,
+    "amenities": [
+      "Parking",
+      "Washroom"
+    ],
+    "rating": 4.5,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "5 PM - 7 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-3.HggSzM"
+    ],
+    "type": "Synthetic Grass",
+    "city": "Mumbai",
+    "sports": [
+      "Pickleball"
+    ],
+    "discount": "20% Off"
+  },
+  {
+    "name": "Saraswati Sports Complex",
+    "location": {
+      "lat": 19.1865,
+      "lng": 72.8416
+    },
+    "price_per_hour": 1300,
+    "amenities": [
+      "Floodlights",
+      "Changing Room"
+    ],
+    "rating": 4.33,
+    "available_slots": [
+      "7 AM - 9 AM",
+      "6 PM - 8 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf4.HggqFY"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Cricket Nets",
+      "Football"
+    ],
+    "discount": "30% Off"
+  },
+  {
+    "name": "Sir JP Sports Arena - Malad",
+    "location": {
+      "lat": 19.1865,
+      "lng": 72.8416
+    },
+    "price_per_hour": 1250,
+    "amenities": [
+      "Washroom",
+      "Seating Lounge"
+    ],
+    "rating": 2.6,
+    "available_slots": [
+      "8 AM - 10 AM",
+      "7 PM - 9 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf5-1.HggsjD "
+    ],
+    "type": "Synthetic Grass",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "20% Off"
+  },
+  {
+    "name": "Eagle Vision Sports and Fitness Academy",
+    "location": {
+      "lat": 19.2307,
+      "lng": 72.8567
+    },
+    "price_per_hour": 1400,
+    "amenities": [
+      "Floodlights",
+      "Parking",
+      "Washroom"
+    ],
+    "rating": 2.83,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "5 PM - 7 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-6.HggaR4"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Badminton",
+      "Basketball",
+      "Football",
+      "Table Tennis"
+    ],
+    "discount": "30% Off"
+  },
+  {
+    "name": "Urban Sports Zone - Borivali",
+    "location": {
+      "lat": 19.2352,
+      "lng": 72.8598
+    },
+    "price_per_hour": 1200,
+    "amenities": [
+      "Ball Boy",
+      "Changing Room",
+      "Drinking Water",
+      "Floodlights",
+      "Locker Room",
+      "Parking",
+      "Seating Lounge",
+      "Washroom"
+    ],
+    "rating": 2.69,
+    "available_slots": [
+      "7 AM - 9 AM",
+      "6 PM - 8 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf7.HggDTC"
+    ],
+    "type": "Synthetic Grass",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "10% Off"
+  },
+  {
+    "name": "Kaveerni Sports Arena",
+    "location": {
+      "lat": 19.2301,
+      "lng": 72.8411
+    },
+    "price_per_hour": 1100,
+    "amenities": [
+      "Floodlights",
+      "Washroom"
+    ],
+    "rating": 2.8,
+    "available_slots": [
+      "8 AM - 10 AM",
+      "7 PM - 9 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-8-kavverni.HggIUq"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "30% Off"
+  },
+  {
+    "name": "The Playtime Turf",
+    "location": {
+      "lat": 19.2348,
+      "lng": 72.8634
+    },
+    "price_per_hour": 1300,
+    "amenities": [
+      "Floodlights",
+      "Parking",
+      "Changing Room"
+    ],
+    "rating": 4.2,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "5 PM - 7 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-8-playturf.HggL3p"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "30% Off"
+  },
+  {
+    "name": "Urban Sports - Thane Goenka",
+    "location": {
+      "lat": 19.1971,
+      "lng": 72.9703
+    },
+    "price_per_hour": 1000,
+    "amenities": [
+      "Floodlights",
+      "Seating Lounge"
+    ],
+    "rating": 3.11,
+    "available_slots": [
+      "7 AM - 9 AM",
+      "6 PM - 8 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-7-2.Hggis1"
+    ],
+    "type": "Synthetic Grass",
+    "city": "Thane",
+    "sports": [
+      "Football"
+    ],
+    "discount": "10% Off"
+  },
+  {
+    "name": "Finland International School - Thane",
+    "location": {
+      "lat": 19.2094,
+      "lng": 72.9789
+    },
+    "price_per_hour": 1500,
+    "amenities": [
+      "Artificial Turf",
+      "Changing Room",
+      "Drinking Water",
+      "Floodlights",
+      "Washroom"
+    ],
+    "rating": 3.8,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "7 PM - 9 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://example.com/finland_international_school_thane.jpg"
+    ],
+    "type": "Artificial Turf",
+    "city": "Thane",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "30% Off"
+  },
+  {
+    "name": "Urban Sports - Mahalaxmi",
+    "location": {
+      "lat": 18.9923,
+      "lng": 72.825
+    },
+    "price_per_hour": 1400,
+    "amenities": [
+      "Floodlights",
+      "Washroom"
+    ],
+    "rating": 5,
+    "available_slots": [
+      "8 AM - 10 AM",
+      "6 PM - 8 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-10-urban-mahalakshmi.Hgg0tf"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "10% Off"
+  },
+  {
+    "name": "Turfpro Arena, Mahalaxmi - by SPORLOC",
+    "location": {
+      "lat": 18.9912,
+      "lng": 72.8247
+    },
+    "price_per_hour": 1350,
+    "amenities": [
+      "Floodlights",
+      "Changing Room"
+    ],
+    "rating": 2.5,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "5 PM - 7 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-11.HggjOr"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "15% Off"
+  },
+  {
+    "name": "Xenos Play Space Mahalaxmi",
+    "location": {
+      "lat": 18.9908,
+      "lng": 72.8241
+    },
+    "price_per_hour": 1600,
+    "amenities": [
+      "Cafe",
+      "First Aid",
+      "Nappy Changing Room",
+      "Restroom",
+      "WiFi"
+    ],
+    "rating": 5,
+    "available_slots": [
+      "7 AM - 9 AM",
+      "6 PM - 8 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-11.Hgbe0Chttps://im.ge/i/turf-12-xenos-play.HgcJxG"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "N/A"
+  },
+  {
+    "name": "LP Shingte Turf",
+    "location": {
+      "lat": 19.2564,
+      "lng": 72.8871
+    },
+    "price_per_hour": 1100,
+    "amenities": [
+      "Floodlights",
+      "Changing Room"
+    ],
+    "rating": 4.1,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "5 PM - 7 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-13-lp.HggmjW"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "30% Off"
+  },
+  {
+    "name": "Sportvot Star Turf",
+    "location": {
+      "lat": 19.2571,
+      "lng": 72.8869
+    },
+    "price_per_hour": 1200,
+    "amenities": [
+      "Floodlights",
+      "Parking",
+      "Changing Room"
+    ],
+    "rating": 4.5,
+    "available_slots": [
+      "8 AM - 10 AM",
+      "7 PM - 9 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-14-sportvot.HggwW0"
+    ],
+    "type": "Synthetic Grass",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Cricket Nets",
+      "Football"
+    ],
+    "discount": "50% Off"
+  },
+  {
+    "name": "DSF Pickleball Court by Sportlight India",
+    "location": {
+      "lat": 19.2568,
+      "lng": 72.8875
+    },
+    "price_per_hour": 900,
+    "amenities": [
+      "Floodlights",
+      "Changing Room"
+    ],
+    "rating": 5,
+    "available_slots": [
+      "7 AM - 9 AM",
+      "6 PM - 8 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-15-dsp.HggPUc"
+    ],
+    "type": "Synthetic Grass",
+    "city": "Mumbai",
+    "sports": [
+      "Pickleball"
+    ],
+    "discount": "20% Off"
+  },
+  {
+    "name": "District Sports Club",
+    "location": {
+      "lat": 19.1076,
+      "lng": 72.8365
+    },
+    "price_per_hour": 1600,
+    "amenities": [
+      "Changing Room",
+      "Parking",
+      "Washroom"
+    ],
+    "rating": 4.3,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "5 PM - 7 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-16-district-sport-club.HggtYL"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Badminton",
+      "Basketball",
+      "Box Cricket",
+      "Cricket Nets",
+      "Football",
+      "Squash",
+      "Tennis",
+      "Volleyball"
+    ]
+  },
+  {
+    "name": "K Star Turf",
+    "location": {
+      "lat": 19.0488,
+      "lng": 72.9006
+    },
+    "price_per_hour": 1200,
+    "amenities": [
+      "Artificial Turf",
+      "Drinking Water",
+      "Flood Lights",
+      "Parking",
+      "Washroom"
+    ],
+    "rating": 4.43,
+    "available_slots": [
+      "7 AM - 9 AM",
+      "6 PM - 8 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-17-ksttar.Hggy4G"
+    ],
+    "type": "Synthetic Grass",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "30% Off"
+  },
+  {
+    "name": "Trickshot Sharma Industrial Estate",
+    "location": {
+      "lat": 19.1648,
+      "lng": 72.8491
+    },
+    "price_per_hour": 1100,
+    "amenities": [
+      "Floodlights",
+      "Washroom"
+    ],
+    "rating": 2.09,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "5 PM - 7 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-18-trikchot.HggCsx"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "30% Off"
+  },
+  {
+    "name": "TSG Sports Arena at Stellar World School - Andheri",
+    "location": {
+      "lat": 19.1197,
+      "lng": 72.8543
+    },
+    "price_per_hour": 1000,
+    "amenities": [
+      "Floodlights",
+      "Parking"
+    ],
+    "rating": 2,
+    "available_slots": [
+      "8 AM - 10 AM",
+      "7 PM - 9 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-13-lp-2.HggbmS"
+    ],
+    "type": "Synthetic Grass",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "30% Off"
+  },
+  {
+    "name": "Urban Sports Zone - Goregaon",
+    "location": {
+      "lat": 19.171,
+      "lng": 72.8496
+    },
+    "price_per_hour": 1100,
+    "amenities": [
+      "Changing Room",
+      "Drinking Water",
+      "Flood Lights",
+      "Seating Lounge",
+      "Washroom"
+    ],
+    "rating": 2.89,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "5 PM - 7 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-20-urban-goregan.HggxzJ"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "10% Off"
+  },
+  {
+    "name": "Urban Sports Zone - Janki Devi, Andheri",
+    "location": {
+      "lat": 19.1261,
+      "lng": 72.835
+    },
+    "price_per_hour": 1200,
+    "amenities": [
+      "Changing Room",
+      "Drinking Water",
+      "Flood Lights",
+      "Seating Lounge",
+      "Washroom"
+    ],
+    "rating": 3.1,
+    "available_slots": [
+      "8 AM - 10 AM",
+      "7 PM - 9 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-21-urban-andheri-2.HggRhF"
+    ],
+    "type": "Synthetic Grass",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "10% Off"
+  },
+  {
+    "name": "GES Sports Arena",
+    "location": {
+      "lat": 19.0457,
+      "lng": 72.9138
+    },
+    "price_per_hour": 1400,
+    "amenities": [
+      "Changing Room",
+      "Flood Lights"
+    ],
+    "rating": 5,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "5 PM - 7 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/urf-22-ges-arena.HggWYK"
+    ],
+    "type": "Hard Court",
+    "city": "Mumbai",
+    "sports": [
+      "Tennis"
+    ]
+  },
+  {
+    "name": "10x Shooting India Range",
+    "location": {
+      "lat": 19.1973,
+      "lng": 72.9615
+    },
+    "price_per_hour": 1300,
+    "amenities": [
+      "Changing Room",
+      "Parking"
+    ],
+    "rating": 4.8,
+    "available_slots": [
+      "7 AM - 9 AM",
+      "6 PM - 8 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/turf-23-tenx-shhoting-range.HggZB9"
+    ],
+    "type": "Shooting Range",
+    "city": "Thane",
+    "sports": [
+      "Pistol Shooting",
+      "Rifle Shooting"
+    ]
+  },
+  {
+    "name": "PicklePro Club Celebration Andheri",
+    "location": {
+      "lat": 19.1334,
+      "lng": 72.8262
+    },
+    "price_per_hour": 900,
+    "amenities": [
+      "Floodlights",
+      "Parking"
+    ],
+    "rating": 4.42,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "5 PM - 7 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/23-picklepro-andheri.HggVaX"
+    ],
+    "type": "Synthetic Grass",
+    "city": "Mumbai",
+    "sports": [
+      "Pickleball"
+    ],
+    "discount": "10% Off"
+  },
+  {
+    "name": "The Spirit Field - Samhita Complex (Building No.8)",
+    "location": {
+      "lat": 19.1153,
+      "lng": 72.8821
+    },
+    "price_per_hour": 1200,
+    "amenities": [
+      "Floodlights",
+      "Washroom"
+    ],
+    "rating": 4.3,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "5 PM - 7 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/24-the-spirit-field.Hggfy8"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "30% Off"
+  },
+  {
+    "name": "Falah Turf",
+    "location": {
+      "lat": 19.1117,
+      "lng": 72.8823
+    },
+    "price_per_hour": 1300,
+    "amenities": [
+      "Drinking Water",
+      "Flood Lights",
+      "Washroom"
+    ],
+    "rating": 4.3,
+    "available_slots": [
+      "7 AM - 9 AM",
+      "6 PM - 8 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/25-falah-turf.HggH1M"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "30% Off"
+  },
+  {
+    "name": "The Spirit Field - HMTD Compound",
+    "location": {
+      "lat": 19.1071,
+      "lng": 72.8835
+    },
+    "price_per_hour": 1000,
+    "amenities": [
+      "Floodlights",
+      "Washroom"
+    ],
+    "rating": 4.3,
+    "available_slots": [
+      "8 AM - 10 AM",
+      "7 PM - 9 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/26-spirit-field-hmtd.HggpmY"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket"
+    ],
+    "discount": "30% Off"
+  },
+  {
+    "name": "Five Nine Turf",
+    "location": {
+      "lat": 19.1205,
+      "lng": 72.8847
+    },
+    "price_per_hour": 1400,
+    "amenities": [
+      "Floodlights",
+      "Washroom"
+    ],
+    "rating": 4.3,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "5 PM - 7 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/27-five-nine.HggvZD"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "30% Off (Valid till 31st Dec, 2025)"
+  },
+  {
+    "name": "Players Turf - Sagar Tech Plaza (Sakinaka)",
+    "location": {
+      "lat": 19.1128,
+      "lng": 72.8829
+    },
+    "price_per_hour": 1250,
+    "amenities": [
+      "Floodlights",
+      "Washroom"
+    ],
+    "rating": 4.3,
+    "available_slots": [
+      "7 AM - 9 AM",
+      "6 PM - 8 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/28-players-turf-sakinaka.Hggno4"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "30% Off (Valid till 31st Dec, 2025)"
+  },
+  {
+    "name": "The Urban Stadium",
+    "location": {
+      "lat": 19.1184,
+      "lng": 72.8838
+    },
+    "price_per_hour": 1300,
+    "amenities": [
+      "Floodlights",
+      "Washroom"
+    ],
+    "rating": 4.3,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "5 PM - 7 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/29-the-urban-stadium.Hgg4hC"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "30% Off"
+  },
+  {
+    "name": "Score Marwah - Sakinaka",
+    "location": {
+      "lat": 19.1092,
+      "lng": 72.8826
+    },
+    "price_per_hour": 1100,
+    "amenities": [
+      "Floodlights",
+      "Washroom"
+    ],
+    "rating": 4.3,
+    "available_slots": [
+      "7 AM - 9 AM",
+      "6 PM - 8 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/30-score-marwah.HggBbq"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "30% Off"
+  },
+  {
+    "name": "Players Turf - Sakinaka",
+    "location": {
+      "lat": 19.1108,
+      "lng": 72.8824
+    },
+    "price_per_hour": 1200,
+    "amenities": [
+      "Floodlights",
+      "Parking"
+    ],
+    "rating": 4.3,
+    "available_slots": [
+      "6 AM - 8 AM",
+      "5 PM - 7 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/31-infinity-sakinaka.HggGBpg"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ]
+  },
+  {
+    "name": "Infinity Sports Turf - Sakinaka",
+    "location": {
+      "lat": 19.1112,
+      "lng": 72.8825
+    },
+    "price_per_hour": 1350,
+    "amenities": [
+      "Floodlights",
+      "Changing Room"
+    ],
+    "rating": 4.3,
+    "available_slots": [
+      "8 AM - 10 AM",
+      "7 PM - 9 PM"
+    ],
+    "bookings": [],
+    "images": [
+      "https://im.ge/i/32-player-turf-sakinaka-sagar.Hg8MaP"
+    ],
+    "type": "Artificial Turf",
+    "city": "Mumbai",
+    "sports": [
+      "Box Cricket",
+      "Football"
+    ],
+    "discount": "30% Off"
+  }
+]

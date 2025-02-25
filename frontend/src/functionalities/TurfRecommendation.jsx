@@ -4,8 +4,7 @@ import { useSelector } from "react-redux";
 import { FormControl, InputLabel, Select, MenuItem, Box, Typography, Slider } from "@mui/material";
 import "./TurfRecommendation.css"; // Import the CSS file for styling
 
-const TurfRecommendations = ({
-}) => {
+const TurfRecommendations = () => {
   const [turfs, setTurfs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,8 +19,15 @@ const TurfRecommendations = ({
       setLoading(true);
       setError(null); // Reset error state before fetching
       try {
-        const response = await axios.get(
-          `/api/get_turfs?latitude=${latitude}&longitude=${longitude}&filter=${filter}&min_price=${priceRange[0]}&max_price=${priceRange[1]}`
+        const response = await axios.post(
+          `http://localhost:3001/searchTurfs`, // Ensure this matches the backend route
+          {
+            latitude,
+            longitude,
+            filter,
+            min_price: priceRange[0],
+            max_price: priceRange[1]
+          }
         );
         setTurfs(response.data.turfs);
       } catch (error) {
