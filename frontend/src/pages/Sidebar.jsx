@@ -11,7 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import axios from "axios";
-import { useUser } from "@clerk/clerk-react"; // Import Clerk's useUser hook
+import { useUser } from "@clerk/clerk-react";
 
 const timeSlots = [
   "7-8 AM", "8-9 AM", "9-10 AM", "10-11 AM", "11-12 PM",
@@ -20,46 +20,30 @@ const timeSlots = [
   "10-11 PM", "11-12 PM"
 ];
 
-export default function Sidebar({ open, onClose, name, city, image, price, desc, address, maxGroupSize }) {
+export default function Sidebar({ open, onClose, name, city, image, price, desc, address, maxGroupSize, selectedDate, selectedSlot, selectedTurf }) {
   const [numPlayers, setNumPlayers] = useState(maxGroupSize);
-  const [selectedTimeSlots, setSelectedTimeSlots] = useState([]);
-  const { user } = useUser(); // Use Clerk's useUser hook to get user details
+  const { user } = useUser();
 
-  // Ensure price and maxGroupSize are valid numbers
   const validPrice = parseFloat(price) || 0;
   const validMaxGroupSize = parseInt(maxGroupSize, 10) || 1;
 
   const [totalPrice, setTotalPrice] = useState(validPrice);
 
   useEffect(() => {
-    setNumPlayers(validMaxGroupSize); // Set default value to maxGroupSize when Sidebar opens
-    setTotalPrice(validPrice); // Set total price to the initial price
+    setNumPlayers(validMaxGroupSize);
+    setTotalPrice(validPrice);
   }, [validMaxGroupSize, validPrice, open]);
-
-  useEffect(() => {
-    // Update total price based on the number of selected time slots
-    const newTotalPrice = validPrice * selectedTimeSlots.length;
-    setTotalPrice(newTotalPrice);
-  }, [selectedTimeSlots, validPrice]);
 
   const handleNumPlayersChange = (event) => {
     const newNumPlayers = parseInt(event.target.value, 10) || 1;
     setNumPlayers(newNumPlayers);
   };
 
-  const handleTimeSlotChange = (event) => {
-    setSelectedTimeSlots(event.target.value);
-  };
-
-  const handleClearTimeSlots = () => {
-    setSelectedTimeSlots([]);
-  };
-
   const handlePayment = async () => {
     try {
       const response = await axios.post("http://localhost:3001/pay/bookTurf", {
         amount: totalPrice,
-        timeSlots: selectedTimeSlots,
+        timeSlots: [selectedSlot.time],
       });
 
       const { orderId, key_id } = response.data;
@@ -67,19 +51,17 @@ export default function Sidebar({ open, onClose, name, city, image, price, desc,
       if (window.Razorpay) {
         const options = {
           key: key_id,
-          amount: totalPrice * 100, // Convert to paise
+          amount: totalPrice * 100,
           currency: "INR",
           name: name,
           description: desc,
           order_id: orderId,
           handler: async function (response) {
-            // Handle payment success
             console.log(response);
 
-            // Send booking confirmation email
             try {
               await axios.post("http://localhost:3001/sendConfirmationEmail", {
-                email: user.primaryEmailAddress.emailAddress, // Use Clerk's user email
+                email: user.primaryEmailAddress.emailAddress,
                 bookingDetails: {
                   name,
                   city,
@@ -88,7 +70,7 @@ export default function Sidebar({ open, onClose, name, city, image, price, desc,
                   desc,
                   address,
                   maxGroupSize,
-                  timeSlots: selectedTimeSlots,
+                  timeSlots: [selectedSlot.time],
                   paymentId: response.razorpay_payment_id,
                 },
               });
@@ -100,8 +82,6 @@ export default function Sidebar({ open, onClose, name, city, image, price, desc,
               alert("Booked successfully", name);
 
             }
-
-            // You can redirect to a success page or show a success message here
           },
           prefill: {
             name: user.fullName,
@@ -122,7 +102,7 @@ export default function Sidebar({ open, onClose, name, city, image, price, desc,
     }
   };
 
-  const pricePerPlayer = totalPrice / numPlayers; // Calculate price per player
+  const pricePerPlayer = totalPrice / numPlayers;
 
   return (
     <SwipeableDrawer
@@ -150,21 +130,14 @@ export default function Sidebar({ open, onClose, name, city, image, price, desc,
             <InputLabel id="time-slot-label">Time Slot</InputLabel>
             <Select
               labelId="time-slot-label"
-              multiple
-              value={selectedTimeSlots}
-              onChange={handleTimeSlotChange}
-              renderValue={(selected) => selected.join(', ')}
+              value={selectedSlot ? selectedSlot.time : ""}
+              readOnly
             >
-              {timeSlots.map((slot) => (
-                <MenuItem key={slot} value={slot}>
-                  {slot}
-                </MenuItem>
-              ))}
+              <MenuItem value={selectedSlot ? selectedSlot.time : ""}>
+                {selectedSlot ? selectedSlot.time : ""}
+              </MenuItem>
             </Select>
           </FormControl>
-          <Button variant="outlined" color="secondary" fullWidth onClick={handleClearTimeSlots}>
-            Clear Time Slots
-          </Button>
           <Typography variant="body1" sx={{ my: 2 }}>
             Price per Player: ₹{pricePerPlayer.toFixed(2)}
           </Typography>

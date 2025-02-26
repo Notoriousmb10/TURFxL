@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { FormControl, InputLabel, Select, MenuItem, Box, Typography, Slider } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Box,
+  Typography,
+  Slider,
+} from "@mui/material";
 import "./TurfRecommendation.css"; // Import the CSS file for styling
+import { useNavigate } from "react-router-dom";
 
 const TurfRecommendations = () => {
   const [turfs, setTurfs] = useState([]);
@@ -12,21 +21,34 @@ const TurfRecommendations = () => {
   const [priceRange, setPriceRange] = useState([0, 5000]); // Add price range state
   const { latitude, longitude } = useSelector((state) => state.location);
 
-  useEffect(() => {
-    console.log('working')
+  const navigate = useNavigate();
 
+  const handleNavigation = (turf) => {
+    const tour = {
+      title: turf.name,
+      city: turf.city,
+      photo: turf.images,
+      price: turf.price_per_hour,
+      desc: "New Turf",
+      address: turf.city,
+      maxGroupSize: 11,
+    };
+    navigate("/turfs/bookturf", { state: { tour } });
+  };
+
+  useEffect(() => {
     const fetchTurfs = async () => {
       setLoading(true);
       setError(null); // Reset error state before fetching
       try {
         const response = await axios.post(
-          `http://localhost:3001/searchTurfs`, // Ensure this matches the backend route
+          `http://localhost:3001/search/turfs`, // Ensure this matches the backend route
           {
             latitude,
             longitude,
             filter,
             min_price: priceRange[0],
-            max_price: priceRange[1]
+            max_price: priceRange[1],
           }
         );
         setTurfs(response.data.turfs);
@@ -51,7 +73,13 @@ const TurfRecommendations = () => {
 
   return (
     <div>
-      <Box className="filter-options" mb={2} display="flex" alignItems="center" paddingX="64px">
+      <Box
+        className="filter-options"
+        mb={2}
+        display="flex"
+        alignItems="center"
+        paddingX="64px"
+      >
         <FormControl variant="outlined" sx={{ minWidth: 200, marginRight: 2 }}>
           <InputLabel>Filter by</InputLabel>
           <Select
@@ -87,7 +115,12 @@ const TurfRecommendations = () => {
       ) : (
         <div className="turf-grid">
           {turfs.map((turf, index) => (
-            <div key={index} className="turf-card" style={{ backgroundImage: `url(${turf.images[0]})` }}>
+            <div
+              key={index}
+              onClick={() => handleNavigation(turf)}
+              className="turf-card"
+              style={{ backgroundImage: `url(${turf.images[0]})` }}
+            >
               <div className="turf-info">
                 <strong>{turf.name}</strong>
                 <p>₹{turf.price_per_hour}/hr</p>

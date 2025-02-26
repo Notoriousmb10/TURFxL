@@ -3,6 +3,6 @@ import { searchTurf } from '../controllers/handleTurfSearch.js';
 
 const router = express.Router();
 
-router.post('/searchTurfs', searchTurf);
+router.post('/turfs', searchTurf);
 
 export default router;

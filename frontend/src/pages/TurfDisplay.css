@@ -1,35 +1,94 @@
-.imageturf{
-    border-radius: 10px;
-    height: 800px;
-    width: 800px;
+.turf-display-page {
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-.turf-container{
-    display: flex;
-    height: 600px;
-    align-items: center;
-    gap: 200px;
-    color: white;
+.turf-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.book-btn{
-    background-color: #b8f7bb;
-    color: rgb(0, 0, 0);
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 500;
-    margin-top: 20px;
-    
+.image-section img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
 
-h2 {
-    font-size: 2.5rem;
-    font-weight: 500;
-    color: white;
-    margin-bottom: 20px;
+.info-section {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.calendar-section, .slots-section, .turf-section {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.calendar-day {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.calendar-day.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.slots {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.slot {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.slot.selected {
+  background-color: black;
+  color: white;
+}
+
+.turf-options {
+  display: flex;
+  gap: 10px;
+}
+
+.turf-option {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.turf-option.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.book-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
