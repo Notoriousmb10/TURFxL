@@ -126,7 +126,6 @@ const TurfDisplay = () => {
                 key={index}
                 className={`slot ${selectedSlot === slot ? "selected" : ""}`}
                 onClick={() => handleSlotSelect(slot)}
-                disabled={isSidebarOpen && selectedSlot !== slot}
               >
                 <Typography>{slot.time}</Typography>
                 <Typography
