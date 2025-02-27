@@ -7,6 +7,7 @@ import nodemailer from 'nodemailer';
 import handleBooking from './controllers/handleBooking.js';
 import verifyPayment from './controllers/handleVerification.js';
 import searchTurfRouter from './routes/searchTurf.js';
+import createUser from './controllers/createUser.js';
 dotenv.config();
 const app = express();
 const port = 3001;
@@ -37,7 +38,8 @@ app.use(cookieParser());
 app.post('/pay/bookTurf', handleBooking);
 app.post('/pay/verifyPayment', verifyPayment);
 app.use('/search', searchTurfRouter);
-
+app.use('/createUser', createUser);
+app.use('/bookTurf', handleBooking);
 // Email sending endpoint
 app.post('/sendConfirmationEmail', async (req, res) => {
 

@@ -14,13 +14,39 @@ import axios from "axios";
 import { useUser } from "@clerk/clerk-react";
 
 const timeSlots = [
-  "7-8 AM", "8-9 AM", "9-10 AM", "10-11 AM", "11-12 PM",
-  "12-1 PM", "1-2 PM", "2-3 PM", "3-4 PM", "4-5 PM",
-  "5-6 PM", "6-7 PM", "7-8 PM", "8-9 PM", "9-10 PM",
-  "10-11 PM", "11-12 PM"
+  "7-8 AM",
+  "8-9 AM",
+  "9-10 AM",
+  "10-11 AM",
+  "11-12 PM",
+  "12-1 PM",
+  "1-2 PM",
+  "2-3 PM",
+  "3-4 PM",
+  "4-5 PM",
+  "5-6 PM",
+  "6-7 PM",
+  "7-8 PM",
+  "8-9 PM",
+  "9-10 PM",
+  "10-11 PM",
+  "11-12 PM",
 ];
 
-export default function Sidebar({ open, onClose, name, city, image, price, desc, address, maxGroupSize, selectedDate, selectedSlot, selectedTurf }) {
+export default function Sidebar({
+  open,
+  onClose,
+  name,
+  city,
+  image,
+  price,
+  desc,
+  address,
+  maxGroupSize,
+  selectedDate,
+  selectedSlot,
+  selectedTurf,
+}) {
   const [numPlayers, setNumPlayers] = useState(maxGroupSize);
   const { user } = useUser();
 
@@ -41,10 +67,25 @@ export default function Sidebar({ open, onClose, name, city, image, price, desc,
 
   const handlePayment = async () => {
     try {
-      const response = await axios.post("http://localhost:3001/pay/bookTurf", {
+      const turfData = {
         amount: totalPrice,
         timeSlots: [selectedSlot.time],
-      });
+        name,
+        city,
+        desc,
+        address,
+        maxGroupSize,
+        selectedDate,
+        selectedSlot,
+        selectedTurf,
+        user_id : user.id,
+      };
+      console.log(turfData);
+
+      const response = await axios.post(
+        "http://localhost:3001/pay/bookTurf",
+        turfData
+      );
 
       const { orderId, key_id } = response.data;
 
@@ -75,12 +116,11 @@ export default function Sidebar({ open, onClose, name, city, image, price, desc,
                 },
               });
               console.log("Confirmation email sent successfully");
-              alert("Booked successfully", name);
 
+              alert("Booked successfully", name);
             } catch (error) {
               console.error("Error sending confirmation email", error);
               alert("Booked successfully", name);
-
             }
           },
           prefill: {
@@ -144,7 +184,12 @@ export default function Sidebar({ open, onClose, name, city, image, price, desc,
           <Typography variant="body1" sx={{ my: 2 }}>
             Total Price: ₹{totalPrice.toFixed(2)}
           </Typography>
-          <Button variant="contained" color="primary" fullWidth onClick={handlePayment}>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={handlePayment}
+          >
             Continue to Payment
           </Button>
         </Box>

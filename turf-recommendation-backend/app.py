@@ -25,6 +25,8 @@ def fetch_turfs():
     return turfs
 
 
+    
+
 def filter_turfs_by_location(user_location, turfs, radius_km=10):
     """
     Filters turfs that are within a given radius (default: 10 km) from the user.
@@ -118,6 +120,55 @@ def filter_by_pricing(turfs, min_price, max_price):
     Filters turfs by price within the specified range.
     """
     return [turf for turf in turfs if min_price <= turf["price_per_hour"] <= max_price]
+
+
+@app.route('/create_user', methods=['POST'])
+def create_user():
+    user_data = request.json
+    user_id = str(user_data.get("user_id"))
+        
+    if not user_id:
+        return jsonify({"error": "Missing user_id"}), 400
+
+    user_ref = db.collection("users").document(user_id)
+    user_doc = user_ref.get()
+
+    if user_doc.exists:
+        return jsonify({"message": "User already exists"}), 200
+
+    user_ref.set(user_data)
+    return jsonify({"message": "User created successfully"}), 201
+
+@app.route('/handle_booking', methods=['POST'])
+def handle_booking():
+    turf_data = request.json
+    user_id = str(turf_data.get("user_id"))
+    turf_name = turf_data.get("name")
+    amount = turf_data.get("amount")
+
+    if not user_id or not turf_name or amount is None:
+        return jsonify({"error": "Missing user_id, name, or amount"}), 400
+
+    user_ref = db.collection('users').document(user_id)
+    user_doc = user_ref.get()
+
+    if not user_doc.exists:
+        return jsonify({"error": "User not found"}), 404
+
+    user_data = user_doc.to_dict()
+
+    # Append booking history
+    if "booking_history" not in user_data:
+        user_data["booking_history"] = []
+    user_data["booking_history"].append(turf_name)
+
+    # Set preferred price range
+    user_data["preferred_price_range"] = [0, amount]
+
+    user_ref.update(user_data)
+    return jsonify({"message": "User data updated successfully"}), 200
+    
+
 
 @app.route("/get_turfs", methods=["GET"])
 def get_turfs():

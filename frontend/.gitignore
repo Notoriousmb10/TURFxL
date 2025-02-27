@@ -4,4 +4,4 @@ frontend/node_modules/.cache/
 # Ignore Python virtual environment
 turf-recommendation-backend/venv/
 
-node_modules
+node_modules/
