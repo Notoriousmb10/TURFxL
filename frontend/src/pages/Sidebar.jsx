@@ -101,26 +101,28 @@ export default function Sidebar({
             console.log(response);
 
             try {
-              await axios.post("http://localhost:3001/sendConfirmationEmail", {
-                email: user.primaryEmailAddress.emailAddress,
-                bookingDetails: {
-                  name,
-                  city,
-                  image,
-                  price,
-                  desc,
-                  address,
-                  maxGroupSize,
-                  timeSlots: [selectedSlot.time],
-                  paymentId: response.razorpay_payment_id,
-                },
-              });
-              console.log("Confirmation email sent successfully");
+              // await axios.post("http://localhost:3001/sendConfirmationEmail", {
+              //   email: user.primaryEmailAddress.emailAddress,
+              //   bookingDetails: {
+              //     name,
+              //     city,
+              //     image,
+              //     price,
+              //     desc,
+              //     address,
+              //     maxGroupSize,
+              //     timeSlots: [selectedSlot.time],
+              //     paymentId: response.razorpay_payment_id,
+              //   },
+              // });
+              // console.log("Confirmation email sent successfully");
 
-              alert("Booked successfully", name);
+              const request = await axios.post( "http://localhost:5000/handle_booking", turfData);
+              console.log(request.data);
+
+              console.log("User Updated", request.data);
             } catch (error) {
-              console.error("Error sending confirmation email", error);
-              alert("Booked successfully", name);
+              console.error("Error updating user", error);
             }
           },
           prefill: {

@@ -7,7 +7,7 @@ import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
 
 function App() {
-  const user = useUser();
+  const { isLoaded, user } = useUser(); // Destructure isLoaded and user from useUser
   const dispatch = useDispatch();
   const { latitude, longitude } = useSelector((state) => state.location);
   const [locationPermissionDenied, setLocationPermissionDenied] = useState(false);
@@ -36,6 +36,11 @@ function App() {
 
   useEffect(() => {
     const createUser = async () => {
+      if (!isLoaded || !user) {
+        console.log("User data is not loaded yet.");
+        return;
+      }
+
       const userData = {
         user_id: user.id,
         name: user.fullName,
@@ -44,21 +49,22 @@ function App() {
         booking_history: [],
         favourites: [],
       };
+      console.log("Creating user with data:", userData);
 
       try {
         const req = await axios.post(`http://localhost:3001/createUser`, {
           userData,
         });
-        console.log(req.data.user);
+        console.log("User created:", req.data.user);
       } catch (err) {
         console.error("Error creating user:", err);
       }
     };
 
-    if (user) {
+    if (isLoaded && user) {
       createUser();
     }
-  }, [user, latitude, longitude]);
+  }, [isLoaded, user, latitude, longitude]);
 
   if (locationPermissionDenied) {
     return (

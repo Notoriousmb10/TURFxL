@@ -1,6 +1,6 @@
-const axios = require("axios");
+import axios from "axios";
 
-export default createUser = async (req, res) => {
+const createUser = async (req, res) => {
   try {
     const { userData } = req.body;
     const response = await axios.post(
@@ -13,3 +13,5 @@ export default createUser = async (req, res) => {
     res.status(500).json({ error: "Failed to create user" });
   }
 };
+
+export default createUser;

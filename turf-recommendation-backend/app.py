@@ -141,32 +141,51 @@ def create_user():
 
 @app.route('/handle_booking', methods=['POST'])
 def handle_booking():
-    turf_data = request.json
-    user_id = str(turf_data.get("user_id"))
-    turf_name = turf_data.get("name")
-    amount = turf_data.get("amount")
+    try:
+        turf_data = request.json
+        print("Received Turf Data:", turf_data)  # ✅ Debugging log
 
-    if not user_id or not turf_name or amount is None:
-        return jsonify({"error": "Missing user_id, name, or amount"}), 400
+        user_id = str(turf_data.get("user_id"))
+        turf_name = turf_data.get("name")
+        amount = turf_data.get("amount")
 
-    user_ref = db.collection('users').document(user_id)
-    user_doc = user_ref.get()
+        # ✅ Improved error handling
+        if not user_id:
+            return jsonify({"error": "Missing user_id"}), 400
+        if not turf_name:
+            return jsonify({"error": "Missing turf name"}), 400
+        if amount is None:
+            return jsonify({"error": "Missing amount"}), 400
 
-    if not user_doc.exists:
-        return jsonify({"error": "User not found"}), 404
+        # Firestore references
+        user_ref = db.collection('users').document(user_id)
+        user_doc = user_ref.get()
 
-    user_data = user_doc.to_dict()
+        if not user_doc.exists:
+            return jsonify({"error": "User not found"}), 404
 
-    # Append booking history
-    if "booking_history" not in user_data:
-        user_data["booking_history"] = []
-    user_data["booking_history"].append(turf_name)
+        user_data = user_doc.to_dict()
 
-    # Set preferred price range
-    user_data["preferred_price_range"] = [0, amount]
+        # ✅ Append booking history
+        if "booking_history" not in user_data:
+            user_data["booking_history"] = []
+        user_data["booking_history"].append(turf_name)
 
-    user_ref.update(user_data)
-    return jsonify({"message": "User data updated successfully"}), 200
+        # ✅ Update preferred price range if it exists
+        if "preferred_price_range" in user_data:
+            user_data["preferred_price_range"][1] = amount
+        else:
+            user_data["preferred_price_range"] = [0, amount]
+
+        # ✅ Update Firestore
+        user_ref.update(user_data)
+
+        return jsonify({"message": "User data updated successfully"}), 200
+
+    except Exception as e:
+        print("Error:", str(e))
+        return jsonify({"error": "Internal Server Error", "details": str(e)}), 500
+
     
 
 

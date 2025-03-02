@@ -7,7 +7,7 @@ const razorpayInstance = createRazorpayInstance();
 
 // Create order function
 const handleBooking = async (req, res) => {
-  const { turfData } = req.body;
+  const turfData  = req.body;
   const options = {
     amount: turfData.amount * 100,
     currency: "INR",
@@ -22,19 +22,11 @@ const handleBooking = async (req, res) => {
           message: "Something went wrong",
         });
       } else {
-        const success = res.status(200).json({
+        return res.status(200).json({
           success: true,
           orderId: order.id,
           key_id: process.env.REACT_APP_RAZORPAY_KEY_ID,
         });
-
-        const resp = await axios.post(
-          "http://localhost:5000/handle_booking",
-          turfData
-        );
-
-
-        return success;
       }
     });
   } catch (error) {

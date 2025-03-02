@@ -36,12 +36,12 @@ app.use(cookieParser());
 // Routes
 
 app.post('/pay/bookTurf', handleBooking);
-app.post('/pay/verifyPayment', verifyPayment);
+app.use('/pay/verifyPayment', verifyPayment);
 app.use('/search', searchTurfRouter);
 app.use('/createUser', createUser);
 app.use('/bookTurf', handleBooking);
 // Email sending endpoint
-app.post('/sendConfirmationEmail', async (req, res) => {
+app.use('/sendConfirmationEmail', async (req, res) => {
 
     const { email } = req.body;
 
