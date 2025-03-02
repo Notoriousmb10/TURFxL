@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Box,
-  Typography,
-  Slider,
-} from "@mui/material";
-import "./TurfRecommendation.css"; // Import the CSS file for styling
+import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import "./TurfRecommendation.css"; // Import the CSS file for styling
 
-const TurfRecommendations = () => {
+const TurfRecommendations = ({ priceRange }) => {
   const [turfs, setTurfs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [filter, setFilter] = useState("location"); // Add filter state
-  const [priceRange, setPriceRange] = useState([0, 5000]); // Add price range state
   const { latitude, longitude } = useSelector((state) => state.location);
 
   const navigate = useNavigate();
@@ -46,7 +36,6 @@ const TurfRecommendations = () => {
           {
             latitude,
             longitude,
-            filter,
             min_price: priceRange[0],
             max_price: priceRange[1],
           }
@@ -69,47 +58,10 @@ const TurfRecommendations = () => {
     };
 
     fetchTurfs();
-  }, [latitude, longitude, filter, priceRange]); // Add priceRange to dependency array
+  }, [latitude, longitude, priceRange]); // Add priceRange to dependency array
 
   return (
     <div>
-      <Box
-        className="filter-options"
-        mb={2}
-        display="flex"
-        alignItems="center"
-        paddingX="64px"
-      >
-        <FormControl variant="outlined" sx={{ minWidth: 200, marginRight: 2 }}>
-          <InputLabel>Filter by</InputLabel>
-          <Select
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-            label="Filter by"
-          >
-            <MenuItem value="location">Location</MenuItem>
-            <MenuItem value="price">Price</MenuItem>
-            <MenuItem value="rating">Rating</MenuItem>
-          </Select>
-
-        </FormControl>
-        <Typography variant="body2" color="textSecondary">
-          The results you see below is recommended after learning from your recent bookings.
-        </Typography>
-        {filter === "price" && (
-          <Box sx={{ width: 200 }}>
-            <Typography gutterBottom>Price Range</Typography>
-            <Slider
-              value={priceRange}
-              onChange={(e, newValue) => setPriceRange(newValue)}
-              valueLabelDisplay="auto"
-              min={0}
-              max={5000}
-              step={100}
-            />
-          </Box>
-        )}
-      </Box>
       {loading ? (
         <p>Loading turfs...</p>
       ) : error ? (
