@@ -22,7 +22,7 @@ export const mumbaiTurfs = [
     rating: 5.0,
     available_slots: ["7 AM - 9 AM", "6 PM - 8 PM"], // Sample slots
     bookings: [],
-    images: ["https://im.ge/i/turf2.HggF4X"], // Placeholder image URL
+    images: ["https://i.im.ge/2025/02/21/HggF4X.turf2.jpeg"], // Placeholder image URL
     type: "Synthetic Grass",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
