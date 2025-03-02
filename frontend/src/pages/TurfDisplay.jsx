@@ -62,12 +62,17 @@ const TurfDisplay = () => {
     setSelectedTurf(turf);
   };
 
-  const availableSlots = [
-    { time: "18:00 - 19:00", price: 1200 },
-    { time: "19:00 - 20:00", price: 1400 },
-    { time: "20:00 - 21:00", price: 1600 },
-    { time: "22:00 - 23:00", price: 1600 },
-  ];
+  const generateAvailableSlots = (basePrice) => {
+    const slots = [
+      { time: "18:00 - 19:00", price: basePrice },
+      { time: "19:00 - 20:00", price: basePrice + 200 },
+      { time: "20:00 - 21:00", price: basePrice + 400 },
+      { time: "22:00 - 23:00", price: basePrice + 600 },
+    ];
+    return slots;
+  };
+
+  const availableSlots = generateAvailableSlots(price);
 
   const availableTurfs = ["Turf 1", "Turf 2", "Turf 3"];
 

@@ -91,7 +91,11 @@ const TurfRecommendations = () => {
             <MenuItem value="price">Price</MenuItem>
             <MenuItem value="rating">Rating</MenuItem>
           </Select>
+
         </FormControl>
+        <Typography variant="body2" color="textSecondary">
+          The results you see below is recommended after learning from your recent bookings.
+        </Typography>
         {filter === "price" && (
           <Box sx={{ width: 200 }}>
             <Typography gutterBottom>Price Range</Typography>

@@ -3,6 +3,7 @@ import SearchFunc from "../../pages/SearchFunc";
 import TurfRecommendation from "../../functionalities/TurfRecommendation";
 const SearchPage = () => {
   return (
+    
     <div>
       <SearchFunc />
       <TurfRecommendation />

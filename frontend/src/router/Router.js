@@ -9,6 +9,8 @@ import ThankYou from "../pages/ThankYou";
 import TurfDisplay from "../pages/TurfDisplay";
 import SearchResult from "../pages/SearchResult";
 import SearchPage from "../components/Search/SearchPage";
+import LocationRecommender from "../components/Location-Recommender/location-recommender";
+import HistoryBasedRecommender from "../components/Location-Recommender/history-based-recommender";
 
 const Routers = () => {
   return (
@@ -23,6 +25,9 @@ const Routers = () => {
       <Route path="/thank-you" element={<ThankYou />} />
       <Route path="/turfs/bookturf" element={<TurfDisplay />} />
       <Route path="/turfs/search" element={<SearchResultList />} />
+      <Route path="/recommend/location-based" element={<LocationRecommender />} />
+      <Route path="/recommend/booking-history-based" element={<HistoryBasedRecommender />} />
+
     </Routes>
   );
 };

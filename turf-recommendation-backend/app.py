@@ -206,9 +206,132 @@ def get_turfs():
         turfs = filter_turfs_by_location((user_lat, user_lon), turfs, radius_km=10)  # ✅ Corrected filtering
     elif filter_type == "price":
         turfs = filter_by_pricing(turfs, min_price, max_price)  # Filter by price range
+   
 
     return jsonify({"turfs": turfs})
 
+
+def get_similar_users(user_id):
+    """
+    Finds users who have similar booking history using Jaccard Similarity.
+    Returns a list of top 5 similar user IDs.
+    """
+    users_ref = db.collection("users")
+    users_docs = users_ref.stream()
+    
+    user_doc = users_ref.document(user_id).get()
+    if not user_doc.exists:
+        return []
+
+    user_data = user_doc.to_dict()
+    user_bookings = set(user_data.get("booking_history", []))
+
+    similar_users = []
+
+    for doc in users_docs:
+        other_user = doc.to_dict()
+        other_user_id = doc.id
+
+        if other_user_id != user_id and "booking_history" in other_user:
+            other_bookings = set(other_user["booking_history"])
+            intersection = len(user_bookings.intersection(other_bookings))
+            union = len(user_bookings.union(other_bookings))
+
+            # Calculate Jaccard Similarity
+            if union > 0:
+                similarity_score = intersection / union
+                if similarity_score > 0:  # Ignore completely dissimilar users
+                    similar_users.append((other_user_id, similarity_score))
+
+    # Sort by similarity score in descending order
+    similar_users.sort(key=lambda x: x[1], reverse=True)
+
+    return [user[0] for user in similar_users[:10]]  # Get top 5 similar users
+
+@app.route("/recommend_turfs_based_on_booking_history", methods=["GET"])
+def recommend_based_on_booking_history():
+    user_id = request.args.get("user_id")
+    """
+    Recommend turfs based on similar users' booking history.
+    """
+    similar_users = get_similar_users(user_id)
+    if not similar_users:
+        return get_top_rated_turfs()  # If no similar users, return popular turfs
+
+    # Get the current user's bookings
+    user_ref = db.collection("users").document(user_id)
+    user_data = user_ref.get().to_dict()
+    user_bookings = set(user_data.get("booking_history", []))
+
+    turf_recommendations = {}
+
+    for similar_user_id in similar_users:
+        similar_user_ref = db.collection("users").document(similar_user_id)
+        similar_user_data = similar_user_ref.get().to_dict()
+
+        if "booking_history" in similar_user_data:
+            for turf in similar_user_data["booking_history"]:
+                if turf not in user_bookings:  # Recommend only unbooked turfs
+                    if turf in turf_recommendations:
+                        turf_recommendations[turf] += 1  # Increase score if multiple similar users booked it
+                    else:
+                        turf_recommendations[turf] = 1
+
+    # Sort turfs by most frequently booked by similar users
+    recommended_turfs = sorted(turf_recommendations, key=turf_recommendations.get, reverse=True)[:10]
+
+    # Get full details of turfs
+    return [{"name": turf, "details": get_turf_details(turf)} for turf in recommended_turfs]
+
+
+    
+
+@app.route('/recommend_turfs_location_based', methods=['GET'])
+def handle_for_new_users():
+    user_ref = db.collection('users')
+    user_docs = user_ref.stream()
+    latitude = request.args.get("latitude", type=float)
+    longitude = request.args.get("longitude", type=float)
+    user_location = (latitude, longitude)
+    
+    nearby_users = []
+    for doc in user_docs:
+        user_data = doc.to_dict()
+        if "location" in user_data:
+            user_cords = (user_data["location"]["lat"], user_data["location"]["lng"])
+            distance = geodesic(user_location, user_cords).km
+            
+            if distance <= 10:
+                nearby_users.append(user_data)
+                
+    if not nearby_users:
+        return get_top_rated_turfs()
+    
+    turf_count = {}
+    for user in nearby_users:
+        if "booking_history" in user:
+            for turf in user["booking_history"]:
+                if turf in turf_count:
+                    turf_count[turf] += 1
+                else:
+                    turf_count[turf] = 1
+    top_turfs = sorted(turf_count, key=turf_count.get, reverse=True)[:15]
+    top_turf_details = [{"name": turf, "details": get_turf_details(turf)} for turf in top_turfs]
+    return top_turf_details
+
+
+def get_turf_details(turf_name):
+    turf_ref = db.collection('turfs').where("name", "==", turf_name).stream()  # Search by name field
+    for doc in turf_ref:
+        return doc.to_dict()  # Return first match
+
+    # If no match found, return default
+    return {"name": turf_name, "price": "Unknown", "location": "Unknown", "amenities": []}
+     
+            
+            
+    
+    
 
 
 # 🔹 API: Save User Booking

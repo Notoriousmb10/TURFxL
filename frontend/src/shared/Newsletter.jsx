@@ -10,7 +10,7 @@ const Newsletter = () => {
         <Row>
           <Col lg="6">
             <div className="newsletter__content">
-              <h2>Subscribe now to get useful traveling information</h2>
+              <h2>Subscribe now to get useful TurfXL update and information</h2>
               <div className="newsletter__input">
                 <input type="email" placeholder="Enter your email" />
                 <button className="btn newsletter__btn">Subscribe</button>
