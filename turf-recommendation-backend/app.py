@@ -121,7 +121,6 @@ def filter_by_pricing(turfs, min_price, max_price):
     """
     return [turf for turf in turfs if min_price <= turf["price_per_hour"] <= max_price]
 
-
 @app.route('/create_user', methods=['POST'])
 def create_user():
     user_data = request.json
@@ -138,6 +137,29 @@ def create_user():
 
     user_ref.set(user_data)
     return jsonify({"message": "User created successfully"}), 201
+
+
+@app.route('/user_check', methods=['GET'])
+def new_user_check():
+        user_id = request.args.get("user_id")
+        user_ref = db.collection("users").document(user_id)
+        user_doc = user_ref.get()
+
+        if not user_doc.exists():
+            return jsonify({"exists": False, "debug": "User not found"}), 200
+
+        user_data = user_doc.to_dict()
+        print(f"📌 User Data for {user_id}: {user_data}")  # Debugging output
+
+        has_booking_history = (
+            "booking_history" in user_data 
+            and isinstance(user_data["booking_history"], (list, str))  # Accept both list and string
+            and len(user_data["booking_history"]) > 0
+        )
+
+        return jsonify({"exists": has_booking_history, "debug": user_data}), 200
+
+
 
 @app.route('/handle_booking', methods=['POST'])
 def handle_booking():

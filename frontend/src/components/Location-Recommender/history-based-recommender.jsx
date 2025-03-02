@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, CircularProgress, Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+// import './history-based-recommender.css'; // Import CSS for styling
 
 const HistoryBasedRecommender = () => {
   const [turfs, setTurfs] = useState([]);
@@ -60,31 +61,37 @@ const HistoryBasedRecommender = () => {
   };
 
   return (
-    <div>
+    <Box className="recommender-container">
+      <Typography variant="h4" gutterBottom>
+        Recommended Turfs Based on Your Booking History
+      </Typography>
+      <Typography variant="subtitle1" gutterBottom>
+        Our AI model has analyzed your past bookings to suggest these turfs for you.
+      </Typography>
       {loading ? (
-        <p>Loading turfs...</p>
+        <CircularProgress />
       ) : error ? (
-        <p>{error}</p>
+        <Alert severity="error">{error}</Alert>
       ) : turfs.length === 0 ? (
-        <p>No turfs found.</p>
+        <Alert severity="info">No turfs found.</Alert>
       ) : (
-        <div className="turf-grid">
+        <Box className="turf-grid">
           {turfs.map((turf, index) => (
-            <div
+            <Box
               key={index}
-              onClick={() => handleNavigation(turf)} // Add onClick handler
+              onClick={() => handleNavigation(turf)}
               className="turf-card"
-              style={{ backgroundImage: `url(${turf.images?.[0] || ''})` }} // Add optional chaining and fallback
+              style={{ backgroundImage: `url(${turf.images?.[0] || ''})` }}
             >
-              <div className="turf-info">
-                <strong>{turf.name}</strong>
-                <p>₹{turf.price_per_hour}/hr</p> {/* Ensure price_per_hour is displayed */}
-              </div>
-            </div>
+              <Box className="turf-info">
+                <Typography variant="h6">{turf.name}</Typography>
+                <Typography variant="body2">₹{turf.price_per_hour}/hr</Typography>
+              </Box>
+            </Box>
           ))}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 
