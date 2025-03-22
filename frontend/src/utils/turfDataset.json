@@ -6,25 +6,15 @@
       "lng": 72.8443
     },
     "price_per_hour": 1200,
-    "amenities": [
-      "Floodlights",
-      "Washroom"
-    ],
+    "amenities": ["Floodlights", "Washroom"],
     "rating": 3.89,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "5 PM - 7 PM"
-    ],
+    "available_slots": ["6 AM - 8 AM", "5 PM - 7 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf-11.Hgbe0C"
-    ],
+
+    "images": ["https://i.im.ge/2025/02/21/HggF4X.turf2.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "10% Off"
   },
   {
@@ -34,25 +24,14 @@
       "lng": 72.8446
     },
     "price_per_hour": 1500,
-    "amenities": [
-      "Changing Room",
-      "Parking"
-    ],
+    "amenities": ["Changing Room", "Parking"],
     "rating": 5,
-    "available_slots": [
-      "7 AM - 9 AM",
-      "6 PM - 8 PM"
-    ],
+    "available_slots": ["7 AM - 9 AM", "6 PM - 8 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf2.HggF4X"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggF4X.turf2.jpeg"],
     "type": "Synthetic Grass",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "30% Off"
   },
   {
@@ -62,26 +41,14 @@
       "lng": 72.8442
     },
     "price_per_hour": 1100,
-    "amenities": [
-      "Drinking Water",
-      "Floodlights",
-      "Seating Lounge"
-    ],
+    "amenities": ["Drinking Water", "Floodlights", "Seating Lounge"],
     "rating": 3,
-    "available_slots": [
-      "8 AM - 10 AM",
-      "7 PM - 9 PM"
-    ],
+    "available_slots": ["8 AM - 10 AM", "7 PM - 9 PM"],
     "bookings": [],
-    "images": [
-      "https://example.com/urban_sports_kandivali.jpg"
-    ],
+    "images": ["https://i.im.ge/2025/03/02/H43McL.turf-3.md.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "10% Off"
   },
   {
@@ -91,24 +58,14 @@
       "lng": 72.8442
     },
     "price_per_hour": 1000,
-    "amenities": [
-      "Parking",
-      "Washroom"
-    ],
+    "amenities": ["Parking", "Washroom"],
     "rating": 4.5,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "5 PM - 7 PM"
-    ],
+    "available_slots": ["6 AM - 8 AM", "5 PM - 7 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf-3.HggSzM"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggSzM.turf-3.jpeg"],
     "type": "Synthetic Grass",
     "city": "Mumbai",
-    "sports": [
-      "Pickleball"
-    ],
+    "sports": ["Pickleball"],
     "discount": "20% Off"
   },
   {
@@ -118,26 +75,14 @@
       "lng": 72.8416
     },
     "price_per_hour": 1300,
-    "amenities": [
-      "Floodlights",
-      "Changing Room"
-    ],
+    "amenities": ["Floodlights", "Changing Room"],
     "rating": 4.33,
-    "available_slots": [
-      "7 AM - 9 AM",
-      "6 PM - 8 PM"
-    ],
+    "available_slots": ["7 AM - 9 AM", "6 PM - 8 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf4.HggqFY"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggqFY.turf4.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Cricket Nets",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Cricket Nets", "Football"],
     "discount": "30% Off"
   },
   {
@@ -147,25 +92,14 @@
       "lng": 72.8416
     },
     "price_per_hour": 1250,
-    "amenities": [
-      "Washroom",
-      "Seating Lounge"
-    ],
+    "amenities": ["Washroom", "Seating Lounge"],
     "rating": 2.6,
-    "available_slots": [
-      "8 AM - 10 AM",
-      "7 PM - 9 PM"
-    ],
+    "available_slots": ["8 AM - 10 AM", "7 PM - 9 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf5-1.HggsjD "
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggsjD.turf5-1.jpeg "],
     "type": "Synthetic Grass",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "20% Off"
   },
   {
@@ -175,28 +109,14 @@
       "lng": 72.8567
     },
     "price_per_hour": 1400,
-    "amenities": [
-      "Floodlights",
-      "Parking",
-      "Washroom"
-    ],
+    "amenities": ["Floodlights", "Parking", "Washroom"],
     "rating": 2.83,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "5 PM - 7 PM"
-    ],
+    "available_slots": ["6 AM - 8 AM", "5 PM - 7 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf-6.HggaR4"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggaR4.turf-6.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Badminton",
-      "Basketball",
-      "Football",
-      "Table Tennis"
-    ],
+    "sports": ["Badminton", "Basketball", "Football", "Table Tennis"],
     "discount": "30% Off"
   },
   {
@@ -217,20 +137,12 @@
       "Washroom"
     ],
     "rating": 2.69,
-    "available_slots": [
-      "7 AM - 9 AM",
-      "6 PM - 8 PM"
-    ],
+    "available_slots": ["7 AM - 9 AM", "6 PM - 8 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf7.HggDTC"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggDTC.turf7.jpeg"],
     "type": "Synthetic Grass",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "10% Off"
   },
   {
@@ -240,25 +152,14 @@
       "lng": 72.8411
     },
     "price_per_hour": 1100,
-    "amenities": [
-      "Floodlights",
-      "Washroom"
-    ],
+    "amenities": ["Floodlights", "Washroom"],
     "rating": 2.8,
-    "available_slots": [
-      "8 AM - 10 AM",
-      "7 PM - 9 PM"
-    ],
+    "available_slots": ["8 AM - 10 AM", "7 PM - 9 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf-8-kavverni.HggIUq"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggIUq.turf-8-kavverni.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "30% Off"
   },
   {
@@ -268,26 +169,14 @@
       "lng": 72.8634
     },
     "price_per_hour": 1300,
-    "amenities": [
-      "Floodlights",
-      "Parking",
-      "Changing Room"
-    ],
+    "amenities": ["Floodlights", "Parking", "Changing Room"],
     "rating": 4.2,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "5 PM - 7 PM"
-    ],
+    "available_slots": ["6 AM - 8 AM", "5 PM - 7 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf-8-playturf.HggL3p"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggL3p.turf-8-playturf.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "30% Off"
   },
   {
@@ -297,24 +186,14 @@
       "lng": 72.9703
     },
     "price_per_hour": 1000,
-    "amenities": [
-      "Floodlights",
-      "Seating Lounge"
-    ],
+    "amenities": ["Floodlights", "Seating Lounge"],
     "rating": 3.11,
-    "available_slots": [
-      "7 AM - 9 AM",
-      "6 PM - 8 PM"
-    ],
+    "available_slots": ["7 AM - 9 AM", "6 PM - 8 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf-7-2.Hggis1"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/Hggis1.turf-7-2.jpeg"],
     "type": "Synthetic Grass",
     "city": "Thane",
-    "sports": [
-      "Football"
-    ],
+    "sports": ["Football"],
     "discount": "10% Off"
   },
   {
@@ -332,20 +211,14 @@
       "Washroom"
     ],
     "rating": 3.8,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "7 PM - 9 PM"
-    ],
+    "available_slots": ["6 AM - 8 AM", "7 PM - 9 PM"],
     "bookings": [],
     "images": [
-      "https://example.com/finland_international_school_thane.jpg"
+      "https://i.im.ge/2025/03/02/H43QGG.Screenshot-2024-03-02-141534.jpeg"
     ],
     "type": "Artificial Turf",
     "city": "Thane",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "30% Off"
   },
   {
@@ -355,25 +228,16 @@
       "lng": 72.825
     },
     "price_per_hour": 1400,
-    "amenities": [
-      "Floodlights",
-      "Washroom"
-    ],
+    "amenities": ["Floodlights", "Washroom"],
     "rating": 5,
-    "available_slots": [
-      "8 AM - 10 AM",
-      "6 PM - 8 PM"
-    ],
+    "available_slots": ["8 AM - 10 AM", "6 PM - 8 PM"],
     "bookings": [],
     "images": [
-      "https://im.ge/i/turf-10-urban-mahalakshmi.Hgg0tf"
+      "https://i.im.ge/2025/02/21/Hgg0tf.turf-10-urban-mahalakshmi.jpeg"
     ],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "10% Off"
   },
   {
@@ -383,25 +247,14 @@
       "lng": 72.8247
     },
     "price_per_hour": 1350,
-    "amenities": [
-      "Floodlights",
-      "Changing Room"
-    ],
+    "amenities": ["Floodlights", "Changing Room"],
     "rating": 2.5,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "5 PM - 7 PM"
-    ],
+    "available_slots": ["6 AM - 8 AM", "5 PM - 7 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf-11.HggjOr"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggjOr.turf-11.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "15% Off"
   },
   {
@@ -419,20 +272,12 @@
       "WiFi"
     ],
     "rating": 5,
-    "available_slots": [
-      "7 AM - 9 AM",
-      "6 PM - 8 PM"
-    ],
+    "available_slots": ["7 AM - 9 AM", "6 PM - 8 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf-11.Hgbe0Chttps://im.ge/i/turf-12-xenos-play.HgcJxG"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/Hgbe0C.turf-11.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "N/A"
   },
   {
@@ -442,25 +287,14 @@
       "lng": 72.8871
     },
     "price_per_hour": 1100,
-    "amenities": [
-      "Floodlights",
-      "Changing Room"
-    ],
+    "amenities": ["Floodlights", "Changing Room"],
     "rating": 4.1,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "5 PM - 7 PM"
-    ],
+    "available_slots": ["6 AM - 8 AM", "5 PM - 7 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf-13-lp.HggmjW"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggmjW.turf-13-lp.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "30% Off"
   },
   {
@@ -470,27 +304,14 @@
       "lng": 72.8869
     },
     "price_per_hour": 1200,
-    "amenities": [
-      "Floodlights",
-      "Parking",
-      "Changing Room"
-    ],
+    "amenities": ["Floodlights", "Parking", "Changing Room"],
     "rating": 4.5,
-    "available_slots": [
-      "8 AM - 10 AM",
-      "7 PM - 9 PM"
-    ],
+    "available_slots": ["8 AM - 10 AM", "7 PM - 9 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf-14-sportvot.HggwW0"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggwW0.turf-14-sportvot.jpeg"],
     "type": "Synthetic Grass",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Cricket Nets",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Cricket Nets", "Football"],
     "discount": "50% Off"
   },
   {
@@ -500,24 +321,14 @@
       "lng": 72.8875
     },
     "price_per_hour": 900,
-    "amenities": [
-      "Floodlights",
-      "Changing Room"
-    ],
+    "amenities": ["Floodlights", "Changing Room"],
     "rating": 5,
-    "available_slots": [
-      "7 AM - 9 AM",
-      "6 PM - 8 PM"
-    ],
+    "available_slots": ["7 AM - 9 AM", "6 PM - 8 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf-15-dsp.HggPUc"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggPUc.turf-15-dsp.jpeg"],
     "type": "Synthetic Grass",
     "city": "Mumbai",
-    "sports": [
-      "Pickleball"
-    ],
+    "sports": ["Pickleball"],
     "discount": "20% Off"
   },
   {
@@ -527,19 +338,12 @@
       "lng": 72.8365
     },
     "price_per_hour": 1600,
-    "amenities": [
-      "Changing Room",
-      "Parking",
-      "Washroom"
-    ],
-    "rating": 4.3,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "5 PM - 7 PM"
-    ],
+    "amenities": ["Changing Room", "Parking", "Washroom"],
+    "rating": null,
+    "available_slots": ["6 AM - 8 AM", "5 PM - 7 PM"],
     "bookings": [],
     "images": [
-      "https://im.ge/i/turf-16-district-sport-club.HggtYL"
+      "https://i.im.ge/2025/02/21/HggtYL.turf-16-district-sport-club.jpeg"
     ],
     "type": "Artificial Turf",
     "city": "Mumbai",
@@ -569,20 +373,12 @@
       "Washroom"
     ],
     "rating": 4.43,
-    "available_slots": [
-      "7 AM - 9 AM",
-      "6 PM - 8 PM"
-    ],
+    "available_slots": ["7 AM - 9 AM", "6 PM - 8 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf-17-ksttar.Hggy4G"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/Hggy4G.turf-17-ksttar.jpeg"],
     "type": "Synthetic Grass",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "30% Off"
   },
   {
@@ -592,25 +388,14 @@
       "lng": 72.8491
     },
     "price_per_hour": 1100,
-    "amenities": [
-      "Floodlights",
-      "Washroom"
-    ],
+    "amenities": ["Floodlights", "Washroom"],
     "rating": 2.09,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "5 PM - 7 PM"
-    ],
+    "available_slots": ["6 AM - 8 AM", "5 PM - 7 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf-18-trikchot.HggCsx"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggCsx.turf-18-trikchot.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "30% Off"
   },
   {
@@ -620,25 +405,14 @@
       "lng": 72.8543
     },
     "price_per_hour": 1000,
-    "amenities": [
-      "Floodlights",
-      "Parking"
-    ],
+    "amenities": ["Floodlights", "Parking"],
     "rating": 2,
-    "available_slots": [
-      "8 AM - 10 AM",
-      "7 PM - 9 PM"
-    ],
+    "available_slots": ["8 AM - 10 AM", "7 PM - 9 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf-13-lp-2.HggbmS"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggbmS.turf-13-lp-2.jpeg"],
     "type": "Synthetic Grass",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "30% Off"
   },
   {
@@ -656,20 +430,12 @@
       "Washroom"
     ],
     "rating": 2.89,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "5 PM - 7 PM"
-    ],
+    "available_slots": ["6 AM - 8 AM", "5 PM - 7 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/turf-20-urban-goregan.HggxzJ"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggxzJ.turf-20-urban-goregan.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "10% Off"
   },
   {
@@ -687,20 +453,14 @@
       "Washroom"
     ],
     "rating": 3.1,
-    "available_slots": [
-      "8 AM - 10 AM",
-      "7 PM - 9 PM"
-    ],
+    "available_slots": ["8 AM - 10 AM", "7 PM - 9 PM"],
     "bookings": [],
     "images": [
-      "https://im.ge/i/turf-21-urban-andheri-2.HggRhF"
+      "https://i.im.ge/2025/02/21/HggRhF.turf-21-urban-andheri-2.jpeg"
     ],
     "type": "Synthetic Grass",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "10% Off"
   },
   {
@@ -710,24 +470,14 @@
       "lng": 72.9138
     },
     "price_per_hour": 1400,
-    "amenities": [
-      "Changing Room",
-      "Flood Lights"
-    ],
+    "amenities": ["Changing Room", "Flood Lights"],
     "rating": 5,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "5 PM - 7 PM"
-    ],
+    "available_slots": ["6 AM - 8 AM", "5 PM - 7 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/urf-22-ges-arena.HggWYK"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggWYK.urf-22-ges-arena.jpeg"],
     "type": "Hard Court",
     "city": "Mumbai",
-    "sports": [
-      "Tennis"
-    ]
+    "sports": ["Tennis"]
   },
   {
     "name": "10x Shooting India Range",
@@ -736,25 +486,16 @@
       "lng": 72.9615
     },
     "price_per_hour": 1300,
-    "amenities": [
-      "Changing Room",
-      "Parking"
-    ],
+    "amenities": ["Changing Room", "Parking"],
     "rating": 4.8,
-    "available_slots": [
-      "7 AM - 9 AM",
-      "6 PM - 8 PM"
-    ],
+    "available_slots": ["7 AM - 9 AM", "6 PM - 8 PM"],
     "bookings": [],
     "images": [
-      "https://im.ge/i/turf-23-tenx-shhoting-range.HggZB9"
+      "https://i.im.ge/2025/02/21/HggZB9.turf-23-tenx-shhoting-range.jpeg"
     ],
     "type": "Shooting Range",
     "city": "Thane",
-    "sports": [
-      "Pistol Shooting",
-      "Rifle Shooting"
-    ]
+    "sports": ["Pistol Shooting", "Rifle Shooting"]
   },
   {
     "name": "PicklePro Club Celebration Andheri",
@@ -763,24 +504,14 @@
       "lng": 72.8262
     },
     "price_per_hour": 900,
-    "amenities": [
-      "Floodlights",
-      "Parking"
-    ],
+    "amenities": ["Floodlights", "Parking"],
     "rating": 4.42,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "5 PM - 7 PM"
-    ],
+    "available_slots": ["6 AM - 8 AM", "5 PM - 7 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/23-picklepro-andheri.HggVaX"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggVaX.23-picklepro-andheri.jpeg"],
     "type": "Synthetic Grass",
     "city": "Mumbai",
-    "sports": [
-      "Pickleball"
-    ],
+    "sports": ["Pickleball"],
     "discount": "10% Off"
   },
   {
@@ -790,25 +521,14 @@
       "lng": 72.8821
     },
     "price_per_hour": 1200,
-    "amenities": [
-      "Floodlights",
-      "Washroom"
-    ],
-    "rating": 4.3,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "5 PM - 7 PM"
-    ],
+    "amenities": ["Floodlights", "Washroom"],
+    "rating": null,
+    "available_slots": ["6 AM - 8 AM", "5 PM - 7 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/24-the-spirit-field.Hggfy8"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/Hggfy8.24-the-spirit-field.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "30% Off"
   },
   {
@@ -818,26 +538,14 @@
       "lng": 72.8823
     },
     "price_per_hour": 1300,
-    "amenities": [
-      "Drinking Water",
-      "Flood Lights",
-      "Washroom"
-    ],
-    "rating": 4.3,
-    "available_slots": [
-      "7 AM - 9 AM",
-      "6 PM - 8 PM"
-    ],
+    "amenities": ["Drinking Water", "Flood Lights", "Washroom"],
+    "rating": null,
+    "available_slots": ["7 AM - 9 AM", "6 PM - 8 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/25-falah-turf.HggH1M"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggH1M.25-falah-turf.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "30% Off"
   },
   {
@@ -847,24 +555,14 @@
       "lng": 72.8835
     },
     "price_per_hour": 1000,
-    "amenities": [
-      "Floodlights",
-      "Washroom"
-    ],
-    "rating": 4.3,
-    "available_slots": [
-      "8 AM - 10 AM",
-      "7 PM - 9 PM"
-    ],
+    "amenities": ["Floodlights", "Washroom"],
+    "rating": null,
+    "available_slots": ["8 AM - 10 AM", "7 PM - 9 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/26-spirit-field-hmtd.HggpmY"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggpmY.26-spirit-field-hmtd.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket"
-    ],
+    "sports": ["Box Cricket"],
     "discount": "30% Off"
   },
   {
@@ -874,25 +572,14 @@
       "lng": 72.8847
     },
     "price_per_hour": 1400,
-    "amenities": [
-      "Floodlights",
-      "Washroom"
-    ],
-    "rating": 4.3,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "5 PM - 7 PM"
-    ],
+    "amenities": ["Floodlights", "Washroom"],
+    "rating": null,
+    "available_slots": ["6 AM - 8 AM", "5 PM - 7 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/27-five-nine.HggvZD"
-    ],
+    "images": ["https://im.ge/i/27-five-nine.HggvZD"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "30% Off (Valid till 31st Dec, 2025)"
   },
   {
@@ -902,25 +589,16 @@
       "lng": 72.8829
     },
     "price_per_hour": 1250,
-    "amenities": [
-      "Floodlights",
-      "Washroom"
-    ],
-    "rating": 4.3,
-    "available_slots": [
-      "7 AM - 9 AM",
-      "6 PM - 8 PM"
-    ],
+    "amenities": ["Floodlights", "Washroom"],
+    "rating": null,
+    "available_slots": ["7 AM - 9 AM", "6 PM - 8 PM"],
     "bookings": [],
     "images": [
-      "https://im.ge/i/28-players-turf-sakinaka.Hggno4"
+      "https://i.im.ge/2025/02/21/Hggno4.28-players-turf-sakinaka.jpeg"
     ],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "30% Off (Valid till 31st Dec, 2025)"
   },
   {
@@ -930,25 +608,14 @@
       "lng": 72.8838
     },
     "price_per_hour": 1300,
-    "amenities": [
-      "Floodlights",
-      "Washroom"
-    ],
-    "rating": 4.3,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "5 PM - 7 PM"
-    ],
+    "amenities": ["Floodlights", "Washroom"],
+    "rating": null,
+    "available_slots": ["6 AM - 8 AM", "5 PM - 7 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/29-the-urban-stadium.Hgg4hC"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/Hgg4hC.29-the-urban-stadium.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "30% Off"
   },
   {
@@ -958,25 +625,14 @@
       "lng": 72.8826
     },
     "price_per_hour": 1100,
-    "amenities": [
-      "Floodlights",
-      "Washroom"
-    ],
-    "rating": 4.3,
-    "available_slots": [
-      "7 AM - 9 AM",
-      "6 PM - 8 PM"
-    ],
+    "amenities": ["Floodlights", "Washroom"],
+    "rating": null,
+    "available_slots": ["7 AM - 9 AM", "6 PM - 8 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/30-score-marwah.HggBbq"
-    ],
+    "images": ["https://i.im.ge/2025/02/21/HggBbq.30-score-marwah.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "30% Off"
   },
   {
@@ -986,25 +642,14 @@
       "lng": 72.8824
     },
     "price_per_hour": 1200,
-    "amenities": [
-      "Floodlights",
-      "Parking"
-    ],
-    "rating": 4.3,
-    "available_slots": [
-      "6 AM - 8 AM",
-      "5 PM - 7 PM"
-    ],
+    "amenities": ["Floodlights", "Parking"],
+    "rating": null,
+    "available_slots": ["6 AM - 8 AM", "5 PM - 7 PM"],
     "bookings": [],
-    "images": [
-      "https://im.ge/i/31-infinity-sakinaka.HggGBpg"
-    ],
+    "images": ["https://i.im.ge/2025/03/02/H4xeic.31-infinity-sakinaka.jpeg"],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ]
+    "sports": ["Box Cricket", "Football"]
   },
   {
     "name": "Infinity Sports Turf - Sakinaka",
@@ -1013,25 +658,16 @@
       "lng": 72.8825
     },
     "price_per_hour": 1350,
-    "amenities": [
-      "Floodlights",
-      "Changing Room"
-    ],
-    "rating": 4.3,
-    "available_slots": [
-      "8 AM - 10 AM",
-      "7 PM - 9 PM"
-    ],
+    "amenities": ["Floodlights", "Changing Room"],
+    "rating": null,
+    "available_slots": ["8 AM - 10 AM", "7 PM - 9 PM"],
     "bookings": [],
     "images": [
-      "https://im.ge/i/32-player-turf-sakinaka-sagar.Hg8MaP"
+      "https://i.im.ge/2025/02/21/Hg8MaP.32-player-turf-sakinaka-sagar.jpeg"
     ],
     "type": "Artificial Turf",
     "city": "Mumbai",
-    "sports": [
-      "Box Cricket",
-      "Football"
-    ],
+    "sports": ["Box Cricket", "Football"],
     "discount": "30% Off"
   }
 ]

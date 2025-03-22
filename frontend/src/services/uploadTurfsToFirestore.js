@@ -1,16 +1,9 @@
-import { db } from "./firebase.js"; // Ensure correct import
-import { collection, addDoc } from "firebase/firestore";
-import { mumbaiTurfs } from "../utils/turfDataset.js"; // Ensure correct path
+import axios from 'axios';
 
 const uploadTurfsToFirestore = async () => {
-  const turfsCollection = collection(db, "turfs");
-
   try {
-    for (const turf of mumbaiTurfs) {
-      await addDoc(turfsCollection, turf);
-      console.log(`✅ Added: ${turf.name}`);
-    }
-    console.log("🎉 All turfs uploaded successfully!");
+    const response = await axios.post('http://127.0.0.1:5000/upload_turfs');
+    console.log(response.data.message);
   } catch (error) {
     console.error("❌ Error adding turfs:", error);
   }

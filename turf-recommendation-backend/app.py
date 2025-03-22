@@ -6,6 +6,8 @@ from geopy.distance import geodesic
 import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
+import os
+import json
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -183,7 +185,7 @@ def handle_booking():
         user_ref = db.collection('users').document(user_id)
         user_doc = user_ref.get()
 
-        if not user_doc.exists:
+        if not user_doc.exists():
             return jsonify({"error": "User not found"}), 404
 
         user_data = user_doc.to_dict()
@@ -381,6 +383,23 @@ def like_turf():
 
     db.collection("likes").add({"user_id": user_id, "turf_id": turf_id})
     return jsonify({"message": "Turf liked successfully"}), 200
+
+@app.route('/upload_turfs', methods=['POST'])
+def upload_turfs():
+    try:
+        file_path = os.path.join(os.path.dirname(__file__), '../frontend/src/utils/turfDataset.json')
+        with open(file_path, 'r') as file:
+            turfs = json.load(file)
+
+        turfs_collection = db.collection("turfs")
+        for turf in turfs:
+            turfs_collection.add(turf)
+            print(f"✅ Added: {turf['name']}")
+
+        return jsonify({"message": "All turfs uploaded successfully!"}), 200
+    except Exception as e:
+        print(f"❌ Error adding turfs: {e}")
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)

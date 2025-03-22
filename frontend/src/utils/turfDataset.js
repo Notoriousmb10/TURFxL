@@ -7,8 +7,6 @@ export const mumbaiTurfs = [
     rating: 3.89,
     available_slots: ["6 AM - 8 AM", "5 PM - 7 PM"], // Sample slots
     bookings: [],
-    images: [require("../assets/images/logo.png.")
-], // Placeholder image URL
     type: "Artificial Turf",
     city: "Mumbai",
     sports: ["Box Cricket", "Football"],
