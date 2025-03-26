@@ -13,7 +13,7 @@ const CommunityPage = () => {
     { id: 2, name: 'Jane Smith', username: 'janesmith' },
   ]);
   const [chats] = useState([
-    { id: 1, name: 'Alice Johnson', lastMessage: 'Hey, how are you?' },
+    { id: 1, name: 'Alice Johnson', lastMessage: 'Hey, how are you' },
     { id: 2, name: 'Bob Brown', lastMessage: 'Let’s catch up soon!' },
   ]);
 
