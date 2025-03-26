@@ -28,6 +28,10 @@ const nav__links = [
     path: "/turfs",
     display: "Turfs",
   },
+  {
+    path: "/community",
+    display: "Community",
+  },
 ];
 
 const Header = () => {

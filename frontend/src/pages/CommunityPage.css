@@ -1,0 +1,110 @@
+.community-page {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  color: #333;
+}
+
+.search-bar-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.results-container {
+  margin-top: 20px;
+}
+
+.user-list {
+  list-style: none;
+  padding: 0;
+}
+
+.user-item {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.no-results {
+  text-align: center;
+  color: #888;
+}
+
+.features-section {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.friend-requests-section,
+.chat-section {
+  margin-top: 30px;
+}
+
+.friend-requests-list,
+.chat-list {
+  list-style: none;
+  padding: 0;
+}
+
+.friend-request-item,
+.chat-item {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accept-btn,
+.decline-btn {
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.accept-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.decline-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.chat-name {
+  font-weight: bold;
+}
+
+.chat-message {
+  color: #555;
+  margin-top: 5px;
+}
+
+.no-requests,
+.no-chats {
+  text-align: center;
+  color: #888;
+}

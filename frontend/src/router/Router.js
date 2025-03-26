@@ -6,6 +6,7 @@ import Tours from "../pages/Tours";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ThankYou from "../pages/ThankYou";
+import CommunityPage from "../pages/CommunityPage";
 import TurfDisplay from "../pages/TurfDisplay";
 import SearchResult from "../pages/SearchResult";
 import SearchPage from "../components/Search/SearchPage";
@@ -18,6 +19,7 @@ const Routers = () => {
       <Route path="/" element={<Navigate to="/home" />} />
       <Route path="/home" element={<Home />} />
       <Route path="/turfs" element={<Tours />} />
+      <Route path="/community" element={<CommunityPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/search" element={<SearchPage />} />
