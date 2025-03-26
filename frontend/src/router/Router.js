@@ -12,6 +12,7 @@ import SearchResult from "../pages/SearchResult";
 import SearchPage from "../components/Search/SearchPage";
 import LocationRecommender from "../components/Location-Recommender/location-recommender";
 import HistoryBasedRecommender from "../components/Location-Recommender/history-based-recommender";
+import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react";
 
 const Routers = () => {
   return (
@@ -29,7 +30,7 @@ const Routers = () => {
       <Route path="/turfs/search" element={<SearchResultList />} />
       <Route path="/recommend/location-based" element={<LocationRecommender />} />
       <Route path="/recommend/booking-history-based" element={<HistoryBasedRecommender />} />
-
+      <Route path="/login/sso-callback" element={<AuthenticateWithRedirectCallback />} />
     </Routes>
   );
 };

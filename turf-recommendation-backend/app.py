@@ -134,7 +134,7 @@ def create_user():
     user_ref = db.collection("users").document(user_id)
     user_doc = user_ref.get()
 
-    if user_doc.exists:
+    if user_doc.exists():
         return jsonify({"message": "User already exists"}), 200
 
     user_ref.set(user_data)
@@ -244,7 +244,7 @@ def get_similar_users(user_id):
     users_docs = users_ref.stream()
     
     user_doc = users_ref.document(user_id).get()
-    if not user_doc.exists:
+    if not user_doc.exists():
         return []
 
     user_data = user_doc.to_dict()
@@ -400,6 +400,24 @@ def upload_turfs():
     except Exception as e:
         print(f"❌ Error adding turfs: {e}")
         return jsonify({"error": str(e)}), 500
+
+@app.route('/search_users', methods=['POST'])
+def search_users():
+    data = request.json
+    query = data.get("query", "").lower()
+    if not query:
+        return jsonify({"error": "Missing query parameter"}), 400
+
+    users_ref = db.collection("users")
+    docs = users_ref.stream()
+
+    matching_users = []
+    for doc in docs:
+        user = doc.to_dict()
+        if query in user.get("name", "").lower() or query in user.get("username", "").lower():
+            matching_users.append({"id": doc.id, "name": user.get("name"), "username": user.get("username")})
+
+    return jsonify({"users": matching_users}), 200
 
 if __name__ == "__main__":
     app.run(debug=True)

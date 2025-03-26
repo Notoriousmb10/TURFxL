@@ -8,23 +8,43 @@ const CommunityPage = () => {
     { id: 2, name: 'Jane Smith', username: 'janesmith' },
     { id: 3, name: 'Alice Johnson', username: 'alicej' },
   ]);
-  const [friendRequests, setFriendRequests] = useState([
+  const [friendRequests] = useState([
     { id: 1, name: 'John Doe', username: 'johndoe' },
     { id: 2, name: 'Jane Smith', username: 'janesmith' },
   ]);
-  const [chats, setChats] = useState([
+  const [chats] = useState([
     { id: 1, name: 'Alice Johnson', lastMessage: 'Hey, how are you?' },
     { id: 2, name: 'Bob Brown', lastMessage: 'Let’s catch up soon!' },
   ]);
 
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
+  const handleSearch = async (e) => {
+    const searchValue = e.target.value;
+    setSearchTerm(searchValue);
+
+    if (searchValue.trim() === '') {
+      setUsers([]); // Clear users if search is empty
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:5000/search_users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query: searchValue }),
+      });
+      const data = await response.json();
+      setUsers(data.users || []);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
   };
 
-  const filteredUsers = users.filter(
+  const filteredUsers = (users || []).filter(
     (user) =>
-      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.username.toLowerCase().includes(searchTerm.toLowerCase())
+      (user.name && user.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (user.username && user.username.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
   return (
@@ -38,6 +58,20 @@ const CommunityPage = () => {
           value={searchTerm}
           onChange={handleSearch}
         />
+      </div>
+      <div className="search-results-section">
+        <h2>Search Results</h2>
+        {users.length > 0 ? (
+          <ul className="search-results-list">
+            {users.map((user) => (
+              <li key={user.id} className="search-result-item">
+                {user.name} (@{user.username})
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="no-results">No users found</p>
+        )}
       </div>
       <div className="friend-requests-section">
         <h2>Incoming Friend Requests</h2>
