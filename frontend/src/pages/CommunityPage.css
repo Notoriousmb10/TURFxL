@@ -108,3 +108,103 @@
   text-align: center;
   color: #888;
 }
+
+/* Section Title */
+.section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* Friend Requests Grid */
+.friend-requests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Friend Request Card */
+.friend-request-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.friend-request-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Avatar */
+.friend-request-avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Info Section */
+.friend-request-info {
+  flex: 1;
+  margin-left: 1rem;
+}
+
+.friend-request-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.friend-request-username {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0.2rem 0 0;
+}
+
+/* Actions */
+.friend-request-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.modern-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.accept-btn {
+  background: #4caf50;
+  color: #fff;
+}
+
+.accept-btn:hover {
+  background: #45a049;
+}
+
+.decline-btn {
+  background: #f44336;
+  color: #fff;
+}
+
+.decline-btn:hover {
+  background: #e53935;
+}
+
+/* No Requests Message */
+.no-requests {
+  font-size: 1rem;
+  color: #777;
+  text-align: center;
+  margin-top: 1rem;
+}

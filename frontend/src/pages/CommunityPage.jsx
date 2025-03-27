@@ -5,15 +5,8 @@ import { useUser } from "@clerk/clerk-react";
 const CommunityPage = () => {
   const { user } = useUser();
   const [searchTerm, setSearchTerm] = useState("");
-  const [users, setUsers] = useState([
-    { id: 1, name: "John Doe", username: "johndoe" },
-    { id: 2, name: "Jane Smith", username: "janesmith" },
-    { id: 3, name: "Alice Johnson", username: "alicej" },
-  ]);
-  const [friendRequests] = useState([
-    { id: 1, name: "John Doe", username: "johndoe" },
-    { id: 2, name: "Jane Smith", username: "janesmith" },
-  ]);
+  const [users, setUsers] = useState([]);
+  const [friendRequests, setFriendRequests] = useState([]);
   const [chats] = useState([
     { id: 1, name: "Alice Johnson", lastMessage: "Hey, how are you" },
     { id: 2, name: "Bob Brown", lastMessage: "Let’s catch up soon!" },
@@ -43,8 +36,7 @@ const CommunityPage = () => {
     }
   };
 
-  const handleFriendRequest = async (userName) => {
-    // console.log("Sending friend request to:", userName, user.id);
+  const handleFriendRequest = async (receiverId) => {
     try {
       const response = await fetch(
         "http://localhost:3001/send_friend_request",
@@ -53,7 +45,7 @@ const CommunityPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ sendersUserId: user.id, receiversUserId: userName }),
+          body: JSON.stringify({ sendersUserId: user.id, receiversUserId: receiverId }),
         }
       );
       const data = await response.json();
@@ -64,7 +56,32 @@ const CommunityPage = () => {
   };
 
   useEffect(() => {
-    console.log("User:", user);
+    const fetchFriendRequests = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3001/get_friend_requests?userId=${user.id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        const friendRequestIds = Object.keys(data.friend_requests || {});
+        // Map friend request IDs to user details (mocked for now)
+        const mappedRequests = friendRequestIds.map((id) => ({
+          id,
+          name: `User ${id}`, // Replace with actual user details from backend
+          username: `username_${id}`, // Replace with actual user details
+        }));
+        setFriendRequests(mappedRequests);
+      } catch (error) {
+        console.error("Error fetching friend requests:", error);
+      }
+    };
+
+    fetchFriendRequests();
   }, [user]);
 
   const filteredUsers = (users || []).filter(
@@ -108,17 +125,28 @@ const CommunityPage = () => {
         )}
       </div>
       <div className="friend-requests-section">
-        <h2>Incoming Friend Requests</h2>
+        <h2 className="section-title">Incoming Friend Requests</h2>
         {friendRequests.length > 0 ? (
-          <ul className="friend-requests-list">
+          <div className="friend-requests-grid">
             {friendRequests.map((request) => (
-              <li key={request.id} className="friend-request-item">
-                {request.name} (@{request.username})
-                <button className="accept-btn">Accept</button>
-                <button className="decline-btn">Decline</button>
-              </li>
+              <div key={request.id} className="friend-request-card">
+                <div className="friend-request-avatar">
+                  <img
+                    src={`https://ui-avatars.com/api/?name=${request.name}&background=random`}
+                    alt={`${request.name}'s avatar`}
+                  />
+                </div>
+                <div className="friend-request-info">
+                  <h3 className="friend-request-name">{request.name}</h3>
+                  <p className="friend-request-username">@{request.username}</p>
+                </div>
+                <div className="friend-request-actions">
+                  <button className="accept-btn modern-btn">Accept</button>
+                  <button className="decline-btn modern-btn">Decline</button>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         ) : (
           <p className="no-requests">No friend requests</p>
         )}

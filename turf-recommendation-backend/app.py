@@ -134,7 +134,7 @@ def create_user():
     user_ref = db.collection("users").document(user_id)
     user_doc = user_ref.get()
 
-    if user_doc.exists():
+    if user_doc.exists:
         return jsonify({"message": "User already exists"}), 200
 
     user_ref.set(user_data)
@@ -147,7 +147,7 @@ def new_user_check():
         user_ref = db.collection("users").document(user_id)
         user_doc = user_ref.get()
 
-        if not user_doc.exists():
+        if not user_doc.exists:
             return jsonify({"exists": False, "debug": "User not found"}), 200
 
         user_data = user_doc.to_dict()
@@ -185,7 +185,7 @@ def handle_booking():
         user_ref = db.collection('users').document(user_id)
         user_doc = user_ref.get()
 
-        if not user_doc.exists():
+        if not user_doc.exists:
             return jsonify({"error": "User not found"}), 404
 
         user_data = user_doc.to_dict()
@@ -244,7 +244,7 @@ def get_similar_users(user_id):
     users_docs = users_ref.stream()
     
     user_doc = users_ref.document(user_id).get()
-    if not user_doc.exists():
+    if not user_doc.exists:
         return []
 
     user_data = user_doc.to_dict()
@@ -459,6 +459,29 @@ def send_friend_request():
         return jsonify({"message": "Friend request sent successfully"}), 200
     except Exception as e:
         print(f"❌ Error handling friend request: {str(e)}")
+        return jsonify({"error": "Internal Server Error", "details": str(e)}), 500
+    
+    
+@app.route('/get_friend_requests', methods=['GET'])
+def get_friend_requests():
+    try:
+        user_id = request.args.get('userId')  # Use query parameter for GET request
+        if not user_id:
+            return jsonify({"error": "Missing userId parameter"}), 400
+
+        user_ref = db.collection('users').document(user_id)
+        user_doc = user_ref.get()
+
+        if not user_doc.exists:
+            return jsonify({"error": "User not found"}), 404
+
+        user_data = user_doc.to_dict()
+        friend_requests = user_data.get("friend_requests", {})
+        print(f"📩 Friend requests for {user_id}: {friend_requests}")  # Debugging log
+
+        return jsonify({"friend_requests": friend_requests}), 200  # Return friend requests
+    except Exception as e:
+        print(f"❌ Error getting friend requests: {str(e)}")  # Debugging log
         return jsonify({"error": "Internal Server Error", "details": str(e)}), 500
 
 if __name__ == "__main__":
