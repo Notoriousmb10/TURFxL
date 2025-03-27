@@ -1,50 +1,78 @@
-import React, { useState } from 'react';
-import './CommunityPage.css'; // Importing CSS for styling
+import React, { useEffect, useState } from "react";
+import "./CommunityPage.css";
+import { useUser } from "@clerk/clerk-react";
 
 const CommunityPage = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const { user } = useUser();
+  const [searchTerm, setSearchTerm] = useState("");
   const [users, setUsers] = useState([
-    { id: 1, name: 'John Doe', username: 'johndoe' },
-    { id: 2, name: 'Jane Smith', username: 'janesmith' },
-    { id: 3, name: 'Alice Johnson', username: 'alicej' },
+    { id: 1, name: "John Doe", username: "johndoe" },
+    { id: 2, name: "Jane Smith", username: "janesmith" },
+    { id: 3, name: "Alice Johnson", username: "alicej" },
   ]);
   const [friendRequests] = useState([
-    { id: 1, name: 'John Doe', username: 'johndoe' },
-    { id: 2, name: 'Jane Smith', username: 'janesmith' },
+    { id: 1, name: "John Doe", username: "johndoe" },
+    { id: 2, name: "Jane Smith", username: "janesmith" },
   ]);
   const [chats] = useState([
-    { id: 1, name: 'Alice Johnson', lastMessage: 'Hey, how are you' },
-    { id: 2, name: 'Bob Brown', lastMessage: 'Let’s catch up soon!' },
+    { id: 1, name: "Alice Johnson", lastMessage: "Hey, how are you" },
+    { id: 2, name: "Bob Brown", lastMessage: "Let’s catch up soon!" },
   ]);
 
   const handleSearch = async (e) => {
     const searchValue = e.target.value;
     setSearchTerm(searchValue);
 
-    if (searchValue.trim() === '') {
+    if (searchValue.trim() === "") {
       setUsers([]); // Clear users if search is empty
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:5000/search_users', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/search_users", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ query: searchValue }),
       });
       const data = await response.json();
       setUsers(data.users || []);
     } catch (error) {
-      console.error('Error fetching users:', error);
+      console.error("Error fetching users:", error);
     }
   };
 
+  const handleFriendRequest = async (userName) => {
+    // console.log("Sending friend request to:", userName, user.id);
+    try {
+      const response = await fetch(
+        "http://localhost:3001/send_friend_request",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ sendersUserId: user.id, receiversUserId: userName }),
+        }
+      );
+      const data = await response.json();
+      console.log("Friend request sent:", data);
+    } catch (error) {
+      console.error("Error sending friend request:", error);
+    }
+  };
+
+  useEffect(() => {
+    console.log("User:", user);
+  }, [user]);
+
   const filteredUsers = (users || []).filter(
     (user) =>
-      (user.name && user.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (user.username && user.username.toLowerCase().includes(searchTerm.toLowerCase()))
+      (user.name &&
+        user.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (user.username &&
+        user.username.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
   return (
@@ -66,6 +94,12 @@ const CommunityPage = () => {
             {users.map((user) => (
               <li key={user.id} className="search-result-item">
                 {user.name} (@{user.username})
+                <button
+                  className="send-request-btn"
+                  onClick={() => handleFriendRequest(user.id)}
+                >
+                  Send Friend Request
+                </button>
               </li>
             ))}
           </ul>

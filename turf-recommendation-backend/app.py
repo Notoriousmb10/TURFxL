@@ -419,5 +419,47 @@ def search_users():
 
     return jsonify({"users": matching_users}), 200
 
+@app.route('/send_friend_request', methods=['POST'])
+def send_friend_request():
+    try:
+        data = request.json
+        senders_user_id = data.get("sendersUserId")
+        receivers_user_id = data.get("receiversUserId")
+
+        print(f"📩 Received friend request: Sender={senders_user_id}, Receiver={receivers_user_id}")
+
+        if not senders_user_id or not receivers_user_id:
+            return jsonify({"error": "Missing sendersUserId or receiversUserId"}), 400
+
+        # Firestore reference for the receiver's document
+        receiver_ref = db.collection("users").document(receivers_user_id)
+        receiver_doc = receiver_ref.get()
+
+        if not receiver_doc.exists:
+            print(f"❌ Receiver document not found for ID: {receivers_user_id}")
+            return jsonify({"error": "Receiver not found"}), 404
+
+        # Get receiver data
+        receiver_data = receiver_doc.to_dict()
+        print(f"📄 Receiver's current data: {receiver_data}")
+
+        # Initialize friend_requests if it doesn’t exist or isn’t a dict
+        if "friend_requests" not in receiver_data or not isinstance(receiver_data["friend_requests"], dict):
+            receiver_data["friend_requests"] = {}
+            print(f"🆕 Initialized friend_requests as empty dict")
+
+        # Add the sender's request
+        receiver_data["friend_requests"][senders_user_id] = "pending"
+        print(f"✏️ Updated friend_requests: {receiver_data['friend_requests']}")
+
+        # Update Firestore
+        receiver_ref.update({"friend_requests": receiver_data["friend_requests"]})
+        print(f"✅ Friend request successfully added for Receiver={receivers_user_id}")
+
+        return jsonify({"message": "Friend request sent successfully"}), 200
+    except Exception as e:
+        print(f"❌ Error handling friend request: {str(e)}")
+        return jsonify({"error": "Internal Server Error", "details": str(e)}), 500
+
 if __name__ == "__main__":
     app.run(debug=True)

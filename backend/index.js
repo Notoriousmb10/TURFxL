@@ -8,6 +8,7 @@ import handleBooking from './controllers/handleBooking.js';
 import verifyPayment from './controllers/handleVerification.js';
 import searchTurfRouter from './routes/searchTurf.js';
 import createUser from './controllers/createUser.js';
+import handleFriendReq  from './controllers/handleFriendReq.js';
 dotenv.config();
 const app = express();
 const port = 3001;
@@ -40,6 +41,10 @@ app.use('/pay/verifyPayment', verifyPayment);
 app.use('/search', searchTurfRouter);
 app.use('/createUser', createUser);
 app.use('/bookTurf', handleBooking);
+app.use('/send_friend_request', (req, res, next) => {
+    console.log("📩 Received friend request at /send_friend_request:", req.body); // Debugging log
+    next();
+}, handleFriendReq);
 // Email sending endpoint
 app.use('/sendConfirmationEmail', async (req, res) => {
 
