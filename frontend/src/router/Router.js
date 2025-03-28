@@ -8,6 +8,7 @@ import Register from "../pages/Register";
 import ThankYou from "../pages/ThankYou";
 import CommunityPage from "../pages/CommunityPage";
 import TurfDisplay from "../pages/TurfDisplay";
+import PlayerMatchingPage from "../pages/PlayerMatchingPage";
 import SearchResult from "../pages/SearchResult";
 import SearchPage from "../components/Search/SearchPage";
 import LocationRecommender from "../components/Location-Recommender/location-recommender";
@@ -31,6 +32,7 @@ const Routers = () => {
       <Route path="/recommend/location-based" element={<LocationRecommender />} />
       <Route path="/recommend/booking-history-based" element={<HistoryBasedRecommender />} />
       <Route path="/login/sso-callback" element={<AuthenticateWithRedirectCallback />} />
+      <Route path="/player-matching-pool" element={<PlayerMatchingPage />} />
     </Routes>
   );
 };

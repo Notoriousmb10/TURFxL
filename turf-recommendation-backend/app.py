@@ -477,9 +477,19 @@ def get_friend_requests():
 
         user_data = user_doc.to_dict()
         friend_requests = user_data.get("friend_requests", {})
-        print(f"📩 Friend requests for {user_id}: {friend_requests}")  # Debugging log
+        print(f"📩 Friend requests for {user_id}: {friend_requests}") 
+        # {'user_2nhYUE49KVZdAfoBbiJsZPRABR8': 'pending', 'user_2uqPerNcxm92Nri0aKJCsue5io1': 'pending'}
+        friend_req_with_names = {}
+        for user_id, status in friend_requests.items():
+            friend_user_ref = db.collection('users').document(user_id)
+            friend_user_doc = friend_user_ref.get()
+            if friend_user_doc.exists:
+                friend_user_data = friend_user_doc.to_dict()
+                if status == 'pending':
+                    friend_req_with_names[user_id] = friend_user_data['name']
+        print(friend_req_with_names)
 
-        return jsonify({"friend_requests": friend_requests}), 200  # Return friend requests
+        return jsonify({"friend_requests": friend_req_with_names}), 200  # Return friend requests
     except Exception as e:
         print(f"❌ Error getting friend requests: {str(e)}")  # Debugging log
         return jsonify({"error": "Internal Server Error", "details": str(e)}), 500

@@ -67,15 +67,16 @@ const CommunityPage = () => {
             },
           }
         );
+
         const data = await response.json();
-        const friendRequestIds = Object.keys(data.friend_requests || {});
-        // Map friend request IDs to user details (mocked for now)
-        const mappedRequests = friendRequestIds.map((id) => ({
-          id,
-          name: `User ${id}`, // Replace with actual user details from backend
-          username: `username_${id}`, // Replace with actual user details
-        }));
-        setFriendRequests(mappedRequests);
+        console.log("API Response:", data); // Log the entire response
+        console.log("Friend requests data:", data.friend_requests); // Log the specific field
+
+        if (data.friend_requests) {
+          setFriendRequests(data.friend_requests);
+        } else {
+          setFriendRequests([]); // Ensure it's an empty array if no data
+        }
       } catch (error) {
         console.error("Error fetching friend requests:", error);
       }
@@ -112,10 +113,10 @@ const CommunityPage = () => {
               <li key={user.id} className="search-result-item">
                 {user.name} (@{user.username})
                 <button
-                  className="send-request-btn"
+                  className="add-friend-btn"
                   onClick={() => handleFriendRequest(user.id)}
                 >
-                  Send Friend Request
+                  <span className="add-friend-icon">+</span> Add Friend
                 </button>
               </li>
             ))}
@@ -126,29 +127,42 @@ const CommunityPage = () => {
       </div>
       <div className="friend-requests-section">
         <h2 className="section-title">Incoming Friend Requests</h2>
-        {friendRequests.length > 0 ? (
-          <div className="friend-requests-grid">
-            {friendRequests.map((request) => (
-              <div key={request.id} className="friend-request-card">
-                <div className="friend-request-avatar">
-                  <img
-                    src={`https://ui-avatars.com/api/?name=${request.name}&background=random`}
-                    alt={`${request.name}'s avatar`}
-                  />
-                </div>
-                <div className="friend-request-info">
-                  <h3 className="friend-request-name">{request.name}</h3>
-                  <p className="friend-request-username">@{request.username}</p>
-                </div>
-                <div className="friend-request-actions">
-                  <button className="accept-btn modern-btn">Accept</button>
-                  <button className="decline-btn modern-btn">Decline</button>
-                </div>
+        {Object.entries(friendRequests || {}).length > 0 ? (
+          Object.entries(friendRequests).map(([key, value]) => (
+            <div key={key} className="friend-request-card">
+              <div className="friend-request-avatar">
+                <img
+                  src={`https://ui-avatars.com/api/?name=${value}&background=random`}
+                  alt={`${value}'s avatar`}
+                />
               </div>
-            ))}
-          </div>
+              <div className="friend-request-info">
+                <h3 className="friend-request-name">{value}</h3>
+                <p className="friend-request-username">@{key}</p>
+              </div>
+              <div className="friend-request-actions">
+                <button className="accept-btn modern-btn">Accept</button>
+                <button className="decline-btn modern-btn">Decline</button>
+              </div>
+            </div>
+          ))
         ) : (
           <p className="no-requests">No friend requests</p>
+        )}
+      </div>
+      <div className="friends-section">
+        <h2>Your Friends</h2>
+        {users.length > 0 ? (
+          <ul className="friends-list">
+            {users.map((friend) => (
+              <li key={friend.id} className="friend-item">
+                <div className="friend-name">{friend.name}</div>
+                <div className="friend-username">@{friend.username}</div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="no-friends">You have no friends yet</p>
         )}
       </div>
       <div className="chat-section">

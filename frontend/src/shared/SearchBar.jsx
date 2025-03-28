@@ -1,13 +1,11 @@
 import React, { useRef, useState } from "react";
 import "../shared/search-bar.css";
 import { Col, Form, FormGroup } from "reactstrap";
-import { BASE_URL } from "./../utils/config";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchTurf } from "../redux/actions/userActions";
 import { ClipLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 
-import firebase from "firebase/compat/app";
 const   SearchBar = ({ onSearch }) => {
   const locationRef = useRef();
   const navigate = useNavigate();
@@ -38,11 +36,17 @@ const   SearchBar = ({ onSearch }) => {
     }, 4000);
   };
 
+  const redirectToPool = async () => {
+    navigate("/player-matching-pool");
+
+
+  }
+
   return (
     <Col lg="12">
       <div className="search__bar">
         <Form
-          className="d-flex align-items-center justify-content-center gap-4"
+          className="d-flex align-items-left justify-content-left gap-4"
           onSubmit={(e) => e.preventDefault()}
         >
           <FormGroup className="d-flex flex-column align-items-start gap-2 form__group form__group-fast">
@@ -72,6 +76,11 @@ const   SearchBar = ({ onSearch }) => {
           </button>
           
         </Form>
+        <div>
+          <p>Proximity Search</p>
+          <button className="proxsearchbtn" onClick={redirectToPool}>Looking For Players?</button>
+        </div>
+        
       </div>
     </Col>
   );

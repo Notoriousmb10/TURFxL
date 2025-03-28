@@ -66,19 +66,7 @@ function App() {
     }
   }, [isLoaded, user, latitude, longitude]);
 
-  const sendFriendRequest = async (sendersUserId, receiversUserId) => {
-    console.log("📩 Sending friend request:", { sendersUserId, receiversUserId }); // Debugging log
-
-    try {
-      const response = await axios.post("http://localhost:3001/send_friend_request", {
-        sendersUserId,
-        receiversUserId,
-      });
-      console.log("✅ Friend request sent:", response.data); // Debugging log
-    } catch (error) {
-      console.error("❌ Error sending friend request:", error.response?.data || error.message); // Debugging log
-    }
-  };
+  
 
   if (locationPermissionDenied) {
     return (
@@ -93,9 +81,7 @@ function App() {
       <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#C9EBFF,transparent)]">
         <Layout />
       </div>
-      <button onClick={() => sendFriendRequest(user.id, "receiver_user_id")}>
-        Send Friend Request
-      </button>
+      
     </div>
   );
 }
