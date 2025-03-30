@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import { getFirestore, collection, addDoc, query, where, onSnapshot, deleteDoc, doc, getDocs } from "firebase/firestore";
+import { getFirestore, collection, addDoc, query, where, onSnapshot, deleteDoc, doc, getDoc, updateDoc, getDocs } from "firebase/firestore";
 
 
 // Firebase configuration using environment variables
@@ -28,4 +28,4 @@ if (typeof window !== "undefined") {
   });
 }
 
-export { db, auth, googleProvider, collection, addDoc, query, where, onSnapshot, deleteDoc, doc, getDocs };
+export { db, auth, googleProvider, collection, addDoc, query, where, onSnapshot, deleteDoc, doc, getDoc, updateDoc, getDocs };
