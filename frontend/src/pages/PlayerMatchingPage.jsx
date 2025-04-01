@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import footballcardbg from "../assets/turfImages/footballcardbg.jpeg";
 
 const PlayerMatchingPage = () => {
+  const [teamsTurfs, setTeamsTurfs] = useState([]); 
   const { user } = useUser();
   const { latitude, longitude } = useSelector((state) => state.location);
   const [isLooking, setIsLooking] = useState(
@@ -254,6 +255,36 @@ const PlayerMatchingPage = () => {
     }
   };
 
+  const fetchTurfs = async (team) => {
+    console.log("Fetching turfs for team:", team);
+    try {
+      // Serialize and encode the team object
+      const teamQueryParam = encodeURIComponent(JSON.stringify(team));
+      console.log("Encoded team data:", teamQueryParam);
+
+      const resp = await fetch(`http://localhost:5000/fetchTurfsForTeams?team=${teamQueryParam}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      // Check if the response is OK
+      if (!resp.ok) {
+        const errorData = await resp.json();
+        console.error("Error response from server:", errorData);
+        throw new Error(`HTTP error! status: ${resp.status}, message: ${errorData.error || "Unknown error"}`);
+      }
+
+      const data = await resp.json();
+      console.log("Fetched turfs:", data);
+      setTeamsTurfs(data.nearby_turfs || []);
+    } catch (error) {
+      console.error("Error fetching turfs:", error.message);
+      alert(`Failed to fetch turfs: ${error.message}`);
+    }
+  };
+
   return (
     <Container className="mt-5">
       <h2 className="text-center mb-4">Find a Player</h2>
@@ -278,18 +309,24 @@ const PlayerMatchingPage = () => {
         </Button>
       </div>
 
-      
-        {isLooking && (
-          <Row className="justify-content-center ">
-            {players.map((player) => (
-          <Col md={4} key={player.id} className="mb-3">
-            <Card className="" style={{ backgroundImage: `url(${footballcardbg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-              <Card.Body>
-            <Card.Title className="text-white">{player.name}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted text-white">
-              {player.game}
-            </Card.Subtitle>
-            {/* <Card.Text>{player.location}</Card.Text> */}
+      {isLooking && (
+        <Row className="justify-content-center ">
+          {players.map((player) => (
+            <Col md={4} key={player.id} className="mb-3">
+              <Card
+                className=""
+                style={{
+                  backgroundImage: `url(${footballcardbg})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <Card.Body>
+                  <Card.Title className="text-white">{player.name}</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted text-white">
+                    {player.game}
+                  </Card.Subtitle>
+                  {/* <Card.Text>{player.location}</Card.Text> */}
                   <Button
                     variant="success"
                     onClick={() => sendTeamRequest(player.userId, player.game)}
@@ -342,13 +379,21 @@ const PlayerMatchingPage = () => {
                     </ul>
                   </Card.Text>
                   <Button
-                            variant="success"
-                            style={{ backgroundColor: "red", padding: "4px" }}
-                            onClick={() => leaveTeam(team.id)}
-                            className="btn btn-danger"
-                            >
-                            Leave Team
-                            </Button>
+                    variant="success"
+                    style={{ backgroundColor: "red", padding: "4px" }}
+                    onClick={() => leaveTeam(team.id)}
+                    className="btn btn-danger"
+                  >
+                    Leave Team
+                  </Button>
+                  <Button
+                    variant="success"
+                    style={{ backgroundColor: "green", padding: "4px" }}
+                    onClick={() => fetchTurfs(team)}
+                    className="btn  ml-1 p-1"
+                  >
+                    Search For Turfs
+                  </Button>
                 </div>
 
                 <div>
@@ -408,6 +453,43 @@ const PlayerMatchingPage = () => {
             </Card.Body>
           </Card>
         ))}
+
+      {teamsTurfs.length > 0 && (
+        <div className="mt-5">
+          <h3 className="text-center mb-4">Nearby Turfs</h3>
+          <Row className="justify-content-center">
+            {teamsTurfs.map((turf, index) => (
+              <Col md={4} key={turf.id} className="mb-3">
+                <Card>
+                  <Card.Img
+                    variant="top"
+                    src={turf.images[0]}
+                    alt={turf.name}
+                    style={{ height: "200px", objectFit: "cover" }}
+                  />
+                  <Card.Body>
+                    <Card.Title>{turf.name}</Card.Title>
+                    <Card.Text>
+                      <strong>City:</strong> {turf.city} <br />
+                      <strong>Price/Hour:</strong> ₹{turf.price_per_hour} <br />
+                      <strong>Rating:</strong> {turf.rating} ⭐ <br />
+                      <strong>Discount:</strong> {turf.discount} <br />
+                      <strong>Amenities:</strong> {turf.amenities.join(", ")} <br />
+                      <strong>Available Slots:</strong> {turf.available_slots.join(", ")}
+                    </Card.Text>
+                    <Button
+                      variant="primary"
+                      onClick={() => console.log(`Booking turf: ${turf.name}`)}
+                    >
+                      Book Turf
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      )}
     </Container>
   );
 };

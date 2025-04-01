@@ -493,6 +493,59 @@ def get_friend_requests():
     except Exception as e:
         print(f"❌ Error getting friend requests: {str(e)}")  # Debugging log
         return jsonify({"error": "Internal Server Error", "details": str(e)}), 500
+    
+    
+@app.route('/fetchTurfsForTeams', methods=['GET'])
+def fetch_turfs_for_teams():
+    try:
+        # Parse the team data from the query parameter
+        team_data = request.args.get('team')
+        if not team_data:
+            return jsonify({"error": "Missing team parameter"}), 400
+
+        # Deserialize the JSON string into a Python dictionary
+        team = json.loads(team_data)
+
+        # Extract user IDs from the team members
+        user_ids = team.get("members", [])
+        if not user_ids:
+            return jsonify({"error": "No members in the team"}), 400
+
+        # Fetch user locations from Firestore
+        user_locations = []
+        for user_id in user_ids:
+            user_ref = db.collection('users').document(user_id)
+            user_doc = user_ref.get()
+            if user_doc.exists:
+                user_data = user_doc.to_dict()
+                location = user_data.get("location")
+                if location and "lat" in location and "lng" in location:
+                    user_locations.append((location["lat"], location["lng"]))
+
+        if not user_locations:
+            return jsonify({"error": "No valid user locations found"}), 400
+
+        # Fetch all turfs from Firestore
+        turfs = fetch_turfs()
+
+        # Find nearby turfs for each user
+        radius_km = 10
+        nearby_turfs = []
+        for user_location in user_locations:
+            user_nearby_turfs = filter_turfs_by_location(user_location, turfs, radius_km)
+            nearby_turfs.extend(user_nearby_turfs)
+
+        # Remove duplicate turfs
+        unique_turfs = {turf["id"]: turf for turf in nearby_turfs}.values()
+
+        return jsonify({"nearby_turfs": list(unique_turfs)}), 200
+
+    except Exception as e:
+        print(f"❌ Error fetching turfs for teams: {str(e)}")
+        return jsonify({"error": "Internal Server Error", "details": str(e)}), 500
+            
+    
+
 
 if __name__ == "__main__":
     app.run(debug=True)
