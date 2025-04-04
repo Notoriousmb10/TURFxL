@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Button, Card, Container, Row, Col, Form } from "react-bootstrap";
 import { useUser } from "@clerk/clerk-react";
 import {
   db,
@@ -18,20 +17,21 @@ import { useSelector } from "react-redux";
 import footballcardbg from "../assets/turfImages/footballcardbg.jpeg";
 
 const PlayerMatchingPage = () => {
-  const [teamsTurfs, setTeamsTurfs] = useState([]); 
+  const [teamsTurfs, setTeamsTurfs] = useState([]);
   const { user } = useUser();
   const { latitude, longitude } = useSelector((state) => state.location);
   const [isLooking, setIsLooking] = useState(
     JSON.parse(sessionStorage.getItem("isLooking")) || false
   );
-  const [selectedGame, setSelectedGame] = useState("Football"); // State for selected game
+  const [selectedGame, setSelectedGame] = useState("Football");
   const [players, setPlayers] = useState([]);
   const [teamRequests, setTeamRequests] = useState([]);
-  const [teams, setTeams] = useState([]); // Initialize teams state
+  const [teams, setTeams] = useState([]);
   const [lobbyPlayers, setLobbyPlayers] = useState([]);
   const [teamChats, setTeamChats] = useState({});
   const [message, setMessage] = useState("");
 
+  // Fetch user's teams
   useEffect(() => {
     if (user) {
       const q = query(
@@ -43,14 +43,13 @@ const PlayerMatchingPage = () => {
           id: doc.id,
           ...doc.data(),
         }));
-        console.log("Current teams in Firestore:", teamsData);
         setTeams(teamsData);
       });
-
       return () => unsubscribe();
     }
   }, [user?.id]);
 
+  // Fetch players looking for a game (exclude current user)
   useEffect(() => {
     if (user) {
       const q = query(collection(db, "playersLooking"));
@@ -59,28 +58,20 @@ const PlayerMatchingPage = () => {
           id: doc.id,
           ...doc.data(),
         }));
-        console.log("Current players in Firestore:", playerList);
-
-        // Filter out the current user's matchmaking request
         const filteredPlayerList = playerList.filter(
           (player) => player.userId !== user.id
         );
-
         setPlayers(filteredPlayerList);
       });
-
-      // Cleanup function to unsubscribe from Firestore listener
       return () => unsubscribe();
     }
   }, [user?.id]);
 
+  // Fetch team requests
   useEffect(() => {
     if (user) {
-      console.log("Fetching team requests for user:", user.id);
-
       const q = query(collection(db, "teamRequests"));
       const unsubscribe = onSnapshot(q, (snapshot) => {
-        console.log("Snapshot size:", snapshot.size);
         const requests = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -88,17 +79,13 @@ const PlayerMatchingPage = () => {
         const filteredRequests = requests.filter(
           (request) => request.fromUserId !== user.id
         );
-        console.log("Fetched requests:", filteredRequests);
-
         setTeamRequests(filteredRequests);
       });
-      // console.log(q)
-
-      // Cleanup function to unsubscribe from Firestore listener
       return () => unsubscribe();
     }
   }, [user?.id]);
 
+  // Fetch lobby players for the selected game
   useEffect(() => {
     if (user) {
       const q = query(
@@ -112,11 +99,11 @@ const PlayerMatchingPage = () => {
         }));
         setLobbyPlayers(players);
       });
-
       return () => unsubscribe();
     }
   }, [user?.id, selectedGame]);
 
+  // Fetch team chats for each team
   useEffect(() => {
     if (teams.length > 0) {
       const unsubscribes = teams.map((team) => {
@@ -131,98 +118,86 @@ const PlayerMatchingPage = () => {
           }));
         });
       });
-
-      // Cleanup function to unsubscribe from all listeners
       return () => unsubscribes.forEach((unsubscribe) => unsubscribe());
     }
   }, [teams]);
 
+  // Toggle looking status (start/stop)
   const toggleLooking = async () => {
     if (isLooking) {
-      // Stop looking: Remove the user from Firestore
       const q = query(
         collection(db, "playersLooking"),
         where("userId", "==", user.id)
       );
-      const querySnapshot = await getDocs(q); // Fetch matching documents
+      const querySnapshot = await getDocs(q);
       querySnapshot.forEach(async (docItem) => {
         await deleteDoc(doc(db, "playersLooking", docItem.id));
       });
-
       setIsLooking(false);
       sessionStorage.setItem("isLooking", JSON.stringify(false));
     } else {
-      // Start looking: Add the user to Firestore
       if (!latitude || !longitude) {
         alert(
           "Location data is not available. Please enable location services."
         );
         return;
       }
-
       try {
         const userInfo = {
           userId: user.id,
           name: user.firstName + " " + user.lastName,
-          game: selectedGame, // Use the selected game
+          game: selectedGame,
           location: { latitude, longitude },
           timeStamp: new Date(),
         };
-        console.log("Adding user to Firestore:", userInfo);
         await addDoc(collection(db, "playersLooking"), userInfo);
         setIsLooking(true);
-        sessionStorage.setItem("isLooking", JSON.stringify(true)); // Store the state in sessionStorage
+        sessionStorage.setItem("isLooking", JSON.stringify(true));
       } catch (error) {
-        console.error("Error adding document to Firestore:", error);
+        console.error("Error adding document:", error);
       }
     }
   };
 
+  // Send team request
   const sendTeamRequest = async (toUserId, game) => {
     try {
       const userInfo = {
-        toUserId, // The user to whom the request is sent
+        toUserId,
         fromUserId: user.id,
         name: user.firstName + " " + user.lastName,
-        game, // Use the provided game
-        location: { latitude, longitude }, // Include location
+        game,
+        location: { latitude, longitude },
         timeStamp: new Date(),
       };
-      console.log("Adding team request to Firestore:", userInfo);
       await addDoc(collection(db, "teamRequests"), userInfo);
-      console.log("Team request sent successfully!");
     } catch (error) {
       console.error("Error sending team request:", error);
     }
   };
 
+  // Handle team request (accept/reject)
   const handleTeamRequest = async (requestId, fromUserId, game, action) => {
     try {
       const requestRef = doc(db, "teamRequests", requestId);
-
       if (action === "accept") {
-        // Create a new team
         const teamRef = collection(db, "teams");
         await addDoc(teamRef, {
           game,
           members: [user.id, fromUserId],
         });
-
-        console.log("Team formed successfully!");
       }
-
-      // Delete the request after processing
       await deleteDoc(requestRef);
-      console.log(`Request ${action}ed successfully!`);
     } catch (error) {
       console.error("Error handling team request:", error);
     }
   };
 
+  // Leave team
   const leaveTeam = async (teamId) => {
     try {
-      const teamRef = doc(db, "teams", teamId); // Correct DocumentReference
-      const teamDoc = await getDoc(teamRef); // Use getDoc for a single document
+      const teamRef = doc(db, "teams", teamId);
+      const teamDoc = await getDoc(teamRef);
       if (teamDoc.exists()) {
         const teamData = teamDoc.data();
         const updatedMembers = teamData.members.filter(
@@ -234,13 +209,13 @@ const PlayerMatchingPage = () => {
         console.log("Team not found!");
       }
     } catch (error) {
-      console.error("Error leaving the team:", error);
+      console.error("Error leaving team:", error);
     }
   };
 
+  // Send chat message
   const sendMessage = async (teamId) => {
     if (!message.trim()) return;
-
     try {
       await addDoc(collection(db, "teamChats"), {
         teamId,
@@ -255,29 +230,24 @@ const PlayerMatchingPage = () => {
     }
   };
 
+  // Fetch nearby turfs
   const fetchTurfs = async (team) => {
-    console.log("Fetching turfs for team:", team);
     try {
-      // Serialize and encode the team object
       const teamQueryParam = encodeURIComponent(JSON.stringify(team));
-      console.log("Encoded team data:", teamQueryParam);
-
-      const resp = await fetch(`http://localhost:5000/fetchTurfsForTeams?team=${teamQueryParam}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      // Check if the response is OK
+      const resp = await fetch(
+        `http://localhost:5000/fetchTurfsForTeams?team=${teamQueryParam}`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       if (!resp.ok) {
         const errorData = await resp.json();
-        console.error("Error response from server:", errorData);
-        throw new Error(`HTTP error! status: ${resp.status}, message: ${errorData.error || "Unknown error"}`);
+        throw new Error(
+          `HTTP error! status: ${resp.status}, message: ${errorData.error || "Unknown error"}`
+        );
       }
-
       const data = await resp.json();
-      console.log("Fetched turfs:", data);
       setTeamsTurfs(data.nearby_turfs || []);
     } catch (error) {
       console.error("Error fetching turfs:", error.message);
@@ -286,211 +256,213 @@ const PlayerMatchingPage = () => {
   };
 
   return (
-    <Container className="mt-5">
-      <h2 className="text-center mb-4">Find a Player</h2>
+    <div className="container mx-auto px-4 py-8">
+      <h2 className="text-3xl font-bold text-center mb-6">Find a Player</h2>
 
       {/* Toggle Button and Game Selector */}
-      <div className="text-center mb-4 d-flex justify-content-center align-items-center gap-3">
-        <Form.Select
+      <div className="flex flex-wrap justify-center items-center gap-4 mb-8">
+        <select
           value={selectedGame}
-          onChange={(e) => setSelectedGame(e.target.value)} // Update selected game
-          style={{ width: "200px" }}
+          onChange={(e) => setSelectedGame(e.target.value)}
+          className="w-48 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="Football">Football</option>
           <option value="Cricket">Cricket</option>
           <option value="Basketball">Basketball</option>
           <option value="Tennis">Tennis</option>
-        </Form.Select>
-        <Button
-          variant={isLooking ? "danger" : "primary"}
+        </select>
+        <button
           onClick={toggleLooking}
+          className={`px-4 py-2 rounded-md text-white ${
+            isLooking ? "bg-red-500 hover:bg-red-600" : "bg-blue-500 hover:bg-blue-600"
+          }`}
         >
           {isLooking ? "Stop Looking for a Game" : "Find Players to Play"}
-        </Button>
+        </button>
       </div>
 
+      {/* Display Players Looking */}
       {isLooking && (
-        <Row className="justify-content-center ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {players.map((player) => (
-            <Col md={4} key={player.id} className="mb-3">
-              <Card
-                className=""
-                style={{
-                  backgroundImage: `url(${footballcardbg})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
-                <Card.Body>
-                  <Card.Title className="text-white">{player.name}</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted text-white">
-                    {player.game}
-                  </Card.Subtitle>
-                  {/* <Card.Text>{player.location}</Card.Text> */}
-                  <Button
-                    variant="success"
-                    onClick={() => sendTeamRequest(player.userId, player.game)}
-                  >
-                    Form a Team
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Col>
+            <div
+              key={player.id}
+              className="relative rounded-lg shadow-lg overflow-hidden"
+              style={{
+                backgroundImage: `url(${footballcardbg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="bg-black bg-opacity-50 p-4">
+                <h3 className="text-xl text-white font-semibold">{player.name}</h3>
+                <p className="text-gray-200">{player.game}</p>
+                <button
+                  onClick={() => sendTeamRequest(player.userId, player.game)}
+                  className="mt-3 px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded"
+                >
+                  Form a Team
+                </button>
+              </div>
+            </div>
           ))}
-        </Row>
+        </div>
       )}
 
-      {teamRequests.length > 0 &&
-        teamRequests.map((req) => (
-          <div key={req.id}>
-            <p>
-              {req.fromUserId} invited you to a {req.game} match!
-            </p>
-            <Button
-              onClick={() =>
-                handleTeamRequest(req.id, req.fromUserId, req.game, "accept")
-              }
-            >
-              Accept
-            </Button>
-            <Button
-              onClick={() =>
-                handleTeamRequest(req.id, req.fromUserId, req.game, "reject")
-              }
-            >
-              Reject
-            </Button>
+      {/* Team Requests */}
+      {teamRequests.length > 0 && (
+        <div className="mt-10">
+          <h3 className="text-2xl font-semibold mb-4">Team Requests</h3>
+          {teamRequests.map((req) => (
+            <div key={req.id} className="flex items-center justify-between bg-gray-100 p-4 rounded mb-3">
+              <p>
+                <span className="font-semibold">{req.fromUserId}</span> invited you to a{" "}
+                <span className="font-semibold">{req.game}</span> match!
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() =>
+                    handleTeamRequest(req.id, req.fromUserId, req.game, "accept")
+                  }
+                  className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded"
+                >
+                  Accept
+                </button>
+                <button
+                  onClick={() =>
+                    handleTeamRequest(req.id, req.fromUserId, req.game, "reject")
+                  }
+                  className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded"
+                >
+                  Reject
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Teams & Chat Section */}
+      {teams.length > 0 &&
+        teams.map((team) => (
+          <div key={team.id} className="bg-white shadow rounded-lg mb-8 p-6">
+            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6">
+              {/* Team Info */}
+              <div className="w-full md:w-1/3">
+                <h3 className="text-2xl font-semibold mb-3">{team.game} Team</h3>
+                <p className="mb-2">
+                  <strong>Members:</strong>
+                </p>
+                <ul className="list-disc ml-5 mb-4">
+                  {team.members.map((member, index) => (
+                    <li key={index}>{member}</li>
+                  ))}
+                </ul>
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => leaveTeam(team.id)}
+                    className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded"
+                  >
+                    Leave Team
+                  </button>
+                  <button
+                    onClick={() => fetchTurfs(team)}
+                    className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded"
+                  >
+                    Search For Turfs
+                  </button>
+                </div>
+              </div>
+
+              {/* Team Chat */}
+              <div className="w-full md:w-2/3 flex flex-col">
+                <div className="border border-gray-300 rounded-lg p-4 h-80 overflow-y-auto mb-4">
+                  <h5 className="text-xl font-semibold mb-3">Team Chat</h5>
+                  {teamChats[team.id]?.map((chat, index) => (
+                    <p
+                      key={index}
+                      className={`p-2 rounded mb-2 ${
+                        chat.senderId === user.id
+                          ? "bg-green-100 text-green-800 self-end"
+                          : "bg-red-100 text-red-800 self-start"
+                      }`}
+                    >
+                      <strong>{chat.senderName}: </strong>
+                      {chat.text}
+                    </p>
+                  ))}
+                </div>
+                <div className="flex gap-3">
+                  <input
+                    type="text"
+                    placeholder="Type your message..."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        sendMessage(team.id);
+                      }
+                    }}
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <button
+                    onClick={() => sendMessage(team.id)}
+                    className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded"
+                  >
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         ))}
 
-      {teams.length > 0 &&
-        teams.map((team) => (
-          <Card key={team.id} className="mb-3">
-            <Card.Body>
-              <div className="d-flex justify-content-evenly align-items-center">
-                <div>
-                  <Card.Title>{team.game} Team</Card.Title>
-                  <Card.Text>
-                    <strong>Members:</strong>
-                    <ul>
-                      {team.members.map((member, index) => (
-                        <li key={index}>{member}</li>
-                      ))}
-                    </ul>
-                  </Card.Text>
-                  <Button
-                    variant="success"
-                    style={{ backgroundColor: "red", padding: "4px" }}
-                    onClick={() => leaveTeam(team.id)}
-                    className="btn btn-danger"
+      {/* Turf Results */}
+      {teamsTurfs.length > 0 && (
+        <div className="mt-10">
+          <h3 className="text-2xl font-semibold text-center mb-6">Nearby Turfs</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {teamsTurfs.map((turf) => (
+              <div key={turf.id} className="bg-white shadow rounded-lg overflow-hidden">
+                <img
+                  src={turf.images[0]}
+                  alt={turf.name}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-4">
+                  <h4 className="text-xl font-semibold mb-2">{turf.name}</h4>
+                  <p className="text-gray-700 mb-1">
+                    <strong>City:</strong> {turf.city}
+                  </p>
+                  <p className="text-gray-700 mb-1">
+                    <strong>Price/Hour:</strong> ₹{turf.price_per_hour}
+                  </p>
+                  <p className="text-gray-700 mb-1">
+                    <strong>Rating:</strong> {turf.rating} ⭐
+                  </p>
+                  <p className="text-gray-700 mb-1">
+                    <strong>Discount:</strong> {turf.discount}
+                  </p>
+                  <p className="text-gray-700 mb-1">
+                    <strong>Amenities:</strong> {turf.amenities.join(", ")}
+                  </p>
+                  <p className="text-gray-700 mb-3">
+                    <strong>Available Slots:</strong> {turf.available_slots.join(", ")}
+                  </p>
+                  <button
+                    onClick={() => console.log(`Booking turf: ${turf.name}`)}
+                    className="w-full px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded"
                   >
-                    Leave Team
-                  </Button>
-                  <Button
-                    variant="success"
-                    style={{ backgroundColor: "green", padding: "4px" }}
-                    onClick={() => fetchTurfs(team)}
-                    className="btn  ml-1 p-1"
-                  >
-                    Search For Turfs
-                  </Button>
-                </div>
-
-                <div>
-                  {/* Chat Section */}
-                  <div
-                    style={{
-                      border: "1px solid #ddd",
-                      borderRadius: "5px",
-                      padding: "10px",
-                      width: "800px",
-                      maxHeight: "32rem",
-                      minHeight: "20rem", // Fixed height for the chat box
-                      overflowY: "scroll",
-                    }}
-                  >
-                    <h5>Team Chat</h5>
-                    <div>
-                      {teamChats[team.id]?.map((chat, index) => (
-                        <p
-                          key={index}
-                          style={{
-                            backgroundColor:
-                              chat.senderId === user.id ? "#d1e7dd" : "#f8d7da",
-                            padding: "5px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <strong>{chat.senderName}: </strong> {chat.text}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Message Input */}
-                  <div className="d-flex mt-2">
-                    <Form.Control
-                      type="text"
-                      placeholder="Type your message..."
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                          e.preventDefault(); // Prevent default form submission
-                          sendMessage(team.id); // Send the message
-                        }
-                      }}
-                    />
-                    <Button
-                      variant="primary"
-                      onClick={() => sendMessage(team.id)}
-                    >
-                      Send
-                    </Button>
-                  </div>
+                    Book Turf
+                  </button>
                 </div>
               </div>
-            </Card.Body>
-          </Card>
-        ))}
-
-      {teamsTurfs.length > 0 && (
-        <div className="mt-5">
-          <h3 className="text-center mb-4">Nearby Turfs</h3>
-          <Row className="justify-content-center">
-            {teamsTurfs.map((turf, index) => (
-              <Col md={4} key={turf.id} className="mb-3">
-                <Card>
-                  <Card.Img
-                    variant="top"
-                    src={turf.images[0]}
-                    alt={turf.name}
-                    style={{ height: "200px", objectFit: "cover" }}
-                  />
-                  <Card.Body>
-                    <Card.Title>{turf.name}</Card.Title>
-                    <Card.Text>
-                      <strong>City:</strong> {turf.city} <br />
-                      <strong>Price/Hour:</strong> ₹{turf.price_per_hour} <br />
-                      <strong>Rating:</strong> {turf.rating} ⭐ <br />
-                      <strong>Discount:</strong> {turf.discount} <br />
-                      <strong>Amenities:</strong> {turf.amenities.join(", ")} <br />
-                      <strong>Available Slots:</strong> {turf.available_slots.join(", ")}
-                    </Card.Text>
-                    <Button
-                      variant="primary"
-                      onClick={() => console.log(`Booking turf: ${turf.name}`)}
-                    >
-                      Book Turf
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
             ))}
-          </Row>
+          </div>
         </div>
       )}
-    </Container>
+    </div>
   );
 };
 

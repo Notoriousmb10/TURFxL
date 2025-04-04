@@ -1,7 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
+  Box,
+  Typography,
+  Grid,
+  Card,
+  CardActionArea,
+  CardMedia,
+  CardContent,
+  CircularProgress,
+  Alert,
+} from "@mui/material";
 
 const LocationRecommender = () => {
   const [turfs, setTurfs] = useState([]);
@@ -13,36 +24,30 @@ const LocationRecommender = () => {
   useEffect(() => {
     const fetchTurfs = async () => {
       setLoading(true);
-      setError(null); // Reset error state before fetching
+      setError(null);
       try {
         const response = await axios.get(
-          `http://localhost:5000/recommend_turfs_location_based`,
+          "http://localhost:5000/recommend_turfs_location_based",
           {
-            params: {
-              latitude,
-              longitude,
-            },
+            params: { latitude, longitude },
           }
         );
-        console.log(response.data);
         setTurfs(response.data);
-      } catch (error) {
-        console.error("Error fetching turfs:", error);
-        if (error.response) {
-          // Server responded with a status other than 200 range
-          setError(`Server Error: ${error.response.status}`);
-        } else if (error.request) {
-          // Request was made but no response received
+      } catch (err) {
+        if (err.response) {
+          setError(`Server Error: ${err.response.status}`);
+        } else if (err.request) {
           setError("Network Error: No response received from server.");
         } else {
-          // Something else happened while setting up the request
-          setError(`Error: ${error.message}`);
+          setError(`Error: ${err.message}`);
         }
       }
       setLoading(false);
     };
 
-    fetchTurfs();
+    if (latitude && longitude) {
+      fetchTurfs();
+    }
   }, [latitude, longitude]);
 
   const handleNavigation = (turf) => {
@@ -55,36 +60,47 @@ const LocationRecommender = () => {
       address: turf.details.city,
       maxGroupSize: 11,
     };
-    console.log(tour)
     navigate("/turfs/bookturf", { state: { tour } });
   };
 
   return (
-    <div>
+    <Box sx={{ mt: 2 }}>
+      <Typography variant="h5" gutterBottom>
+        Turfs Recommended Based on Your Location
+      </Typography>
       {loading ? (
-        <p>Loading turfs...</p>
+        <Box sx={{ display: "flex", justifyContent: "center", py: 4 }}>
+          <CircularProgress />
+        </Box>
       ) : error ? (
-        <p>{error}</p>
+        <Alert severity="error">{error}</Alert>
       ) : turfs.length === 0 ? (
-        <p>No turfs found.</p>
+        <Alert severity="info">No turfs found.</Alert>
       ) : (
-        <div className="turf-grid">
+        <Grid container spacing={3}>
           {turfs.map((turf, index) => (
-            <div
-              key={index}
-              onClick={() => handleNavigation(turf)} // Add onClick handler
-              className="turf-card"
-              style={{ backgroundImage: `url(${turf.details.images?.[0] || ''})` }} // Add optional chaining and fallback
-            >
-              <div className="turf-info">
-                <strong>{turf.name}</strong>
-                <p>₹{turf.details.price_per_hour}/hr</p> {/* Ensure price_per_hour is displayed */}
-              </div>
-            </div>
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Card>
+                <CardActionArea onClick={() => handleNavigation(turf)}>
+                  <CardMedia
+                    component="img"
+                    height="200"
+                    image={turf.details.images?.[0] || ""}
+                    alt={turf.name}
+                  />
+                  <CardContent>
+                    <Typography variant="h6">{turf.name}</Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      ₹{turf.details.price_per_hour}/hr
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
           ))}
-        </div>
+        </Grid>
       )}
-    </div>
+    </Box>
   );
 };
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./CommunityPage.css";
 import { useUser } from "@clerk/clerk-react";
 
 const CommunityPage = () => {
@@ -17,7 +16,7 @@ const CommunityPage = () => {
     setSearchTerm(searchValue);
 
     if (searchValue.trim() === "") {
-      setUsers([]); // Clear users if search is empty
+      setUsers([]);
       return;
     }
 
@@ -45,7 +44,10 @@ const CommunityPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ sendersUserId: user.id, receiversUserId: receiverId }),
+          body: JSON.stringify({
+            sendersUserId: user.id,
+            receiversUserId: receiverId,
+          }),
         }
       );
       const data = await response.json();
@@ -69,13 +71,10 @@ const CommunityPage = () => {
         );
 
         const data = await response.json();
-        console.log("API Response:", data); // Log the entire response
-        console.log("Friend requests data:", data.friend_requests); // Log the specific field
-
         if (data.friend_requests) {
           setFriendRequests(data.friend_requests);
         } else {
-          setFriendRequests([]); // Ensure it's an empty array if no data
+          setFriendRequests([]);
         }
       } catch (error) {
         console.error("Error fetching friend requests:", error);
@@ -85,104 +84,122 @@ const CommunityPage = () => {
     fetchFriendRequests();
   }, [user]);
 
-  const filteredUsers = (users || []).filter(
-    (user) =>
-      (user.name &&
-        user.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (user.username &&
-        user.username.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
-
   return (
-    <div className="community-page">
-      <h1 className="title">Community Page</h1>
-      <div className="search-bar-container">
-        <input
-          type="text"
-          className="search-bar"
-          placeholder="Search for friends by name or username..."
-          value={searchTerm}
-          onChange={handleSearch}
-        />
-      </div>
-      <div className="search-results-section">
-        <h2>Search Results</h2>
-        {users.length > 0 ? (
-          <ul className="search-results-list">
-            {users.map((user) => (
-              <li key={user.id} className="search-result-item">
-                {user.name} (@{user.username})
-                <button
-                  className="add-friend-btn"
-                  onClick={() => handleFriendRequest(user.id)}
+    <div className="min-h-screen bg-gray-50 p-6">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-4xl font-bold text-center mb-8">Community Page</h1>
+        <div className="mb-6 flex justify-center">
+          <input
+            type="text"
+            className="w-full max-w-md border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Search for friends by name or username..."
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
+        {/* Search Results */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Search Results</h2>
+          {users.length > 0 ? (
+            <ul className="space-y-4">
+              {users.map((user) => (
+                <li
+                  key={user.id}
+                  className="flex items-center justify-between bg-white p-4 rounded shadow"
                 >
-                  <span className="add-friend-icon">+</span> Add Friend
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="no-results">No users found</p>
-        )}
-      </div>
-      <div className="friend-requests-section">
-        <h2 className="section-title">Incoming Friend Requests</h2>
-        {Object.entries(friendRequests || {}).length > 0 ? (
-          Object.entries(friendRequests).map(([key, value]) => (
-            <div key={key} className="friend-request-card">
-              <div className="friend-request-avatar">
+                  <span>
+                    {user.name} (@{user.username})
+                  </span>
+                  <button
+                    className="flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+                    onClick={() => handleFriendRequest(user.id)}
+                  >
+                    <span className="mr-2 text-lg">+</span> Add Friend
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-500 italic">No users found</p>
+          )}
+        </div>
+        {/* Friend Requests */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">
+            Incoming Friend Requests
+          </h2>
+          {Object.entries(friendRequests || {}).length > 0 ? (
+            Object.entries(friendRequests).map(([key, value]) => (
+              <div
+                key={key}
+                className="flex items-center bg-white p-4 rounded shadow mb-4"
+              >
                 <img
+                  className="w-12 h-12 rounded-full mr-4"
                   src={`https://ui-avatars.com/api/?name=${value}&background=random`}
                   alt={`${value}'s avatar`}
                 />
+                <div className="flex-grow">
+                  <h3 className="text-lg font-semibold">{value}</h3>
+                  <p className="text-sm text-gray-500">@{key}</p>
+                </div>
+                <div className="space-x-2">
+                  <button className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded">
+                    Accept
+                  </button>
+                  <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">
+                    Decline
+                  </button>
+                </div>
               </div>
-              <div className="friend-request-info">
-                <h3 className="friend-request-name">{value}</h3>
-                <p className="friend-request-username">@{key}</p>
-              </div>
-              <div className="friend-request-actions">
-                <button className="accept-btn modern-btn">Accept</button>
-                <button className="decline-btn modern-btn">Decline</button>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p className="no-requests">No friend requests</p>
-        )}
-      </div>
-      <div className="friends-section">
-        <h2>Your Friends</h2>
-        {users.length > 0 ? (
-          <ul className="friends-list">
-            {users.map((friend) => (
-              <li key={friend.id} className="friend-item">
-                <div className="friend-name">{friend.name}</div>
-                <div className="friend-username">@{friend.username}</div>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="no-friends">You have no friends yet</p>
-        )}
-      </div>
-      <div className="chat-section">
-        <h2>Chats</h2>
-        {chats.length > 0 ? (
-          <ul className="chat-list">
-            {chats.map((chat) => (
-              <li key={chat.id} className="chat-item">
-                <div className="chat-name">{chat.name}</div>
-                <div className="chat-message">{chat.lastMessage}</div>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="no-chats">No active chats</p>
-        )}
-      </div>
-      <div className="features-section">
-        <h2>Community Features</h2>
-        <p>More features coming soon...</p>
+            ))
+          ) : (
+            <p className="text-gray-500 italic">No friend requests</p>
+          )}
+        </div>
+        {/* Friends List */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Your Friends</h2>
+          {users.length > 0 ? (
+            <ul className="space-y-2">
+              {users.map((friend) => (
+                <li
+                  key={friend.id}
+                  className="flex items-center bg-white p-3 rounded shadow"
+                >
+                  <div className="mr-4 font-semibold">{friend.name}</div>
+                  <div className="text-gray-500">@{friend.username}</div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-500 italic">You have no friends yet</p>
+          )}
+        </div>
+        {/* Chats */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Chats</h2>
+          {chats.length > 0 ? (
+            <ul className="space-y-4">
+              {chats.map((chat) => (
+                <li
+                  key={chat.id}
+                  className="bg-white p-4 rounded shadow flex flex-col"
+                >
+                  <div className="font-semibold">{chat.name}</div>
+                  <div className="text-gray-500">{chat.lastMessage}</div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-500 italic">No active chats</p>
+          )}
+        </div>
+        {/* Community Features */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold mb-2">Community Features</h2>
+          <p className="text-gray-500">More features coming soon...</p>
+        </div>
       </div>
     </div>
   );
