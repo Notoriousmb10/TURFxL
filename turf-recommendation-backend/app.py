@@ -546,6 +546,29 @@ def fetch_turfs_for_teams():
             
     
 
+@app.route('/getUserNames', methods=['POST'])
+def get_user_names():
+    try:
+        data = request.get_json()
+        user_ids = data.get("userIds", [])
+        if not user_ids:
+            return jsonify({"error": "No user IDs provided"}), 400
+
+        user_names = {}
+        for user_id in user_ids:
+            user_ref = db.collection("users").document(user_id)
+            user_doc = user_ref.get()
+            if user_doc.exists:
+                user_data = user_doc.to_dict()
+                user_names[user_id] = user_data.get("name", "Unknown")
+            else:
+                user_names[user_id] = None  # User not found
+
+        return jsonify({"userNames": user_names}), 200
+    except Exception as e:
+        print(f"❌ Error in /getUserNames: {str(e)}")
+        return jsonify({"error": "Internal Server Error", "details": str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -19,21 +19,22 @@ const   SearchBar = ({ onSearch }) => {
       return;
     }
     setLoading(true);
-    setTimeout(async () => {
-      try {
-        dispatch(
-          searchTurf({
-            location,
-          })
-        );
-        setLoading(false);
-
-        navigate(`/searchresults?location=${location.toLowerCase()}`);
-      } catch (error) {
-        console.error("Error searching turfs:", error);
-        setLoading(false);
-      }
-    }, 4000);
+  
+    try {
+      // Dispatch the action and wait for it to complete
+      await dispatch(
+        searchTurf({
+          location,
+        })
+      );
+  
+      // Navigate after the action is complete
+      navigate(`/searchresults?location=${location.toLowerCase()}`);
+    } catch (error) {
+      console.error("Error searching turfs:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const redirectToPool = async () => {

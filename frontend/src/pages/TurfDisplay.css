@@ -92,3 +92,19 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.team-members-section {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.team-member-card {
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  background: rgba(240, 240, 240, 0.9);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}

@@ -12,6 +12,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import axios from "axios";
 import { useUser } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
 
 const timeSlots = [
   "7-8 AM",
@@ -49,6 +50,7 @@ export default function Sidebar({
 }) {
   const [numPlayers, setNumPlayers] = useState(maxGroupSize);
   const { user } = useUser();
+  const navigate = useNavigate();
 
   const validPrice = parseFloat(price) || 0;
   const validMaxGroupSize = parseInt(maxGroupSize, 10) || 1;
@@ -78,9 +80,8 @@ export default function Sidebar({
         selectedDate,
         selectedSlot,
         selectedTurf,
-        user_id : user.id,
+        user_id: user.id,
       };
-      console.log(turfData);
 
       const response = await axios.post(
         "http://localhost:3001/pay/bookTurf",
@@ -98,31 +99,20 @@ export default function Sidebar({
           description: desc,
           order_id: orderId,
           handler: async function (response) {
-            console.log(response);
-
             try {
-              // await axios.post("http://localhost:3001/sendConfirmationEmail", {
-              //   email: user.primaryEmailAddress.emailAddress,
-              //   bookingDetails: {
-              //     name,
-              //     city,
-              //     image,
-              //     price,
-              //     desc,
-              //     address,
-              //     maxGroupSize,
-              //     timeSlots: [selectedSlot.time],
-              //     paymentId: response.razorpay_payment_id,
-              //   },
-              // });
-              // console.log("Confirmation email sent successfully");
+              const bookingDetails = {
+                name,
+                city,
+                date: selectedDate,
+                slot: selectedSlot.time,
+                turf: selectedTurf,
+                price: totalPrice,
+              };
 
-              const request = await axios.post( "http://localhost:5000/handle_booking", turfData);
-              console.log(request.data);
-
-              console.log("User Updated", request.data);
+              navigate("/booking-success", { state: { bookingDetails } });
             } catch (error) {
-              console.error("Error updating user", error);
+              console.error("Error handling booking success", error);
+              alert("An error occurred while processing your booking.");
             }
           },
           prefill: {
@@ -138,9 +128,11 @@ export default function Sidebar({
         rzp1.open();
       } else {
         console.error("Razorpay SDK not loaded");
+        alert("Payment gateway is not available. Please try again later.");
       }
     } catch (error) {
       console.error("Error creating Razorpay order", error);
+      alert("An error occurred while initiating payment. Please try again.");
     }
   };
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
 import {
   db,
@@ -18,6 +19,7 @@ import footballcardbg from "../assets/turfImages/footballcardbg.jpeg";
 
 const PlayerMatchingPage = () => {
   const [teamsTurfs, setTeamsTurfs] = useState([]);
+  const navigate = useNavigate();
   const { user } = useUser();
   const { latitude, longitude } = useSelector((state) => state.location);
   const [isLooking, setIsLooking] = useState(
@@ -48,6 +50,10 @@ const PlayerMatchingPage = () => {
       return () => unsubscribe();
     }
   }, [user?.id]);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   // Fetch players looking for a game (exclude current user)
   useEffect(() => {
@@ -142,19 +148,23 @@ const PlayerMatchingPage = () => {
         );
         return;
       }
-      try {
-        const userInfo = {
-          userId: user.id,
-          name: user.firstName + " " + user.lastName,
-          game: selectedGame,
-          location: { latitude, longitude },
-          timeStamp: new Date(),
-        };
-        await addDoc(collection(db, "playersLooking"), userInfo);
-        setIsLooking(true);
-        sessionStorage.setItem("isLooking", JSON.stringify(true));
-      } catch (error) {
-        console.error("Error adding document:", error);
+      if (user) {
+        try {
+          const userInfo = {
+            userId: user.id,
+            name: user.firstName + " " + user.lastName,
+            game: selectedGame,
+            location: { latitude, longitude },
+            timeStamp: new Date(),
+          };
+          await addDoc(collection(db, "playersLooking"), userInfo);
+          setIsLooking(true);
+          sessionStorage.setItem("isLooking", JSON.stringify(true));
+        } catch (error) {
+          console.error("Error adding document:", error);
+        }
+      } else {
+        alert("User not found. Please log in.");
       }
     }
   };
@@ -220,7 +230,7 @@ const PlayerMatchingPage = () => {
       await addDoc(collection(db, "teamChats"), {
         teamId,
         senderId: user.id,
-        senderName: user.firstName,
+        senderName: `${user.firstName} ${user.lastName}`, // Send user's name
         text: message,
         timestamp: new Date(),
       });
@@ -244,14 +254,68 @@ const PlayerMatchingPage = () => {
       if (!resp.ok) {
         const errorData = await resp.json();
         throw new Error(
-          `HTTP error! status: ${resp.status}, message: ${errorData.error || "Unknown error"}`
+          `HTTP error! status: ${resp.status}, message: ${
+            errorData.error || "Unknown error"
+          }`
         );
       }
       const data = await resp.json();
-      setTeamsTurfs(data.nearby_turfs || []);
+      const turfs = data.nearby_turfs || [];
+      setTeamsTurfs(turfs);
+      sessionStorage.setItem("teamsTurfs", JSON.stringify(turfs)); // Store turfs in sessionStorage
     } catch (error) {
       console.error("Error fetching turfs:", error.message);
       alert(`Failed to fetch turfs: ${error.message}`);
+    }
+  };
+
+  // Load turfs from sessionStorage on component mount
+  useEffect(() => {
+    const storedTurfs = sessionStorage.getItem("teamsTurfs");
+    if (storedTurfs) {
+      setTeamsTurfs(JSON.parse(storedTurfs));
+    }
+  }, []);
+
+  const handleBookTurf = async (turf) => {
+    const tour = {
+      title: turf.name,
+      city: turf.city,
+      photo: turf.images[0],
+      price: turf.price_per_hour,
+      desc: "A great place to play!",
+      address: turf.address || "Address not available",
+      maxGroupSize: turf.max_group_size || 10,
+    };
+
+    const allTeamMembers = teams.flatMap((team) => team.members);
+
+    try {
+      console.log("Sending user IDs to backend:", allTeamMembers); // Debug log
+      const response = await fetch("http://localhost:5000/getUserNames", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userIds: allTeamMembers }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch user names: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log("Received user names from backend:", data); // Debug log
+      const userIdToNameMap = data.userNames || {};
+
+      const teamMembers = allTeamMembers.map(
+        (userId) => userIdToNameMap[userId] || userId // Use name if available, fallback to ID
+      );
+
+      navigate("/turfs/bookturf", {
+        state: { tour, teamMembers },
+      });
+    } catch (error) {
+      console.error("Error fetching user names:", error.message);
+      alert("Failed to fetch team member names. Please try again.");
     }
   };
 
@@ -274,7 +338,9 @@ const PlayerMatchingPage = () => {
         <button
           onClick={toggleLooking}
           className={`px-4 py-2 rounded-md text-white ${
-            isLooking ? "bg-red-500 hover:bg-red-600" : "bg-blue-500 hover:bg-blue-600"
+            isLooking
+              ? "bg-red-500 hover:bg-red-600"
+              : "bg-blue-500 hover:bg-blue-600"
           }`}
         >
           {isLooking ? "Stop Looking for a Game" : "Find Players to Play"}
@@ -295,7 +361,9 @@ const PlayerMatchingPage = () => {
               }}
             >
               <div className="bg-black bg-opacity-50 p-4">
-                <h3 className="text-xl text-white font-semibold">{player.name}</h3>
+                <h3 className="text-xl text-white font-semibold">
+                  {player.name}
+                </h3>
                 <p className="text-gray-200">{player.game}</p>
                 <button
                   onClick={() => sendTeamRequest(player.userId, player.game)}
@@ -314,15 +382,24 @@ const PlayerMatchingPage = () => {
         <div className="mt-10">
           <h3 className="text-2xl font-semibold mb-4">Team Requests</h3>
           {teamRequests.map((req) => (
-            <div key={req.id} className="flex items-center justify-between bg-gray-100 p-4 rounded mb-3">
+            <div
+              key={req.id}
+              className="flex items-center justify-between bg-gray-100 p-4 rounded mb-3"
+            >
               <p>
-                <span className="font-semibold">{req.fromUserId}</span> invited you to a{" "}
-                <span className="font-semibold">{req.game}</span> match!
+                <span className="font-semibold">{req.fromUserId}</span> invited
+                you to a <span className="font-semibold">{req.game}</span>{" "}
+                match!
               </p>
               <div className="flex gap-3">
                 <button
                   onClick={() =>
-                    handleTeamRequest(req.id, req.fromUserId, req.game, "accept")
+                    handleTeamRequest(
+                      req.id,
+                      req.fromUserId,
+                      req.game,
+                      "accept"
+                    )
                   }
                   className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded"
                 >
@@ -330,7 +407,12 @@ const PlayerMatchingPage = () => {
                 </button>
                 <button
                   onClick={() =>
-                    handleTeamRequest(req.id, req.fromUserId, req.game, "reject")
+                    handleTeamRequest(
+                      req.id,
+                      req.fromUserId,
+                      req.game,
+                      "reject"
+                    )
                   }
                   className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded"
                 >
@@ -349,7 +431,9 @@ const PlayerMatchingPage = () => {
             <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6">
               {/* Team Info */}
               <div className="w-full md:w-1/3">
-                <h3 className="text-2xl font-semibold mb-3">{team.game} Team</h3>
+                <h3 className="text-2xl font-semibold mb-3">
+                  {team.game} Team
+                </h3>
                 <p className="mb-2">
                   <strong>Members:</strong>
                 </p>
@@ -387,7 +471,7 @@ const PlayerMatchingPage = () => {
                           : "bg-red-100 text-red-800 self-start"
                       }`}
                     >
-                      <strong>{chat.senderName}: </strong>
+                      <strong>{chat.senderName}: </strong> {/* Use senderName */}
                       {chat.text}
                     </p>
                   ))}
@@ -421,10 +505,15 @@ const PlayerMatchingPage = () => {
       {/* Turf Results */}
       {teamsTurfs.length > 0 && (
         <div className="mt-10">
-          <h3 className="text-2xl font-semibold text-center mb-6">Nearby Turfs</h3>
+          <h3 className="text-2xl font-semibold text-center mb-6">
+            Nearby Turfs
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {teamsTurfs.map((turf) => (
-              <div key={turf.id} className="bg-white shadow rounded-lg overflow-hidden">
+              <div
+                key={turf.id}
+                className="bg-white shadow rounded-lg overflow-hidden"
+              >
                 <img
                   src={turf.images[0]}
                   alt={turf.name}
@@ -448,10 +537,11 @@ const PlayerMatchingPage = () => {
                     <strong>Amenities:</strong> {turf.amenities.join(", ")}
                   </p>
                   <p className="text-gray-700 mb-3">
-                    <strong>Available Slots:</strong> {turf.available_slots.join(", ")}
+                    <strong>Available Slots:</strong>{" "}
+                    {turf.available_slots.join(", ")}
                   </p>
                   <button
-                    onClick={() => console.log(`Booking turf: ${turf.name}`)}
+                    onClick={() => handleBookTurf(turf)}
                     className="w-full px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded"
                   >
                     Book Turf
