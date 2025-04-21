@@ -15,6 +15,7 @@ import LocationRecommender from "../components/Location-Recommender/location-rec
 import HistoryBasedRecommender from "../components/Location-Recommender/history-based-recommender";
 import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react";
 import BookingSuccess from "../pages/BookingSuccess";
+import Bookings from "../pages/Bookings"; // Import the new Bookings page
 
 const Routers = () => {
   return (
@@ -35,6 +36,7 @@ const Routers = () => {
       <Route path="/login/sso-callback" element={<AuthenticateWithRedirectCallback />} />
       <Route path="/player-matching-pool" element={<PlayerMatchingPage />} />
       <Route path="/booking-success" element={<BookingSuccess />} />
+      <Route path="/bookings" element={<Bookings />} /> {/* Add Bookings route */}
     </Routes>
   );
 };

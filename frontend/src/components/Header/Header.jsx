@@ -32,6 +32,10 @@ const nav__links = [
     path: "/community",
     display: "Community",
   },
+  {
+    path: "/bookings", // Add Bookings route
+    display: "Bookings",
+  },
 ];
 
 const Header = () => {

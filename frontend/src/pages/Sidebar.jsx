@@ -81,6 +81,7 @@ export default function Sidebar({
         selectedSlot,
         selectedTurf,
         user_id: user.id,
+        email: user.primaryEmailAddress.emailAddress, // Include user's email
       };
 
       const response = await axios.post(
@@ -107,7 +108,11 @@ export default function Sidebar({
                 slot: selectedSlot.time,
                 turf: selectedTurf,
                 price: totalPrice,
+                user_id: user.id,
               };
+
+              // Send booking details to the backend
+              await axios.post("http://localhost:5000/save_booking", bookingDetails);
 
               navigate("/booking-success", { state: { bookingDetails } });
             } catch (error) {

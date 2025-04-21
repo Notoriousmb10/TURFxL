@@ -361,15 +361,31 @@ def get_turf_details(turf_name):
 # 🔹 API: Save User Booking
 @app.route("/save_booking", methods=["POST"])
 def save_booking():
-    data = request.json
-    user_id = data.get("user_id")
-    turf_id = data.get("turf_id")
-    
-    if not user_id or not turf_id:
-        return jsonify({"error": "Missing user_id or turf_id"}), 400
+    try:
+        data = request.json
+        user_id = data.get("user_id")
+        turf_name = data.get("turf")
+        date = data.get("date")
+        slot = data.get("slot")
+        price = data.get("price")
 
-    db.collection("bookings").add({"user_id": user_id, "turf_id": turf_id})
-    return jsonify({"message": "Booking saved successfully"}), 200
+        if not all([user_id, turf_name, date, slot, price]):
+            return jsonify({"error": "Missing booking details"}), 400
+
+        # Save booking information in Firestore
+        db.collection("bookings").add({
+            "user_id": user_id,
+            "turf_name": turf_name,
+            "date": date,
+            "slot": slot,
+            "price": price,
+        })
+
+        return jsonify({"message": "Booking saved successfully"}), 200
+    except Exception as e:
+        print(f"Error saving booking: {e}")
+        return jsonify({"error": "Internal Server Error", "details": str(e)}), 500
+
 
 # 🔹 API: Like a Turf
 @app.route("/like_turf", methods=["POST"])
@@ -567,6 +583,22 @@ def get_user_names():
         return jsonify({"userNames": user_names}), 200
     except Exception as e:
         print(f"❌ Error in /getUserNames: {str(e)}")
+        return jsonify({"error": "Internal Server Error", "details": str(e)}), 500
+
+
+@app.route("/get_user_bookings", methods=["GET"])
+def get_user_bookings():
+    try:
+        user_id = request.args.get("user_id")
+        if not user_id:
+            return jsonify({"error": "Missing user_id"}), 400
+
+        bookings_ref = db.collection("bookings").where("user_id", "==", user_id)
+        bookings = [doc.to_dict() for doc in bookings_ref.stream()]
+
+        return jsonify({"bookings": bookings}), 200
+    except Exception as e:
+        print(f"Error fetching user bookings: {e}")
         return jsonify({"error": "Internal Server Error", "details": str(e)}), 500
 
 
